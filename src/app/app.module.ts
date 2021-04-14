@@ -11,6 +11,11 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProductComponent } from './components/product/product.component';
 import {HttpClientModule} from '@angular/common/http';
+import { UserComponent } from './components/user/user.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import {FormsModule} from '@angular/forms';
+import { httpInterceptorProviders } from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -20,15 +25,19 @@ import {HttpClientModule} from '@angular/common/http';
     CartComponent,
     CheckoutComponent,
     HomeComponent,
-    ProductComponent
+    ProductComponent,
+    UserComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
