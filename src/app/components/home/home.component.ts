@@ -38,10 +38,4 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/product', id]).then();
   }
 
-  // tslint:disable-next-line:typedef
-  logout() {
-    this.token.signOut();
-    window.location.reload();
-  }
-
 }

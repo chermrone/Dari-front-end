@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   private loginInfo!: LoginInfo;
 
+
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) {
   }
 
@@ -40,11 +41,10 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUsername(data.username);
         this.tokenStorage.saveAuthorities(data.authorities);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
-        this.reloadPage();
+        this.router.navigate(['']);
       },
       error => {
         console.log(error);
@@ -52,11 +52,6 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = true;
       }
     );
-  }
-
-  // tslint:disable-next-line:typedef
-  reloadPage() {
-    window.location.reload();
   }
 
 }

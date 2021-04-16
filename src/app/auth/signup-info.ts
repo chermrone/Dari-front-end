@@ -1,14 +1,14 @@
 export class SignupInfo {
 
-  firstName!: string;
-  lastName!: string;
-  username!: string;
-  age!: number;
-  phoneNumber!: number;
-  email!: string;
-  roles!: string[];
-  password!: string;
-  cin!: number;
+  firstName: string;
+  lastName: string;
+  username: string;
+  age: number;
+  phoneNumber: number;
+  email: string;
+  roles: string[];
+  password: string;
+  cin: number;
 
   constructor(firstName: string, lastName: string, username: string, age: number, phoneNumber: number,
               roles: string[], cin: number, email: string, password: string) {

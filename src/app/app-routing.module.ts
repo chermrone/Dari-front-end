@@ -4,7 +4,9 @@ import {HomeComponent} from './components/home/home.component';
 import {ProductComponent} from './components/product/product.component';
 import {CartComponent} from './components/cart/cart.component';
 import {CheckoutComponent} from './components/checkout/checkout.component';
+// @ts-ignore
 import {RegisterComponent} from './components/register/register.component';
+// @ts-ignore
 import {LoginComponent} from './components/login/login.component';
 import {AppComponent} from './app.component';
 
@@ -16,6 +18,8 @@ const routes: Routes = [
   {path: 'checkout', component: CheckoutComponent},
   {path: 'signup', component: RegisterComponent},
   {path: 'signin', component: LoginComponent},
+  {path: 'app', component: AppComponent},
+  { path: 'loggedin',   redirectTo: 'app', pathMatch: 'full' }
 ];
 
 @NgModule({
