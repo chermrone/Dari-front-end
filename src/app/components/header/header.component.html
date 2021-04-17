@@ -2,27 +2,28 @@
 <header>
   <!-- TOP HEADER -->
   <div id="top-header">
-    <div class="container"  *ngIf="info.token ;">
+    <div class="container" *ngIf="info.token ;">
       <ul class="header-links pull-left">
         <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
         <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
         <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
       </ul>
-        <ul class="header-links pull-right" >
-          <li><a href="#"><i class="fa fa-dollar"></i> Appointments</a></li>
-          <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-          <li><a (click)="logout()"><i class="fa fa-user-o"></i> Logout</a></li>
-        </ul>
+      <ul class="header-links pull-right">
+        <li><a href="#"><i class="fa fa-dollar"></i> Appointments</a></li>
+        <li><a (click)="UpgradePremium()"><i class="fa fa-user-o"></i> Upgrade premium</a></li>
+        <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+        <li><a (click)="logout()"><i class="fa fa-user-o"></i> Logout</a></li>
+      </ul>
     </div>
 
-    <div class="container"  *ngIf="!info.token;">
+    <div class="container" *ngIf="!info.token;">
       <ul class="header-links pull-left">
         <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
         <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
         <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
       </ul>
-      <ul class="header-links pull-right" >
-        <li><a (click)="SignupRouting()" ><i class="fa fa-dollar"></i> Signup</a></li>
+      <ul class="header-links pull-right">
+        <li><a (click)="SignupRouting()"><i class="fa fa-dollar"></i> Signup</a></li>
         <li><a (click)="SigninRouting()"><i class="fa fa-user-o"></i> Signin</a></li>
       </ul>
     </div>
@@ -83,48 +84,50 @@
               </a>
               <div class="cart-dropdown">
                 <div class="cart-list">  <!--*ngIf="cartData.data[0].numInCart !== 0"-->
-                <div class="product-widget"> <!--*ngFor="let c of cartData.data; let i=index"-->
-                <div class="product-img">
-                  <img src=" assets/img/product01.png" alt="" width="20px">
-                </div>
-                <div class="product-body">
-                  <h3 class="product-name"><a href="#">Product Body<!--{{c.product?.name}}--></a></h3>
-                  <h4 class="product-price"><span class="qty"> num in Card<!--{{c.numInCart}}-->
+                  <div class="product-widget"> <!--*ngFor="let c of cartData.data; let i=index"-->
+                    <div class="product-img">
+                      <img src=" assets/img/product01.png" alt="" width="20px">
+                    </div>
+                    <div class="product-body">
+                      <h3 class="product-name"><a href="#">Product Body<!--{{c.product?.name}}--></a></h3>
+                      <h4 class="product-price"><span class="qty"> num in Card<!--{{c.numInCart}}-->
                     x </span> 500 USD<!--{{c.product?.price | currency:'USD'}}--></h4>
+                    </div>
+                    <button class="delete"> <!--(click)="cartService.DeleteProductFromCart(i)"--><i
+                      class="fa fa-close"></i>
+                    </button>
+                  </div>
+
+
                 </div>
-                <button class="delete"> <!--(click)="cartService.DeleteProductFromCart(i)"--><i class="fa fa-close"></i>
-                </button>
+                <div class="cart-summary">
+                  <small><!--{{cartData.data[0].numInCart !== 0 ? cartData.data.length : 0}}-->04 Item(s)
+                    selected</small>
+                  <h5>560 USD<!--TOTAL : {{cartTotal | currency:'USD'}}--></h5>
+                </div>
+                <div class="cart-btns">
+                  <a routerLink="/cart">View Cart</a>
+                  <a routerLink="/checkout">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
               </div>
+            </div>
+            <!-- /Cart -->
 
-
+            <!-- Menu Toogle -->
+            <div class="menu-toggle">
+              <a href="#">
+                <i class="fa fa-bars"></i>
+                <span>Menu</span>
+              </a>
             </div>
-            <div class="cart-summary">
-              <small><!--{{cartData.data[0].numInCart !== 0 ? cartData.data.length : 0}}-->04 Item(s) selected</small>
-              <h5>560 USD<!--TOTAL : {{cartTotal | currency:'USD'}}--></h5>
-            </div>
-            <div class="cart-btns">
-              <a routerLink="/cart">View Cart</a>
-              <a routerLink="/checkout">Checkout <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
+            <!-- /Menu Toogle -->
           </div>
         </div>
-        <!-- /Cart -->
-
-        <!-- Menu Toogle -->
-        <div class="menu-toggle">
-          <a href="#">
-            <i class="fa fa-bars"></i>
-            <span>Menu</span>
-          </a>
-        </div>
-        <!-- /Menu Toogle -->
+        <!-- /ACCOUNT -->
       </div>
+      <!-- row -->
     </div>
-    <!-- /ACCOUNT -->
-  </div>
-  <!-- row -->
-  </div>
-  <!-- container -->
+    <!-- container -->
   </div>
   <!-- /MAIN HEADER -->
 </header>
@@ -139,11 +142,22 @@
       <!-- NAV -->
       <ul class="main-nav nav py-3">
         <li class="active"><a routerLink="/">Home</a></li>
-        <li><a  routerLink="product/">Buy a House</a></li>
+        <li><a routerLink="product/">Buy a House</a></li>
         <li><a href="#">Rent a House</a></li>
         <li><a href="#">Fourniture Ads</a></li>
         <li><a href="#">Statistics</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">Dashboard</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">User Management</a>
+            <a class="dropdown-item" href="#">Ad Management</a>
+            <a class="dropdown-item" href="#">Subscriptions management</a>
+            <a class="dropdown-item" href="#">Subscription orders management</a>
+            <a class="dropdown-item" href="#">Claims management</a>
 
+          </div>
+        </li>
       </ul>
       <!-- /NAV -->
     </div>
