@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {Product} from '../models/Product';
+import {Ad} from '../models/Ad';
 import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class AdService {
   private url = environment.serverURL;
 
   constructor(private http: HttpClient) {
@@ -15,8 +15,10 @@ export class ProductService {
 
   /*This is to fetch Ads from database*/
   // tslint:disable-next-line:typedef
-  getProduct(): Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.url}dari/ads/all` );
+  getAd(): Observable<Ad[]>{
+    return this.http.get<Ad[]>(`${this.url}dari/ads/all` );
   }
-
+  public postAd(Ad:Ad){
+    return this.http.post(`${this.url}dari/ads/add/ad`,Ad);
+  }
 }

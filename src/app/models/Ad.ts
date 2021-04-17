@@ -1,20 +1,23 @@
-export class Product {
+import {Typead} from "../enumeration/Typead";
+import {TypeBatiment} from "../enumeration/TypeBatiment";
+
+export class Ad {
   adId!: number;
-  titleAd: string | undefined;
-  type!: string ;
+  titleAd: string ;
+  type!:TypeBatiment;
   description!: string;
   creationDate: Date | undefined;
   sell: boolean | undefined;
-  BuyingDate: Date | undefined;
+  BuyingDate: Date ;
   visibility: boolean | undefined;
   periodeOfVisibility: Date | undefined;
   numbreOfRooms: number | undefined;
-  price: number | undefined;
+  price: number ;
   city: string | undefined;
   builda: number | undefined;
   area: number | undefined;
-  typead: number | undefined;
+  typead: Typead;
   numberOfBathrooms: number | undefined;
-  checkInDate: Date | undefined;
-  checkOutDate: Date | undefined;
+  checkInDate: Date ;
+  checkOutDate: Date ;
 }
