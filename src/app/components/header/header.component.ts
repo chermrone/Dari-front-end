@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {Router} from '@angular/router';
+import {SubscriptionOrderService} from '../../services/subscription-order.service';
+import {SubscriptionOrder} from '../../models/subscriptionOrder';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +10,18 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  info: any;
-  constructor(private token: TokenStorageService, private router: Router) {
+  constructor(private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService) {
   }
+  info: any;
+  subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
+  id = 1;
+
+  // tslint:disable-next-line:variable-name
+  dropdown_hover = false;
+  // tslint:disable-next-line:variable-name
+  toggle_collapse = false;
+  // tslint:disable-next-line:variable-name
+  dropdown_click = false;
 
   // tslint:disable-next-line:typedef
   SigninRouting(){
@@ -39,5 +50,30 @@ export class HeaderComponent implements OnInit {
   RedirectAddProduct() {
     this.router.navigate(['Ad/Add']);
 
+  // tslint:disable-next-line:typedef
+  UpgradePremium() {
+    this.sos.UpgradePremium(this.id, this.subscriptionOrder).subscribe(data => {
+      console.log(data);
+    },
+      error => console.log(error));
+  }
+
+  // tslint:disable-next-line:typedef
+  on_hover(){
+    this.dropdown_hover = true;
+    console.log(this.dropdown_hover);
+  }
+  // tslint:disable-next-line:typedef
+  mouse_leave(){
+    this.dropdown_hover = false;
+  }
+  // tslint:disable-next-line:typedef
+  on_click_toggle(){
+    this.toggle_collapse = !this.toggle_collapse;
+  }
+
+  // tslint:disable-next-line:typedef
+  on_click_dropdown(){
+    this.dropdown_click = !this.dropdown_click;
   }
 }
