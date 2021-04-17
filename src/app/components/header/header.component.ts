@@ -73,4 +73,9 @@ export class HeaderComponent implements OnInit {
   on_click_dropdown(){
     this.dropdown_click = !this.dropdown_click;
   }
+
+  RedirectAddProduct() {
+    this.router.navigate(['Ad/Add']);
+
+  }
 }

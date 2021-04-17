@@ -16,6 +16,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import {FormsModule} from '@angular/forms';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
+import { AddAdComponent } from './add-ad/add-ad.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
     ProductComponent,
     UserComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    AddAdComponent
   ],
   imports: [
     BrowserModule,
