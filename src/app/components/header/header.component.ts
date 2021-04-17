@@ -3,6 +3,7 @@ import {TokenStorageService} from '../../auth/token-storage.service';
 import {Router} from '@angular/router';
 import {SubscriptionOrderService} from '../../services/subscription-order.service';
 import {SubscriptionOrder} from '../../models/subscriptionOrder';
+import {VerifAuthService} from "../../services/verif-auth.service";
 
 
 @Component({
@@ -11,7 +12,7 @@ import {SubscriptionOrder} from '../../models/subscriptionOrder';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService) {
+  constructor(private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
   }
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
@@ -19,6 +20,12 @@ export class HeaderComponent implements OnInit {
   roles: string[];
   authority: string;
 
+  // tslint:disable-next-line:variable-name
+  dropdown_hover = false;
+  // tslint:disable-next-line:variable-name
+  toggle_collapse = false;
+  // tslint:disable-next-line:variable-name
+  dropdown_click = false;
 
   // tslint:disable-next-line:typedef
   SigninRouting(){
@@ -56,11 +63,13 @@ export class HeaderComponent implements OnInit {
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities()
     };
+    console.log(this.verifauth.verif);
   }
 
   // tslint:disable-next-line:typedef
   logout() {
     this.token.signOut();
+    this.verifauth.verif=false;
     window.location.reload();
   }
 
@@ -70,5 +79,29 @@ export class HeaderComponent implements OnInit {
       console.log(data);
     },
       error => console.log(error));
+  }
+
+  // tslint:disable-next-line:typedef
+  on_hover(){
+    this.dropdown_hover = true;
+    console.log(this.dropdown_hover);
+  }
+  // tslint:disable-next-line:typedef
+  mouse_leave(){
+    this.dropdown_hover = false;
+  }
+  // tslint:disable-next-line:typedef
+  on_click_toggle(){
+    this.toggle_collapse = !this.toggle_collapse;
+  }
+
+  // tslint:disable-next-line:typedef
+  on_click_dropdown(){
+    this.dropdown_click = !this.dropdown_click;
+  }
+
+  RedirectAddProduct() {
+    this.router.navigate(['Ad/Add']);
+
   }
 }

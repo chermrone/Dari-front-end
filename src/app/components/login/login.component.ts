@@ -3,6 +3,7 @@ import {AuthService} from '../../auth/auth.service';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {LoginInfo} from '../../auth/login-info';
 import {Router} from '@angular/router';
+import {VerifAuthService} from '../../services/verif-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   private loginInfo!: LoginInfo;
 
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) {
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router, private verifauth: VerifAuthService) {
   }
 
   ngOnInit(): void {
@@ -44,6 +45,9 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
+        this.verifauth.verif= true;
+        console.log(this.verifauth.verif);
+
         this.router.navigate(['']);
       },
       error => {

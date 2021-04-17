@@ -2,7 +2,7 @@
 <header>
   <!-- TOP HEADER -->
   <div id="top-header">
-    <div class="container" *ngIf="info.token ;">
+    <div class="container" *ngIf="info.token || verifauth.verif==true ;">
       <ul class="header-links pull-left">
         <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
         <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
@@ -16,7 +16,7 @@
       </ul>
     </div>
 
-    <div class="container" *ngIf="!info.token;">
+    <div class="container" *ngIf="!info.token && verifauth.verif==false">
       <ul class="header-links pull-left">
         <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
         <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
@@ -40,7 +40,7 @@
         <div class="col-md-3">
           <div class="header-logo">
             <a routerLink="/" class="logo">
-              <img src="../../../assets/img/Dari.tn%20logo.PNG" style="height: 100px; width: 270px;" alt="">
+              <img src="../../../assets/img/logo%20dar.png" style="height: 100px; width: 270px;" alt="">
             </a>
           </div>
         </div>
@@ -89,9 +89,9 @@
                       <img src=" assets/img/product01.png" alt="" width="20px">
                     </div>
                     <div class="product-body">
-                      <h3 class="product-name"><a href="#">Product Body<!--{{c.product?.name}}--></a></h3>
+                      <h3 class="product-name"><a href="#">Product Body<!--{{c.ad?.name}}--></a></h3>
                       <h4 class="product-price"><span class="qty"> num in Card<!--{{c.numInCart}}-->
-                    x </span> 500 USD<!--{{c.product?.price | currency:'USD'}}--></h4>
+                    x </span> 500 USD<!--{{c.ad?.price | currency:'USD'}}--></h4>
                     </div>
                     <button class="delete"> <!--(click)="cartService.DeleteProductFromCart(i)"--><i
                       class="fa fa-close"></i>
@@ -157,6 +157,9 @@
             <a class="dropdown-item" href="#">Claims management</a>
           </div>
         </li>
+        <li style="margin-left: 35%">   <button type="button" class="btn btn-lg" style="background-color:#D10024;color:#FFF;font-weight: 615;
+    border: none;
+    border-radius: 40px 40px 40px 40px;margin-top:-5px;font-size:18px;height: 30px; letter-spacing:2px;line-height: 1em;" (click)="RedirectAddProduct()"><span style="">Post Ad</span></button>
       </ul>
       <!-- /NAV -->
     </div>

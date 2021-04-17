@@ -9,7 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HomeComponent } from './components/home/home.component';
-import { ProductComponent } from './components/product/product.component';
+import { AdComponent } from './components/ad/ad.component';
 import {HttpClientModule} from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -18,6 +18,8 @@ import {FormsModule} from '@angular/forms';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 import {MaterialModule} from './material/material.module';
+import { AddAdComponent } from './add-ad/add-ad.component';
+import {VerifAuthService} from "./services/verif-auth.service";
 
 @NgModule({
   declarations: [
@@ -27,11 +29,12 @@ import {MaterialModule} from './material/material.module';
     CartComponent,
     CheckoutComponent,
     HomeComponent,
-    ProductComponent,
+    AdComponent,
     UserComponent,
     RegisterComponent,
     LoginComponent,
-    SubscriptionComponent
+    SubscriptionComponent,
+    AddAdComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import {MaterialModule} from './material/material.module';
     FormsModule,
     MaterialModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders,VerifAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductService} from '../../services/product.service';
-import {Product} from '../../models/Product';
+import {AdService} from '../../services/ad.service';
+import {Ad} from '../../models/Ad';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import { TokenStorageService } from '../../auth/token-storage.service';
@@ -12,9 +12,9 @@ import { TokenStorageService } from '../../auth/token-storage.service';
 })
 export class HomeComponent implements OnInit {
   info: any;
-  products: Product[] | undefined;
+  products: Ad[] | undefined;
 
-  constructor(private productservice: ProductService, private router: Router, private token: TokenStorageService) {
+  constructor(private Adservice: AdService, private router: Router, private token: TokenStorageService) {
   }
 
   ngOnInit(): void {
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities()
     };
-    this.productservice.getProduct().subscribe(
+    this.Adservice.getAd().subscribe(
       (data) => {
         this.products = data;
       },
@@ -34,8 +34,8 @@ export class HomeComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  selectProduct(id: number) {
-    this.router.navigate(['/product', id]).then();
+  selectAd(id: number) {
+    this.router.navigate(['/ad', id]).then();
   }
 
 }

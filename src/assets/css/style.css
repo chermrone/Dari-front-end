@@ -31,7 +31,7 @@ Table OF Contents
 5 > HOT DEAL
 6 > PRODUCT
 ------ Product
------- Widget product
+------ Widget ad
 ------ Product slick
 7 > STORE PAGE
 ------ Aside
@@ -849,7 +849,7 @@ textarea.input {
 ===========================================================*/
 
 /*----------------------------*\
-	product
+	ad
 \*----------------------------*/
 
 .product {
@@ -1075,7 +1075,7 @@ textarea.input {
 }
 
 /*----------------------------*\
-	Widget product
+	Widget ad
 \*----------------------------*/
 
 .product-widget {
