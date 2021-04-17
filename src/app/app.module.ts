@@ -16,6 +16,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import {FormsModule} from '@angular/forms';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
+import { SubscriptionComponent } from './components/subscription/subscription.component';
+import {MaterialModule} from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -28,14 +30,16 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
     ProductComponent,
     UserComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    SubscriptionComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

@@ -9,6 +9,7 @@ import {RegisterComponent} from './components/register/register.component';
 // @ts-ignore
 import {LoginComponent} from './components/login/login.component';
 import {AppComponent} from './app.component';
+import {SubscriptionComponent} from './components/subscription/subscription.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'signup', component: RegisterComponent},
   {path: 'signin', component: LoginComponent},
   {path: 'app', component: AppComponent},
-  { path: 'loggedin',   redirectTo: 'app', pathMatch: 'full' }
+  {path: 'loggedin',   redirectTo: 'app', pathMatch: 'full' },
+  {path: 'subscription', component: SubscriptionComponent}
 ];
 
 @NgModule({

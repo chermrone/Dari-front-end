@@ -39,8 +39,8 @@
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/slick.min.js",
               "src/assets/js/nouislider.min.js",
-              "src/assets/js/jquery.zoom.min.js"
-             // "./node_modules/popper.js/dist/umd/popper.min.js"
+              "src/assets/js/jquery.zoom.min.js",
+             "./node_modules/popper.js/dist/umd/popper.min.js"
             ]
           },
           "configurations": {

@@ -115,10 +115,10 @@
 
             <!-- Menu Toogle -->
             <div class="menu-toggle">
-              <a href="#">
+              <mat-button-toggle #toggleBtn checked>
                 <i class="fa fa-bars"></i>
                 <span>Menu</span>
-              </a>
+              </mat-button-toggle>
             </div>
             <!-- /Menu Toogle -->
           </div>
@@ -136,9 +136,9 @@
 <!-- NAVIGATION -->
 <nav id="navigation">
   <!-- container -->
-  <div class="container">
+  <div class="container" >
     <!-- responsive-nav -->
-    <div id="responsive-nav">
+    <div id="responsive-nav" [class.active]="toggleBtn.checked">
       <!-- NAV -->
       <ul class="main-nav nav py-3">
         <li class="active"><a routerLink="/">Home</a></li>
@@ -146,16 +146,15 @@
         <li><a href="#">Rent a House</a></li>
         <li><a href="#">Fourniture Ads</a></li>
         <li><a href="#">Statistics</a></li>
-        <li class="dropdown">
+        <li class="dropdown" *ngIf="authority==='ADMIN'">
           <a class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
              aria-expanded="false">Dashboard</a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">User Management</a>
             <a class="dropdown-item" href="#">Ad Management</a>
-            <a class="dropdown-item" href="#">Subscriptions management</a>
+            <a class="dropdown-item" routerLink="subscription">Subscriptions management</a>
             <a class="dropdown-item" href="#">Subscription orders management</a>
             <a class="dropdown-item" href="#">Claims management</a>
-
           </div>
         </li>
       </ul>

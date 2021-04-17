@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {SubscriptionOrderService} from '../../services/subscription-order.service';
 import {SubscriptionOrder} from '../../models/subscriptionOrder';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,13 +16,9 @@ export class HeaderComponent implements OnInit {
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
   id = 1;
+  roles: string[];
+  authority: string;
 
-  // tslint:disable-next-line:variable-name
-  dropdown_hover = false;
-  // tslint:disable-next-line:variable-name
-  toggle_collapse = false;
-  // tslint:disable-next-line:variable-name
-  dropdown_click = false;
 
   // tslint:disable-next-line:typedef
   SigninRouting(){
@@ -34,6 +31,26 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.token.getToken()) {
+      this.roles = this.token.getAuthorities();
+      this.roles.every(role => {
+        if (role === 'ADMIN') {
+          this.authority = 'ADMIN';
+          return false;
+        }
+        else if (role === 'LANDLORD') {
+          this.authority = 'LANDLORD';
+          return false;
+        }
+        else if (role === 'PREMIUM') {
+          this.authority = 'PREMIUM';
+          return false;
+        }
+        this.authority = 'BUYER';
+        return true;
+      });
+    }
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -53,24 +70,5 @@ export class HeaderComponent implements OnInit {
       console.log(data);
     },
       error => console.log(error));
-  }
-
-  // tslint:disable-next-line:typedef
-  on_hover(){
-    this.dropdown_hover = true;
-    console.log(this.dropdown_hover);
-  }
-  // tslint:disable-next-line:typedef
-  mouse_leave(){
-    this.dropdown_hover = false;
-  }
-  // tslint:disable-next-line:typedef
-  on_click_toggle(){
-    this.toggle_collapse = !this.toggle_collapse;
-  }
-
-  // tslint:disable-next-line:typedef
-  on_click_dropdown(){
-    this.dropdown_click = !this.dropdown_click;
   }
 }
