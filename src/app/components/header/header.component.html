@@ -2,7 +2,7 @@
 <header>
   <!-- TOP HEADER -->
   <div id="top-header">
-    <div class="container" *ngIf="info.token ;">
+    <div class="container" *ngIf="info.token || verifauth.verif==true ;">
       <ul class="header-links pull-left">
         <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
         <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
@@ -16,7 +16,7 @@
       </ul>
     </div>
 
-    <div class="container" *ngIf="!info.token;">
+    <div class="container" *ngIf="!info.token && verifauth.verif==false">
       <ul class="header-links pull-left">
         <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
         <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>

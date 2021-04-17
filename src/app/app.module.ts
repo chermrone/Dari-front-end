@@ -17,6 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import {FormsModule} from '@angular/forms';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { AddAdComponent } from './add-ad/add-ad.component';
+import {VerifAuthService} from "./services/verif-auth.service";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { AddAdComponent } from './add-ad/add-ad.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders,VerifAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

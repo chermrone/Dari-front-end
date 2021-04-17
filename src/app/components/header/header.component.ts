@@ -3,6 +3,7 @@ import {TokenStorageService} from '../../auth/token-storage.service';
 import {Router} from '@angular/router';
 import {SubscriptionOrderService} from '../../services/subscription-order.service';
 import {SubscriptionOrder} from '../../models/subscriptionOrder';
+import {VerifAuthService} from "../../services/verif-auth.service";
 
 @Component({
   selector: 'app-header',
@@ -10,12 +11,11 @@ import {SubscriptionOrder} from '../../models/subscriptionOrder';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService) {
+  constructor(private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
   }
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
   id = 1;
-
   // tslint:disable-next-line:variable-name
   dropdown_hover = false;
   // tslint:disable-next-line:variable-name
@@ -39,11 +39,13 @@ export class HeaderComponent implements OnInit {
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities()
     };
+    console.log(this.verifauth.verif);
   }
 
   // tslint:disable-next-line:typedef
   logout() {
     this.token.signOut();
+    this.verifauth.verif=false;
     window.location.reload();
   }
 

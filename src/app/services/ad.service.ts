@@ -15,7 +15,7 @@ export class AdService {
 
   /*This is to fetch Ads from database*/
   // tslint:disable-next-line:typedef
-  getAd(): Observable<Ad[]>{
+  getAd(){
     return this.http.get<Ad[]>(`${this.url}dari/ads/all` );
   }
   public postAd(Ad:Ad){
