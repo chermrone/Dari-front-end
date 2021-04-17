@@ -36,4 +36,8 @@ export class HeaderComponent implements OnInit {
     window.location.reload();
   }
 
+  RedirectAddProduct() {
+    this.router.navigate(['Ad/Add']);
+
+  }
 }
