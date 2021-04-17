@@ -49,8 +49,8 @@ export class HeaderComponent implements OnInit {
 
   RedirectAddProduct() {
     this.router.navigate(['Ad/Add']);
+  }
 
-  // tslint:disable-next-line:typedef
   UpgradePremium() {
     this.sos.UpgradePremium(this.id, this.subscriptionOrder).subscribe(data => {
       console.log(data);
@@ -77,3 +77,6 @@ export class HeaderComponent implements OnInit {
     this.dropdown_click = !this.dropdown_click;
   }
 }
+
+
+
