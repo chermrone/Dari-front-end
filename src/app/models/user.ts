@@ -5,7 +5,7 @@ export class User{
 
    firstName: string;
    lastName: string;
-   username: string;
+   userName: string;
    password: string;
    age: number ;
 
@@ -14,7 +14,7 @@ export class User{
 
    email: string;
    cin: number;
-   isConnected: boolean;
+   connected: boolean;
    creationDate: Date;
    banDate: Date;
    banNbr: number;

@@ -18,9 +18,9 @@ import {FormsModule} from '@angular/forms';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 import {MaterialModule} from './material/material.module';
-import { AddAdComponent } from './add-ad/add-ad.component';
+import { AddAdComponent } from './components/add-ad/add-ad.component';
 import {VerifAuthService} from "./services/verif-auth.service";
-import { UsermanagementComponent } from './usermanagement/usermanagement.component';
+import { UsermanagementComponent } from './components/usermanagement/usermanagement.component';
 
 
 

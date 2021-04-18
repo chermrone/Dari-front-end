@@ -19,7 +19,8 @@ export class SubscriptionComponent implements OnInit {
   displayedColumns: string[] = ['id', 'description', 'SubscriptionType', 'validity', 'duration', 'price', 'Edit', 'Delete'];
   dataSource = new MatTableDataSource(this.subscriptions_list);
 
-  constructor(private ss: SubscriptionService, private elementRef: ElementRef) { }
+  constructor(private ss: SubscriptionService, private elementRef: ElementRef) {
+  }
 
   /*ngAfterViewInit(){
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'rgba(66,66,66,1)';
@@ -27,14 +28,14 @@ export class SubscriptionComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.ss.getAllSubscriptions().subscribe((data ) => {
-      this.subscriptions_list = data;
-      console.log(this.subscriptions_list);
-      this.dataSource.data = this.subscriptions_list;
-      console.log(this.dataSource.data);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-      return this.subscriptions_list;
+    this.ss.getAllSubscriptions().subscribe((data) => {
+        this.subscriptions_list = data;
+        console.log(this.subscriptions_list);
+        this.dataSource.data = this.subscriptions_list;
+        console.log(this.dataSource.data);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        return this.subscriptions_list;
 
       },
       (error: HttpErrorResponse) => {
@@ -43,19 +44,21 @@ export class SubscriptionComponent implements OnInit {
     );
   }
 
-  deleteSubscription(id: number){
-    this.ss.deleteSubscription(id).subscribe((error: HttpErrorResponse) => {
-      alert(error.message);
-    });
-  }
+  deleteSubscription(id: number) {
+    this.ss.deleteSubscription(id).subscribe((data) => {
+        window.location.reload();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+);
+}
 
-  // tslint:disable-next-line:typedef
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+// tslint:disable-next-line:typedef
+applyFilter(event: Event)
+{
+  const filterValue = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+}
 
-  onCreate() {
-
-  }
 }

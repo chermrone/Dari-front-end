@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Ad} from '../models/Ad';
+import {Ad} from '../../models/Ad';
 import {NgForm} from '@angular/forms';
-import {AdService} from "../services/ad.service";
-import {Typead} from "../enumeration/Typead";
-import {TypeBatiment} from "../enumeration/TypeBatiment";
+import {AdService} from "../../services/ad.service";
+import {Typead} from "../../enumeration/Typead";
+import {TypeBatiment} from "../../enumeration/TypeBatiment";
 
 @Component({
   selector: 'app-add-ad',

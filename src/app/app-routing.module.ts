@@ -10,9 +10,9 @@ import {RegisterComponent} from './components/register/register.component';
 import {LoginComponent} from './components/login/login.component';
 import {AppComponent} from './app.component';
 import {SubscriptionComponent} from './components/subscription/subscription.component';
-import {AddAdComponent} from './add-ad/add-ad.component';
+import {AddAdComponent} from './components/add-ad/add-ad.component';
 import {UserComponent} from './components/user/user.component';
-import {UsermanagementComponent} from "./usermanagement/usermanagement.component";
+import {UsermanagementComponent} from "./components/usermanagement/usermanagement.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
