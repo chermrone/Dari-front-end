@@ -20,6 +20,7 @@ import { SubscriptionComponent } from './components/subscription/subscription.co
 import {MaterialModule} from './material/material.module';
 import { AddAdComponent } from './add-ad/add-ad.component';
 import {VerifAuthService} from "./services/verif-auth.service";
+import { UsermanagementComponent } from './usermanagement/usermanagement.component';
 
 
 
@@ -36,7 +37,8 @@ import {VerifAuthService} from "./services/verif-auth.service";
     RegisterComponent,
     LoginComponent,
     SubscriptionComponent,
-    AddAdComponent
+    AddAdComponent,
+    UsermanagementComponent
   ],
   imports: [
     BrowserModule,

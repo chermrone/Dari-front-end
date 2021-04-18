@@ -2,22 +2,23 @@ import {Gender} from './gender.enum';
 
 export class User{
    idUser: number;
-  // tslint:disable-next-line:ban-types
-   firstName: String;
-  // tslint:disable-next-line:ban-types
-   lastName: String;
-  // tslint:disable-next-line:ban-types
-   username: String;
-  // tslint:disable-next-line:ban-types
-   password: String;
+
+   firstName: string;
+   lastName: string;
+   username: string;
+   password: string;
    age: number ;
-// @ts-ignore
+
    gender: Gender;
    phoneNumber: number;
-// tslint:disable-next-line:ban-types
-   email: String;
+
+   email: string;
    cin: number;
    isConnected: boolean;
+   creationDate: Date;
+   banDate: Date;
+   banNbr: number;
+   userSate: boolean;
 
 
   constructor() {

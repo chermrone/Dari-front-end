@@ -12,6 +12,7 @@ import {AppComponent} from './app.component';
 import {SubscriptionComponent} from './components/subscription/subscription.component';
 import {AddAdComponent} from './add-ad/add-ad.component';
 import {UserComponent} from './components/user/user.component';
+import {UsermanagementComponent} from "./usermanagement/usermanagement.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'loggedin',   redirectTo: 'app', pathMatch: 'full' },
   {path: 'subscription', component: SubscriptionComponent},
   {path: 'Ad/Add', component: AddAdComponent},
-  {path: 'user', component: UserComponent}
+  {path: 'user', component: UserComponent},
+  {path: 'User', component: UsermanagementComponent}
 
 ];
 
