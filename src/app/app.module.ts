@@ -19,8 +19,7 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 import {MaterialModule} from './material/material.module';
 import { AddAdComponent } from './add-ad/add-ad.component';
-import {VerifAuthService} from "./services/verif-auth.service";
-
+import {VerifAuthService} from './services/verif-auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +43,7 @@ import {VerifAuthService} from "./services/verif-auth.service";
     FormsModule,
     MaterialModule
   ],
-  providers: [httpInterceptorProviders,VerifAuthService],
+  providers: [httpInterceptorProviders, VerifAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
