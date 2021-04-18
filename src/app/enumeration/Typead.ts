@@ -1,4 +1,4 @@
 export enum Typead{
-  RENT,
-  SELL
+  RENT="RENT", SELL="SELL"
+
 }

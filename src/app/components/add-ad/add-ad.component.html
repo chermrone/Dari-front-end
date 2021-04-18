@@ -2,7 +2,7 @@
   <p>POST AD</p>
   <br>
   <section style='min-height: 600px;'>
-    <form  #f="ngForm" style="color: #c6c8ca;" (ngSubmit)="save(f)">
+    <form #f="ngForm" style="color: #c6c8ca;" (ngSubmit)="save(f)">
       <div class="form-group ">
 
         <div class="row flex">
@@ -13,8 +13,8 @@
 
           <div class="col-2"><label>Category</label>
 
-            <select id="inputState"  name="typead" ngModel #typead="ngModel" class="form-control">
-              <option *ngFor="let key of keys" [value]="key" >{{symbolsBat[key]}}</option>
+            <select id="inputState" name="type" ngModel #type="ngModel" class="form-control">
+              <option *ngFor="let key of keysBat" [value]="key">{{symbolsBat[key]}}</option>
             </select>
           </div>
         </div>
@@ -25,9 +25,10 @@
         <div class="row flex">
           <div class="col-2"><label>Type</label>
 
-            <select id="inputState" class="form-control" name="type" ngModel #type="ngModel">
-                <option *ngFor="let symbol of keys" [value]="symbol">{{symbols[symbol]}}</option>
-             </select>
+            <select id="inputState" class="form-control" name="typead" ngModel  #typead="ngModel" >
+              <option *ngFor="let symbol of keysTyp" [value]="symbol">{{symbols[symbol]}}</option>
+            </select>
+
           </div>
           <div class="col-1"><label for="exampleInputPassword1">№ rooms</label>
             <input type="number" class="form-control" id="exampleInputEmail1"
@@ -35,7 +36,8 @@
           </div>
           <div class="col-1"><label for="exampleInputPassword1">№ bathrooms</label>
             <input type="number" class="form-control" id="exampleInputEmail1"
-                   aria-describedby="emailHelp" placeholder="№" name="numberOfBathrooms" ngModel #numberOfBathrooms="ngModel">
+                   aria-describedby="emailHelp" placeholder="№" name="numberOfBathrooms" ngModel
+                   #numberOfBathrooms="ngModel">
           </div>
           <div class="col-2"><label for="exampleInputEmail1">City</label>
             <input type="text" class="form-control" id="exampleInputEmail1"
@@ -56,25 +58,53 @@
           </div>
           <div class="col-2"><label for="exampleInputEmail1">Check-In</label>
             <input type="date" class="form-control" id="exampleInputEmail1"
-                   aria-describedby="emailHelp" placeholder="Enter email" name="checkInDate" ngModel #checkInDate="ngModel">
+                   aria-describedby="emailHelp" placeholder="Enter email" name="checkInDate" ngModel
+                   #checkInDate="ngModel">
           </div>
           <div class="col-2"><label for="exampleInputEmail1">Check-Out</label>
             <input type="date" class="form-control" id="exampleInputEmail1"
-                   aria-describedby="emailHelp" placeholder="Enter email" name="checkOutDate" ngModel #checkOutDate="ngModel">
+                   aria-describedby="emailHelp" placeholder="Enter email" name="checkOutDate" ngModel
+                   #checkOutDate="ngModel">
           </div>
         </div>
       </div>
+
       <div class="form-group ">
 
-        <div class="row flex textarea" >
+        <div class="row flex textarea">
+          <div class="col-1"><label for="exampleInputPassword1">price</label>
+            <input type="number" class="form-control" id="exampleInputEmail1"
+                   aria-describedby="emailHelp" placeholder="dt" name="price" ngModel #price="ngModel">
+          </div>
           <textarea class="form-control col-5 " id="exampleFormControlTextarea1" rows="3"
-                    required id="message" placeholder="Description" name="description" ngModel #description="ngModel"></textarea>
+                    required id="message" placeholder="Description" name="description" ngModel
+                    #description="ngModel"></textarea>
         </div>
+        <div class="row flex textarea">
+          <div class="col-3 premium flex"><label for="exampleInputPassword1">Are you premium ? </label>
+            <div class="container be">
+              <button class="btn btn-tn btn-1" (click)="EstimationPrice(f)">Estimation price</button>
+            </div><div class="response">
+              {{estimationPrice}} <div *ngIf="estimationPrice!=null">dt</div></div>
+          </div>  <div class="col-2 premium flex">
+          <div class="container be">
+            <button class="btn btn-2 btn-tn" (click)="EstimationDuration(f)">Estimation <br> duration</button>
+          </div>
+          <div class="response">{{estimationDuration}} <div *ngIf="estimationDuration!=null">days</div></div>
+        </div>
+
+        </div>
+
+
       </div>
-      <div class="row file contour flex">
-        <div><input type="file" class="input" multiple ></div>
-        <p class="file">Drag your files here or click in this area.</p></div>
-      <div class="row flex"><button type="submit" (click)="PostAd(p)" class="btn btn-ghost"><span style="letter-spacing: 3px !important;">ADD</span></button></div>
-    </form>
-  </section>
+<div class="row file contour flex">
+  <div><input type="file" class="input" multiple></div>
+  <p class="file">Drag your files here or click in this area.</p></div>
+<div class="row flex">
+  <button type="submit" (click)="PostAd(f)" class="btn btn-ghost"><span
+    style="letter-spacing: 3px !important;">ADD</span>
+  </button>
+</div>
+</form>
+</section>
 </div>
