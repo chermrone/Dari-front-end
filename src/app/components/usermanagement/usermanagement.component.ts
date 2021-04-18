@@ -39,9 +39,7 @@ export class UsermanagementComponent implements OnInit {
 
   deleteUser(id: number){
     this.us.deleteUser(id).subscribe(
-      () => this.user = this.user.filter(us => us.idUser != id)
-    );
-
+      () => window.location.reload());
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
