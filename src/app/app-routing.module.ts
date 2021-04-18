@@ -10,7 +10,8 @@ import {RegisterComponent} from './components/register/register.component';
 import {LoginComponent} from './components/login/login.component';
 import {AppComponent} from './app.component';
 import {SubscriptionComponent} from './components/subscription/subscription.component';
-import {AddAdComponent} from "./add-ad/add-ad.component";
+import {AddAdComponent} from './add-ad/add-ad.component';
+import {UserComponent} from './components/user/user.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'app', component: AppComponent},
   {path: 'loggedin',   redirectTo: 'app', pathMatch: 'full' },
   {path: 'subscription', component: SubscriptionComponent},
-  {path: 'Ad/Add', component: AddAdComponent}
+  {path: 'Ad/Add', component: AddAdComponent},
+  {path: 'user', component: UserComponent}
 
 ];
 

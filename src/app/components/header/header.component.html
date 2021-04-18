@@ -11,7 +11,7 @@
       <ul class="header-links pull-right">
         <li><a href="#"><i class="fa fa-dollar"></i> Appointments</a></li>
         <li><a (click)="UpgradePremium()"><i class="fa fa-user-o"></i> Upgrade premium</a></li>
-        <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+        <li><a routerLink="user" ><i class="fa fa-user-o"></i> My Account</a></li>
         <li><a (click)="logout()"><i class="fa fa-user-o"></i> Logout</a></li>
       </ul>
     </div>
@@ -146,7 +146,7 @@
         <li><a href="#">Rent a House</a></li>
         <li><a href="#">Fourniture Ads</a></li>
         <li><a href="#">Statistics</a></li>
-        <li class="dropdown" *ngIf="authority==='ADMIN'">
+        <li class="dropdown" *ngIf="authority==='ADMIN' || verifauth.verifrole===true">
           <a class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
              aria-expanded="false">Dashboard</a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

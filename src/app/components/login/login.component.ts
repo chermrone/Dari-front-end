@@ -45,8 +45,12 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
-        this.verifauth.verif= true;
+        this.verifauth.verif = true;
         console.log(this.verifauth.verif);
+        this.tokenStorage.getAuthorities().every(role => {
+          if (role === 'ADMIN') {
+            this.verifauth.verifrole = true;
+          }});
 
         this.router.navigate(['']);
       },

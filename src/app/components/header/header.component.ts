@@ -20,13 +20,6 @@ export class HeaderComponent implements OnInit {
   roles: string[];
   authority: string;
 
-  // tslint:disable-next-line:variable-name
-  dropdown_hover = false;
-  // tslint:disable-next-line:variable-name
-  toggle_collapse = false;
-  // tslint:disable-next-line:variable-name
-  dropdown_click = false;
-
   // tslint:disable-next-line:typedef
   SigninRouting(){
     this.router.navigate(['signin']);
@@ -69,8 +62,9 @@ export class HeaderComponent implements OnInit {
   // tslint:disable-next-line:typedef
   logout() {
     this.token.signOut();
-    this.verifauth.verif=false;
-    window.location.reload();
+    this.verifauth.verif = false;
+    this.verifauth.verifrole = false;
+    this.router.navigate(['']);
   }
 
   // tslint:disable-next-line:typedef
@@ -82,24 +76,6 @@ export class HeaderComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  on_hover(){
-    this.dropdown_hover = true;
-    console.log(this.dropdown_hover);
-  }
-  // tslint:disable-next-line:typedef
-  mouse_leave(){
-    this.dropdown_hover = false;
-  }
-  // tslint:disable-next-line:typedef
-  on_click_toggle(){
-    this.toggle_collapse = !this.toggle_collapse;
-  }
-
-  // tslint:disable-next-line:typedef
-  on_click_dropdown(){
-    this.dropdown_click = !this.dropdown_click;
-  }
-
   RedirectAddProduct() {
     this.router.navigate(['Ad/Add']);
 
