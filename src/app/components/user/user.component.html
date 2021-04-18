@@ -8,7 +8,7 @@
         <div class="col-md-8 col-sm-12 profile-info">
           <!--first and last name-->
           <div class="header-fullname">
-            {{u.firstName}} {{u.lastName}}
+            <b>{{u.firstName}} {{u.lastName}}</b>
             <a href="#">
               <mat-icon style="color: #a71d2a">create</mat-icon>
             </a>
@@ -23,13 +23,16 @@
           <!--phone-->
           <div class="header-fullname">Phone number: {{u.phoneNumber}}</div>
           <!--/phone-->
+          <div class="header-fullname">CIN: {{u.cin}}</div>
+          <!--/cin-->
+          <!--cin-->
+          <div class="header-fullname">Gender: {{u.gender}}</div>
+          <!--/cin-->
           <a href="#" class="btn btn-palegreen btn-sm  btn-follow">
             <i class="fa fa-check"></i>
             Following
           </a>
-          <div class="header-information">
-            Kim is a software developer in Microsoft. She works in ASP.NET MVC Team and collaborates with other teams.
-          </div>
+
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12 profile-stats">
           <div class="row">

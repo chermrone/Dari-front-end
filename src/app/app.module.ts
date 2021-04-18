@@ -21,6 +21,7 @@ import {MaterialModule} from './material/material.module';
 import { AddAdComponent } from './add-ad/add-ad.component';
 import {VerifAuthService} from "./services/verif-auth.service";
 
+
 @NgModule({
   declarations: [
     AppComponent,
