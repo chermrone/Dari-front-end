@@ -1,5 +1,3 @@
 export enum TypeBatiment {
-ground,
-house,
-apartment
+  ground="ground", house="house", apartment="apartment"
 }

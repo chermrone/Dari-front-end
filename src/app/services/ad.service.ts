@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Ad} from '../models/Ad';
 import {Observable} from 'rxjs';
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +22,17 @@ export class AdService {
   public postAd(Ad:Ad){
     return this.http.post(`${this.url}dari/ads/add/ad`,Ad);
   }
+  public EstimationPrice(Ad:Ad): Observable<string>{
+    return this.http.post(`${this.url}dari/ads/EstimatedPrice`,Ad,
+      {responseType: 'text'});
+
+  }
+
+  public EstimationDuration(Ad:Ad): Observable<string>{
+    return this.http.post(`${this.url}dari/ads/ad/estimateDuration`,Ad,
+      {responseType: 'text'});
+
+  }
+
+
 }
