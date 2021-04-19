@@ -27,7 +27,7 @@ const routes: Routes = [
   {path: 'subscription', component: SubscriptionComponent},
   {path: 'Ad/Add', component: AddAdComponent},
   {path: 'user', component: UserComponent},
-  {path: 'User', component: UsermanagementComponent}
+  {path: 'managuser', component: UsermanagementComponent}
 
 ];
 
