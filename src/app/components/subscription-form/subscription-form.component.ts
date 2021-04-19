@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
 import {SubscriptionService} from '../../services/subscription.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-subscription-form',
@@ -10,20 +10,12 @@ import {SubscriptionService} from '../../services/subscription.service';
 })
 export class SubscriptionFormComponent implements OnInit {
   hide = true;
-  registerForm: FormGroup;
   constructor(private matdialogref: MatDialogRef<SubscriptionFormComponent>, private ss: SubscriptionService) { }
 
   ngOnInit(): void {
-    this.registerForm = new FormGroup({
-      descriptionOffer : new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required]),
-      duration: new FormControl('', [Validators.required]),
-      subscriptiontype: new FormControl('', [Validators.required]),
-      validity: new FormControl('',[Validators.required])
-    });
   }
 
-  onsubmit() {
-
+  onsubmit(f: NgForm) {
+    console.log(f.value);
   }
 }

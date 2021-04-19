@@ -35,7 +35,7 @@ export class UserAddComponent implements OnInit {
         console.log(this.user);
         console.log(typeof(this.user.firstName));
       });
-      this.registerForm.patchValue({firstName: JSON.stringify(this.user.firstName)});
+      this.registerForm.patchValue({firstName: this.user.firstName});
       /*this.registerForm.setValue({
         firstName: this.user.firstName,
         lastName: this.user.lastName,
