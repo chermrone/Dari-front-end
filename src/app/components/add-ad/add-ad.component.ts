@@ -4,6 +4,7 @@ import {NgForm} from '@angular/forms';
 import {AdService} from '../../services/ad.service';
 import {Typead} from '../../enumeration/Typead';
 import {TypeBatiment} from '../../enumeration/TypeBatiment';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-add-ad',
@@ -14,6 +15,7 @@ export class AddAdComponent implements OnInit {
   keysBat = [];  keysTyp = [];
   symbols = Typead;
   symbolsBat = TypeBatiment;
+
 estimationPrice: any; estimationDuration: any;
   constructor(private AdServ: AdService) {    this.keysBat = Object.keys(this.symbolsBat);
                                              this.keysTyp = Object.keys(this.symbols);
