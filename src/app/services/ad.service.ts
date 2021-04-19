@@ -33,6 +33,8 @@ export class AdService {
       {responseType: 'text'});
 
   }
-
+public getLastAd(){
+    return this.http.get(`${this.url}dari/ads/ad/lastad`);
+}
 
 }
