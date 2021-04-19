@@ -5,6 +5,8 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {SubscriptionFormComponent} from '../subscription-form/subscription-form.component';
 
 @Component({
   selector: 'app-subscription',
@@ -19,12 +21,8 @@ export class SubscriptionComponent implements OnInit {
   displayedColumns: string[] = ['id', 'description', 'SubscriptionType', 'validity', 'duration', 'price', 'Edit', 'Delete'];
   dataSource = new MatTableDataSource(this.subscriptions_list);
 
-  constructor(private ss: SubscriptionService, private elementRef: ElementRef) {
+  constructor(private ss: SubscriptionService, private elementRef: ElementRef, private dialog: MatDialog) {
   }
-
-  /*ngAfterViewInit(){
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'rgba(66,66,66,1)';
-  }*/
 
 
   ngOnInit(): void {
@@ -61,4 +59,11 @@ applyFilter(event: Event)
   this.dataSource.filter = filterValue.trim().toLowerCase();
 }
 
+  oncreate() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "30%";
+    this.dialog.open(SubscriptionFormComponent, dialogConfig);
+  }
 }

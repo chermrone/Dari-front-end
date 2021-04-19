@@ -1,0 +1,54 @@
+<form [formGroup]="registerForm" (ngSubmit)="onsubmit()">
+  <mat-grid-list cols="1" rowHeight="500px">
+    <mat-grid-tile>
+      <div class="example-container">
+        <mat-form-field appearance="fill" class="width-50 col-10">
+          <mat-label>Description Offer</mat-label>
+          <input matInput formControlName="descriptionOffer" required>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="fill" class="width-50 col-10">
+          <mat-label>Price</mat-label>
+          <input matInput type="number" formControlName="price" required>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="fill" class="width-50 col-10">
+          <mat-label>Duration</mat-label>
+          <input matInput type="number" formControlName="duration" required>
+        </mat-form-field>
+        <br>
+
+        <label id="example-radio-group-label" class="ml-3">subscriptiontype: </label>
+        <br>
+
+        <mat-radio-group formControlName="subscriptiontype" aria-label="Select an option" class="ml-3">
+          <mat-radio-button class="example-radio-button ml-2" value="1" required>assurance</mat-radio-button>
+          <br>
+          <mat-radio-button class="example-radio-button ml-4" value="2" required>premium</mat-radio-button>
+          <br>
+          <mat-radio-button class="example-radio-button ml-4" value="3" required>surveillance_de_maison</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <br>
+
+        <label id="example-radio-group-label" class="ml-3">Validity: </label>
+        <br>
+
+        <mat-radio-group formControlName="validity" aria-label="Select an option" class="ml-3">
+          <mat-radio-button class="example-radio-button ml-2" value="1" required>true</mat-radio-button>
+          <br>
+          <mat-radio-button class="example-radio-button ml-4" value="2" required>false</mat-radio-button>
+        </mat-radio-group>
+        <br>
+
+
+
+        <button mat-stroked-button class="ml-3" style="background-color: #b0bec5" >submit</button>
+        <button mat-stroked-button type="reset" class="ml-3" style="background-color: #b0bec5" >reset</button>
+        <button type="button" mat-stroked-button class="ml-3" style="background-color: #b0bec5" >cancel</button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

@@ -8,6 +8,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 const materialComponent = [
   MatButtonModule,
@@ -18,6 +22,11 @@ const materialComponent = [
   MatInputModule,
   MatSortModule,
   MatPaginatorModule,
+  MatDialogModule,
+  MatNativeDateModule,
+  MatSelectModule,
+  MatRadioModule,
+  MatGridListModule,
   MatDialogModule
 ];
 
