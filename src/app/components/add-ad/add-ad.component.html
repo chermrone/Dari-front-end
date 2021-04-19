@@ -5,7 +5,9 @@
     <form #f="ngForm" style="color: #c6c8ca;" (ngSubmit)="save(f)">
       <div class="form-group ">
 
+        <div class="row flex alert alert-danger" *ngIf="notif!=null" style="width: 30%;margin-left: 35%">{{notif}}</div>
         <div class="row flex">
+
           <div class="col-4"><label for="exampleInputEmail1">Title of the ad</label>
             <input type="text" name="titleAd" ngModel #titleAd="ngModel" class="form-control" id="exampleInputEmail1"
                    aria-describedby="emailHelp" placeholder="Enter title">
@@ -91,10 +93,49 @@
 
 
       </div>
-<div class="row file contour flex">
-  <div><input type="file" class="input" multiple></div>
-  <p class="file">Drag your files here or click in this area.</p></div>
-<div class="row flex">
+      <!--<div class="row file contour flex">
+    <div><input type="file" class="input" multiple></div>
+        <p class="file">Drag your files here or click in this area.</p></div>-->
+  <div class="flex marg"><div *ngFor="let progressInfo of progressInfos" class="mb-2">
+    <span>{{ progressInfo.fileName }}</span>
+    <div class="progress">
+      <div
+        class="progress-bar progress-bar-info progress-bar-striped"
+        role="progressbar"
+        attr.aria-valuenow="{{ progressInfo.value }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [ngStyle]="{ width: progressInfo.value + '%' }"
+      >
+        {{ progressInfo.value }}%
+      </div>
+    </div></div>
+  </div>
+
+  <label class="btn btn-default">
+  <div> pictures </div>  <input type="file" style="font-weight: 600;font-size: 10px" multiple (change)="selectFiles($event)" />
+  </label>
+
+      <div class="flex marg col-3"><div *ngFor="let progressInfo of progressInfosVid" class="mb-2">
+        <span>{{ progressInfo.fileName }}</span>
+        <div class="progress">
+          <div
+            class="progress-bar progress-bar-info progress-bar-striped"
+            role="progressbar"
+            attr.aria-valuenow="{{ progressInfo.value }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [ngStyle]="{ width: progressInfo.value + '%' }"
+          >
+            {{ progressInfo.value }}%
+          </div>
+        </div></div>
+      </div>
+      <label class="btn btn-default">
+        <div> videos </div>  <input type="file" style="font-weight: 600;font-size: 10px" multiple (change)="selectvideos($event)" />
+      </label>
+  <div class="response" role="alert">{{ message }}</div>
+      <div class="row flex">
   <button type="submit" (click)="PostAd(f)" class="btn btn-ghost"><span
     style="letter-spacing: 3px !important;">ADD</span>
   </button>
@@ -102,20 +143,3 @@
 </form>
 </section>
 </div>
-<div *ngIf="currentFile" class="progress">
-  <div
-    class="progress-bar progress-bar-info progress-bar-striped"
-    role="progressbar"
-    [attr.aria-valuenow]="progress"
-    aria-valuemin="0"
-    aria-valuemax="100"
-    [ngStyle]="{ width: progress + '%' }"
-  >
-    {{ progress }}%
-  </div>
-</div>
-
-<label class="btn btn-default">
-  <input type="file" (change)="selectFile($event)" />
-</label>
-<div class="alert alert-light" role="alert">{{ message }}</div>

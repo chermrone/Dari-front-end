@@ -4,9 +4,9 @@ import {NgForm} from '@angular/forms';
 import {AdService} from '../../services/ad.service';
 import {Typead} from '../../enumeration/Typead';
 import {TypeBatiment} from '../../enumeration/TypeBatiment';
-import {Observable} from "rxjs";
-import {UploadFileService} from "../../services/upload-file.service";
-import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {Observable, Subscription} from 'rxjs';
+import {UploadFileService} from '../../services/upload-file.service';
+import {HttpEventType, HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-add-ad',
@@ -22,12 +22,15 @@ export class AddAdComponent implements OnInit {
   estimationDuration: any;
 
   selectedFiles: FileList;
+  selectedFilesvid: FileList;
+  currentFileVid: File;
+
   currentFile: File;
-  progress = 0;
   message = '';
   fileInfos: Observable<any>;
-
-
+  progressInfos = [];  progressInfosVid = [];
+type="";typeimg="";
+   notif: string;
   constructor(private AdServ: AdService, private uploadService: UploadFileService) {
     this.keysBat = Object.keys(this.symbolsBat);
     this.keysTyp = Object.keys(this.symbols);
@@ -37,6 +40,7 @@ export class AddAdComponent implements OnInit {
   p: Ad;
 
 // tslint:disable-next-line:label-
+  private sub: Subscription;
 
   ngOnInit(): void {
 
@@ -44,39 +48,38 @@ export class AddAdComponent implements OnInit {
 
   PostAd(f: NgForm) {
     const p = {} as Ad;
-    this.progress = 0;
+    if (typeof(this.currentFile) != 'undefined') {
+      this.currentFile = this.selectedFiles.item(0);
+    }
+    else {this.notif='you need to enter images';this.sub.unsubscribe();
+    }
 
-    this.currentFile = this.selectedFiles.item(0);
+    if (typeof(this.currentFileVid) != 'undefined') {
+      this.currentFileVid=this.selectedFilesvid.item(0);
+
+    }
     console.log(f.value);
     const returnedTarget: Ad = Object.assign(p, f.value); // convert the form to object in p
     console.log(p);
-    this.AdServ.postAd(p).subscribe(data => {
+    this.sub=this.AdServ.postAd(p).subscribe(data => {
       console.log('success');
-      this.AdServ.getLastAd().subscribe(data => {
-        this.progress = 0;
-        this.currentFile = this.selectedFiles.item(0);
-        this.uploadService.upload(this.currentFile, "image", data as Ad).subscribe(
-          event => {
-            if (event.type === HttpEventType.UploadProgress) {
-              this.progress = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
-              this.message = event.body.message;
-              this.fileInfos = this.uploadService.getFiles();
-            }
-          },
-          err => {
-            this.progress = 0;
-            this.message = 'Could not upload the file!';
-            this.currentFile = undefined;
-          });
+      this.AdServ.getLastAd().subscribe(data => {  if (typeof(this.currentFile) == 'undefined') this.sub.unsubscribe();
+        this.message = '';
 
-        this.selectedFiles = undefined;
-      })
+        for (let i = 0; i < this.selectedFiles.length; i++) {
+          this.upload(i, this.selectedFiles[i]);
+        }
+
+        for (let i = 0; i < this.selectedFilesvid.length; i++) {
+          this.uploadVideo(i, this.selectedFilesvid[i]);
+        }
+      });
     });
   }
 
   save(f: NgForm) {
   }
+
 
   // tslint:disable-next-line:typedef
   EstimationPrice(f: NgForm) {
@@ -101,11 +104,55 @@ export class AddAdComponent implements OnInit {
   }
 
 
-  selectFile(event) {
-    this.selectedFiles = event.target.files;
+
+  upload(idx, file) {
+    if (this.typeimg=="image") {
+      this.progressInfos[idx] = {value: 0, fileName: file.name};
+      this.AdServ.getLastAd().subscribe(data => {console.log(this.typeimg)
+        this.uploadService.upload(file, this.typeimg, data as Ad).subscribe(
+          event => {
+            if (event.type === HttpEventType.UploadProgress) {
+              this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
+            } else if (event instanceof HttpResponse) {
+              this.fileInfos = this.uploadService.getFiles();
+            }
+          },
+          err => {
+            this.progressInfos[idx].value = 0;
+            this.message = 'Could not upload the file:' + file.name;
+          });
+      });
+    }}
+  uploadVideo(idx, file) {
+    if (this.type=="video") {
+      this.progressInfosVid[idx] = {value: 0, fileName: file.name};
+      this.AdServ.getLastAd().subscribe(data => {
+        this.uploadService.upload(file, this.type, data as Ad).subscribe(
+          event => {
+            if (event.type === HttpEventType.UploadProgress) {
+              this.progressInfosVid[idx].value = Math.round(100 * event.loaded / event.total);
+            } else if (event instanceof HttpResponse) {
+              this.fileInfos = this.uploadService.getFiles();
+            }
+          },
+          err => {
+            this.progressInfosVid[idx].value = 0;
+            this.message = 'Could not upload the file:' + file.name;
+          });
+      });
+    }
   }
 
-  upload() {
+  selectvideos( Event) {
+    this.progressInfos = [];
+    this.selectedFilesvid = Event.target.files;
+    this.type="video";
+  }
+
+  selectFiles(event) {
+    this.progressInfos = [];
+    this.selectedFiles = event.target.files;    this.typeimg="image";
 
   }
 }
+
