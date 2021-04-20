@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {environment} from '../../environments/environment';
 import {User} from '../models/user';
+import {Subscription} from "../models/subscription";
+
 
 
 @Injectable({
@@ -19,7 +21,7 @@ export class UserService {
 
   private url = environment.serverURL;
   // tslint:disable-next-line:variable-name
-  private _iduser = 1;
+  private _iduser = 0;
 
   constructor(private http: HttpClient) { }
 
@@ -38,7 +40,17 @@ export class UserService {
   postUser(user: any): Observable<any>{
     return this.http.post(`${this.url}api/auth/signup`, user);
   }
+  // tslint:disable-next-line:typedef
   deleteUser(id: number){
     return this.http.delete(`${this.url}dari/Users/delete/` + id);
+  }
+
+  // tslint:disable-next-line:typedef
+  updateUser(user: User){
+    return this.http.put(`${this.url}dari/Users/update`, user);
+  }
+
+  createUser(user: User){
+    return this.http.post(`${this.url}api/auth/signup`, user);
   }
 }
