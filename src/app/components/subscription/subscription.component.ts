@@ -66,4 +66,13 @@ applyFilter(event: Event)
     dialogConfig.width = "30%";
     this.dialog.open(SubscriptionFormComponent, dialogConfig);
   }
+
+  onEdit(subscriptionId: number) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "30%";
+    this.dialog.open(SubscriptionFormComponent, dialogConfig);
+    this.ss.idsubscription = subscriptionId;
+  }
 }

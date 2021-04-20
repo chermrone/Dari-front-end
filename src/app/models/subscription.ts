@@ -1,6 +1,6 @@
 import {SubscriptionType} from './subscription-type.enum';
 
-export interface Subscription{
+export class Subscription{
   subscriptionId: number;
   descriptionOffer: string;
   price: number;
