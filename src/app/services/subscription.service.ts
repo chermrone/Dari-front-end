@@ -8,9 +8,23 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class SubscriptionService {
+  get idsubscription(): number {
+    return this._idsubscription;
+  }
+
+  set idsubscription(value: number) {
+    this._idsubscription = value;
+  }
   private url = environment.serverURL;
+  // tslint:disable-next-line:variable-name
+  private _idsubscription = 0;
 
   constructor(private http: HttpClient) { }
+
+  // tslint:disable-next-line:typedef
+  getSubscriptionById(id){
+    return this.http.get(`${this.url}dari/subscriptions/find/` + id);
+  }
 
   getAllSubscriptions(): Observable<Subscription[]>{
     return this.http.get<Subscription[]>(`${this.url}dari/subscriptions/all`);

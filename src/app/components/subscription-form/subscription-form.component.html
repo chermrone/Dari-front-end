@@ -1,0 +1,54 @@
+<form #f="ngForm"  (ngSubmit)="onsubmit(f)">
+  <mat-grid-list cols="1" rowHeight="500px">
+    <mat-grid-tile>
+      <div class="example-container">
+        <mat-form-field appearance="fill" class="width-50 col-10">
+          <mat-label>Description Offer</mat-label>
+          <input matInput  name="descriptionOffer" [(ngModel)]="subscription.descriptionOffer" ngModel #descriptionOffer="ngModel" required>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="fill" class="width-50 col-10">
+          <mat-label>Price</mat-label>
+          <input matInput name="price" type="number" [(ngModel)]="subscription.price" ngModel #price="ngModel" required>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="fill" class="width-50 col-10">
+          <mat-label>Duration</mat-label>
+          <input matInput type="number" [(ngModel)]="subscription.duration" name="duration" #duration="ngModel" ngModel required>
+        </mat-form-field>
+        <br>
+
+        <label id="example-radio-group-label" class="ml-3">subscriptiontype: </label>
+        <br>
+
+        <mat-radio-group  aria-label="Select an option" class="ml-3" name="subscriptiontype" #subscriptiontype="ngModel" [(ngModel)]="subscription.subscriptiontype" ngModel>
+          <mat-radio-button class="example-radio-button ml-2" value="assurance" required>assurance</mat-radio-button>
+          <br>
+          <mat-radio-button class="example-radio-button ml-4" value="premium" required >premium</mat-radio-button>
+          <br>
+          <mat-radio-button class="example-radio-button ml-4" value="surveillance_de_maison">surveillance_de_maison</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <br>
+
+        <label id="example-radio-group-label" class="ml-3">Validity: </label>
+        <br>
+
+        <mat-radio-group aria-label="Select an option" class="ml-3" name="validity" #validity="ngModel" [(ngModel)]="type" ngModel>
+          <mat-radio-button class="example-radio-button ml-2" value="true" required>true</mat-radio-button>
+          <br>
+          <mat-radio-button class="example-radio-button ml-4" value="false" required>false</mat-radio-button>
+        </mat-radio-group>
+        <br>
+
+
+
+        <button mat-stroked-button class="ml-3" style="background-color: #b0bec5" [disabled]="f.invalid">submit</button>
+        <button mat-stroked-button type="reset" class="ml-3" style="background-color: #b0bec5" >reset</button>
+        <button type="button" type="reset" mat-stroked-button class="ml-3" style="background-color: #b0bec5" (click)="onclose()" >cancel</button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

@@ -14,13 +14,15 @@ import {HttpClientModule} from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-import {FormsModule} from '@angular/forms';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 import {MaterialModule} from './material/material.module';
 import { AddAdComponent } from './components/add-ad/add-ad.component';
 import {VerifAuthService} from "./services/verif-auth.service";
 import { UsermanagementComponent } from './components/usermanagement/usermanagement.component';
+import { UserAddComponent } from './components/user-add/user-add.component';
+import { SubscriptionFormComponent } from './components/subscription-form/subscription-form.component';
 
 
 
@@ -38,7 +40,9 @@ import { UsermanagementComponent } from './components/usermanagement/usermanagem
     LoginComponent,
     SubscriptionComponent,
     AddAdComponent,
-    UsermanagementComponent
+    UsermanagementComponent,
+    UserAddComponent,
+    SubscriptionFormComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,8 @@ import { UsermanagementComponent } from './components/usermanagement/usermanagem
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [httpInterceptorProviders, VerifAuthService],
   bootstrap: [AppComponent]

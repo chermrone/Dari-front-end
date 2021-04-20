@@ -6,6 +6,8 @@ import {UserService} from '../../services/user.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {UserAddComponent} from '../user-add/user-add.component';
 
 @Component({
   selector: 'app-usermanagement',
@@ -18,7 +20,7 @@ export class UsermanagementComponent implements OnInit {
     user: User [] = [];
     displayedColumns: string[] = ['idUser', 'firstName', 'lastName', 'username', 'cin', 'phoneNumber', 'isConnected', 'email', 'gender', 'age', 'creationDate', 'userState', 'banDate', 'banNbr', 'Edit', 'Delete'];
   dataSource = new MatTableDataSource(this.user);
-  constructor(private us: UserService, private elementRef: ElementRef) { }
+  constructor(private us: UserService, private elementRef: ElementRef, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.us.getAllUsers().subscribe((data ) => {
@@ -38,11 +40,30 @@ export class UsermanagementComponent implements OnInit {
   }
 
   deleteUser(id: number){
-    this.us.deleteUser(id).subscribe(
-      () => window.location.reload());
+    this.us.deleteUser(id).subscribe();
+    this.user = [];
+    this.dataSource = new MatTableDataSource(this.user);
+    window.location.reload();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  onCreate(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "30%";
+    this.dialog.open(UserAddComponent, dialogConfig);
+  }
+
+  onEdit(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.width = "30%";
+    dialogConfig.autoFocus = true;
+    this.dialog.open(UserAddComponent, dialogConfig);
+  }
+
 }
