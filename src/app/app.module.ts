@@ -21,6 +21,7 @@ import {MaterialModule} from './material/material.module';
 import { AddAdComponent } from './components/add-ad/add-ad.component';
 import {VerifAuthService} from "./services/verif-auth.service";
 import { UsermanagementComponent } from './components/usermanagement/usermanagement.component';
+import { AdManagAdminComponent } from './components/ad-manag-admin/ad-manag-admin.component';
 import { UserAddComponent } from './components/user-add/user-add.component';
 import { SubscriptionFormComponent } from './components/subscription-form/subscription-form.component';
 
@@ -41,6 +42,7 @@ import { SubscriptionFormComponent } from './components/subscription-form/subscr
     SubscriptionComponent,
     AddAdComponent,
     UsermanagementComponent,
+    AdManagAdminComponent,
     UserAddComponent,
     SubscriptionFormComponent
   ],
