@@ -45,7 +45,8 @@ export class SubscriptionComponent implements OnInit {
 
   deleteSubscription(id: number) {
     this.ss.deleteSubscription(id).subscribe((data) => {
-        window.location.reload();
+        //window.location.reload();
+      this.dataSource.data
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

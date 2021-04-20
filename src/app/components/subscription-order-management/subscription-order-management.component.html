@@ -1,1 +1,78 @@
-<p>subscription-order-management works!</p>
+<div style="width: 100%; background-color: rgba(66,66,66,1);">
+  <button mat-raised-button style="margin-left: 1%" (click)="oncreate()">
+    <mat-icon>add</mat-icon> Create
+  </button>
+  <mat-form-field color="accent">
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
+  </mat-form-field>
+</div>
+
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> id. </th>
+    <td mat-cell *matCellDef="let element"> {{element.subscriptionOrderId}} </td>
+  </ng-container>
+
+  <!-- Paying Date Column -->
+  <ng-container matColumnDef="payingDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Paying date </th>
+    <td mat-cell *matCellDef="let element"> {{element.payingDate}} </td>
+  </ng-container>
+
+  <!-- Status Column -->
+  <ng-container matColumnDef="enable">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+    <td mat-cell *matCellDef="let element"> {{element.enable}} </td>
+  </ng-container>
+
+  <!-- nbrOfWin Column -->
+  <ng-container matColumnDef="nbrOfWin">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> nbrOfWin </th>
+    <td mat-cell *matCellDef="let element"> {{element.nbrOfWin}} </td>
+  </ng-container>
+
+  <!-- user Column -->
+  <ng-container matColumnDef="user">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> user </th>
+    <td mat-cell *matCellDef="let element"> test </td>
+  </ng-container>
+
+  <!-- subscription Column -->
+  <ng-container matColumnDef="subscription">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> subscription </th>
+    <td mat-cell *matCellDef="let element"> test1 </td>
+  </ng-container>
+
+  <!-- Edit Column -->
+  <ng-container matColumnDef="Edit">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+    <td mat-cell *matCellDef="let element"> <button mat-button (click)="onEdit(element.subscriptionId)"><mat-icon>create</mat-icon></button> </td>
+  </ng-container>
+
+  <!-- Delete Column -->
+  <ng-container matColumnDef="Delete">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="deleteSubscription(element.subscriptionId)" mat-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <!-- Row shown when there is no matching data. -->
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr>
+</table>
+<mat-paginator [length]="100"
+               [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
