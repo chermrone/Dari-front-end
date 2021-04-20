@@ -1,33 +1,33 @@
-<form [formGroup]="registerForm" (ngSubmit)="onsubmit()">
+<form #f="ngForm"  (ngSubmit)="onsubmit(f)">
 <mat-grid-list cols="1" rowHeight="500px">
   <mat-grid-tile>
     <div class="example-container">
       <mat-form-field appearance="fill" class="width-50 col-5">
         <mat-label>First Name</mat-label>
-        <input matInput formControlName="firstName" required>
+        <input matInput name="firstName" [(ngModel)]="user.firstName" ngModel #firstName="ngModel" required>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="width-50 col-5">
         <mat-label>Last Name</mat-label>
-        <input matInput formControlName="lastName" required>
+        <input matInput name="lastName" [(ngModel)]="user.lastName" ngModel #lastName="ngModel" required>
       </mat-form-field>
       <br>
 
       <mat-form-field appearance="fill" class="width-50 col-5">
         <mat-label>Phone number</mat-label>
-        <input type="number" matInput formControlName="phoneNumber" required>
+        <input type="number" matInput name="phoneNumber" [(ngModel)]="user.phoneNumber" ngModel #phoneNumber="ngModel" required>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="col-5">
         <mat-label>Enter your email</mat-label>
-        <input matInput formControlName="email" required>
+        <input matInput name="email" [(ngModel)]="user.email" ngModel #email="ngModel" required>
         <!--<input matInput placeholder="pat@example.com" [formControl]="email" required>
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill" class="col-10">
         <mat-label>Enter password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+        <input matInput [type]="hide ? 'password' : 'text'" name="password"  [(ngModel)]="user.password" ngModel #password="ngModel"required>
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
@@ -35,27 +35,27 @@
       <br>
       <mat-form-field appearance="fill" class="width-50 col-5">
         <mat-label>Username</mat-label>
-        <input matInput formControlName="userName" required>
+        <input matInput name="userName" [(ngModel)]="user.userName" ngModel #userName="ngModel" required>
       </mat-form-field>
       <mat-form-field appearance="fill" class="width-50 col-5">
         <mat-label>CIN</mat-label>
-        <input type="number" matInput formControlName="cin" required>
+        <input type="number" matInput name="cin" [(ngModel)]="user.cin" ngModel #cin="ngModel" required>
       </mat-form-field>
       <br>
       <label id="example-radio-group-label" class="ml-3">Gender: </label>
       <br>
-      <mat-radio-group formControlName="gender" aria-label="Select an option" class="ml-3">
-        <mat-radio-button  value="1" required>Male</mat-radio-button>
-        <mat-radio-button class="example-radio-button" value="2" required>Female</mat-radio-button>
-      </mat-radio-group>
+      <mat-radio-group name="gender" aria-label="Select an option" [(ngModel)]="user.gender" ngModel #gender="ngModel" class="ml-3">
+        <mat-radio-button  value="MALE" required>Male</mat-radio-button>
+        <mat-radio-button class="example-radio-button" value="FEMALE" required>Female</mat-radio-button>
+    </mat-radio-group>
 
       <br>
       <mat-form-field appearance="fill" class="col-5">
         <mat-label>Age</mat-label>
-        <input matInput formControlName="age" type="number" required>
+        <input matInput name="age" type="number" [(ngModel)]="user.age" ngModel #age="ngModel" required>
       </mat-form-field>
       <br>
-      <button mat-stroked-button class="ml-3" style="background-color: #b0bec5" [disabled]="registerForm.invalid">submit</button>
+      <button mat-stroked-button class="ml-3" style="background-color: #b0bec5" [disabled]="f.invalid">submit</button>
       <button mat-stroked-button type="reset" class="ml-3" style="background-color: #b0bec5" >reset</button>
       <button type="button" mat-stroked-button class="ml-3" style="background-color: #b0bec5" (click)="onCancel()">cancel</button>
     </div>
