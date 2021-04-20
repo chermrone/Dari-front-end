@@ -29,7 +29,7 @@ const routes: Routes = [
   {path: 'Ad/Add', component: AddAdComponent},
   {path: 'user', component: UserComponent},
   {path: 'managuser', component: UsermanagementComponent},
-  {path:'managad',component:AdManagAdminComponent}
+  {path: 'managad', component: AdManagAdminComponent}
 
 ];
 

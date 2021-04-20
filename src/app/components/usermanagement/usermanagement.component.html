@@ -48,7 +48,7 @@
   </ng-container>
 
 
-  <ng-container matColumnDef="isConnected">
+  <ng-container matColumnDef="connected">
     <th mat-header-cell *matHeaderCellDef> isConnected </th>
     <td mat-cell *matCellDef="let element"> {{element.connected}} </td>
   </ng-container>
@@ -97,7 +97,7 @@
   <ng-container matColumnDef="Delete">
     <th mat-header-cell *matHeaderCellDef > Delete </th>
     <td mat-cell *matCellDef="let element">
-      <button (click)="deleteUser(element.idUser)"  mat-button>
+      <button (click)="deleteUser(element.id)"  mat-button>
         <mat-icon  color="warn">delete</mat-icon>
       </button>
     </td>

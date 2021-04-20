@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment';
 import {User} from '../models/user';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,7 +39,13 @@ export class UserService {
   postUser(user: any): Observable<any>{
     return this.http.post(`${this.url}api/auth/signup`, user);
   }
+  // tslint:disable-next-line:typedef
   deleteUser(id: number){
     return this.http.delete(`${this.url}dari/Users/delete/` + id);
+  }
+
+  // tslint:disable-next-line:typedef
+  updateUser(user: User){
+    return this.http.put(`${this.url}dari/Users/update`, user);
   }
 }
