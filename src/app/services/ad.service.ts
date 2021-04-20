@@ -36,5 +36,7 @@ export class AdService {
 public getLastAd(){
     return this.http.get(`${this.url}dari/ads/ad/lastad`);
 }
+public deleteAdById(id:number){
+    return this.http.delete(`${this.url}dari/ads/delete/`+id);}
 
 }

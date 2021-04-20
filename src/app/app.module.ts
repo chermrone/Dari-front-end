@@ -21,6 +21,7 @@ import {MaterialModule} from './material/material.module';
 import { AddAdComponent } from './components/add-ad/add-ad.component';
 import {VerifAuthService} from "./services/verif-auth.service";
 import { UsermanagementComponent } from './components/usermanagement/usermanagement.component';
+import { AdManagAdminComponent } from './components/ad-manag-admin/ad-manag-admin.component';
 
 
 
@@ -38,7 +39,8 @@ import { UsermanagementComponent } from './components/usermanagement/usermanagem
     LoginComponent,
     SubscriptionComponent,
     AddAdComponent,
-    UsermanagementComponent
+    UsermanagementComponent,
+    AdManagAdminComponent
   ],
   imports: [
     BrowserModule,
