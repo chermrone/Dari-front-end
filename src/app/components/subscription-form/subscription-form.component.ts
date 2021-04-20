@@ -32,7 +32,6 @@ export class SubscriptionFormComponent implements OnInit {
   onsubmit(f: NgForm) {
     if (this.ss.idsubscription === 0){
       console.log(f.value);
-      this.subscription.subscriptionId = f.value.idsubscription;
       this.subscription.subscriptiontype = f.value.subscriptiontype;
       this.subscription.validity = f.value.validity;
       this.subscription.duration = f.value.duration;
@@ -42,12 +41,12 @@ export class SubscriptionFormComponent implements OnInit {
     }
     else{
       console.log(f.value);
-      this.subscription.subscriptionId = f.value.idsubscription;
       this.subscription.subscriptiontype = f.value.subscriptiontype;
       this.subscription.validity = f.value.validity;
       this.subscription.duration = f.value.duration;
       this.subscription.descriptionOffer = f.value.descriptionOffer;
       this.subscription.price = f.value.price;
+      console.log(this.subscription);
       this.ss.updateSubscription(this.subscription).subscribe(data => console.log(data));
     }
     this.ss.idsubscription = 0;

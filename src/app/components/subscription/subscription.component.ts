@@ -7,6 +7,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {SubscriptionFormComponent} from '../subscription-form/subscription-form.component';
+import {SubscriptionOrderService} from '../../services/subscription-order.service';
 
 @Component({
   selector: 'app-subscription',
@@ -21,7 +22,7 @@ export class SubscriptionComponent implements OnInit {
   displayedColumns: string[] = ['id', 'description', 'SubscriptionType', 'validity', 'duration', 'price', 'Edit', 'Delete'];
   dataSource = new MatTableDataSource(this.subscriptions_list);
 
-  constructor(private ss: SubscriptionService, private elementRef: ElementRef, private dialog: MatDialog) {
+  constructor(private ss: SubscriptionService, private elementRef: ElementRef, private dialog: MatDialog, private sos: SubscriptionOrderService) {
   }
 
 

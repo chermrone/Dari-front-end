@@ -24,6 +24,7 @@ import { UsermanagementComponent } from './components/usermanagement/usermanagem
 import { AdManagAdminComponent } from './components/ad-manag-admin/ad-manag-admin.component';
 import { UserAddComponent } from './components/user-add/user-add.component';
 import { SubscriptionFormComponent } from './components/subscription-form/subscription-form.component';
+import { SubscriptionOrderManagementComponent } from './components/subscription-order-management/subscription-order-management.component';
 
 
 
@@ -44,7 +45,8 @@ import { SubscriptionFormComponent } from './components/subscription-form/subscr
     UsermanagementComponent,
     AdManagAdminComponent,
     UserAddComponent,
-    SubscriptionFormComponent
+    SubscriptionFormComponent,
+    SubscriptionOrderManagementComponent
   ],
   imports: [
     BrowserModule,
