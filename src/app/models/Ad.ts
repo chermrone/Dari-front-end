@@ -1,5 +1,6 @@
 import {Typead} from "../enumeration/Typead";
 import {TypeBatiment} from "../enumeration/TypeBatiment";
+import {FilesAd} from "./FilesAd";
 
 export class Ad {
   adId!: number;
@@ -19,5 +20,7 @@ export class Ad {
   typead: Typead;
   numberOfBathrooms: number | undefined;
   checkInDate: Date ;
-  checkOutDate: Date ;
+  checkOutDate: Date;
+  imgads:FilesAd[];
+
 }
