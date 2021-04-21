@@ -2,22 +2,22 @@ import {Typead} from "../enumeration/Typead";
 import {TypeBatiment} from "../enumeration/TypeBatiment";
 
 export class Ad {
-  adId!: number;
+  adId: number;
   titleAd: string ;
-  type!:TypeBatiment;
-  description!: string;
-  creationDate: Date | undefined;
-  sell: boolean | undefined;
+  type: TypeBatiment;
+  description: string;
+  creationDate: Date;
+  sell: boolean;
   BuyingDate: Date ;
-  visibility: boolean | undefined;
-  periodeOfVisibility: Date | undefined;
-  numbreOfRooms: number | undefined;
+  visibility: boolean;
+  periodeOfVisibility: Date;
+  numbreOfRooms: number;
   price: number ;
-  city: string | undefined;
-  builda: number | undefined;
-  area: number | undefined;
+  city: string;
+  builda: number;
+  area: number;
   typead: Typead;
-  numberOfBathrooms: number | undefined;
+  numberOfBathrooms: number;
   checkInDate: Date ;
   checkOutDate: Date ;
 }

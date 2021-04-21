@@ -1,4 +1,5 @@
 import {Gender} from './gender.enum';
+import {SubscriptionOrder} from './subscriptionOrder';
 
 export class User{
    idUser: number;
@@ -8,10 +9,8 @@ export class User{
    userName: string;
    password: string;
    age: number ;
-
    gender: Gender;
    phoneNumber: number;
-
    email: string;
    cin: number;
    connected: boolean;
@@ -19,6 +18,7 @@ export class User{
    banDate: Date;
    banNbr: number;
    userSate: boolean;
+  subscriptions: SubscriptionOrder[];
 
 
   constructor() {
