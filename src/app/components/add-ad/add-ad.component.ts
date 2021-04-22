@@ -48,9 +48,9 @@ verif=true;
   PostAd(f: NgForm) {
     const p = {} as Ad;
     if (typeof(this.currentFile) != 'undefined') {
-      this.currentFile = this.selectedFiles.item(0);
+      this.currentFile = this.selectedFiles.item(0);console.log(this.currentFile);
     }
-    else {this.notif='you need to enter images';this.verif=true;
+    else {this.verif=true;
     }
 
     if (typeof(this.currentFileVid) != 'undefined') {
@@ -62,16 +62,16 @@ verif=true;
     console.log(p);
     this.sub=this.AdServ.postAd(p).subscribe(data => {
       console.log('success');
-      this.AdServ.getLastAd().subscribe(data => {if (typeof(this.currentFile) === 'undefined') this.sub.unsubscribe();
+      this.AdServ.getLastAd().subscribe(data => {
         this.message = '';
-        if (typeof(this.currentFile) != 'undefined') {
+
         for (let i = 0; i < this.selectedFiles.length; i++) {
           this.upload(i, this.selectedFiles[i]);
-        }}
+
         if (typeof(this.currentFileVid) != 'undefined') {
         for (let i = 0; i < this.selectedFilesvid.length; i++) {
           this.uploadVideo(i, this.selectedFilesvid[i]);
-        }}
+        }}}
       });
     });
   }
