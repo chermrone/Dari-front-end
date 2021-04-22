@@ -18,17 +18,18 @@ import {SubscriptionorderFormComponent} from '../subscriptionorder-form/subscrip
 export class SubscriptionOrderManagementComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  subOrd: SubscriptionOrder[] = [];
-  displayedColumns: string[] = ['id', 'payingDate', 'enable', 'nbrOfWin', 'user', 'subscription', 'Edit', 'Delete'];
-  dataSource = new MatTableDataSource(this.subOrd);
 
-  constructor(private elementRef: ElementRef, private dialog: MatDialog, private sos: SubscriptionOrderService, private  us: UserService) { }
+  subscriptionOrder_list: SubscriptionOrder[] = [];
+  displayedColumns: string[] = ['id', 'payingDate', 'enable', 'nbrOfWin', 'user', 'subscription', 'Edit', 'Delete'];
+  dataSource = new MatTableDataSource(this.subscriptionOrder_list);
+
+  constructor(private elementRef: ElementRef, private dialog: MatDialog, private sos: SubscriptionOrderService) { }
 
   ngOnInit(): void {
     this.sos.getAllSubscription_orders().subscribe((data) => {
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.data = Object.assign(this.subOrd, data);
+      console.log(data);
+      /*this.subscriptionOrder_list = Object.assign(this.subscriptionOrder_list, data);
+      this.dataSource.data = this.subscriptionOrder_list;*/
     });
   }
 

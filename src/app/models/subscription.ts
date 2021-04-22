@@ -1,4 +1,5 @@
 import {SubscriptionType} from './subscription-type.enum';
+import {SubscriptionOrder} from './subscriptionOrder';
 
 export class Subscription{
   subscriptionId: number;
@@ -7,4 +8,5 @@ export class Subscription{
   subscriptiontype: SubscriptionType;
   validity: boolean;
   duration: number;
+  subscriptionOrder: SubscriptionOrder[];
 }

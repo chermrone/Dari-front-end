@@ -21,14 +21,12 @@ import {MaterialModule} from './material/material.module';
 import { AddAdComponent } from './components/add-ad/add-ad.component';
 import {VerifAuthService} from "./services/verif-auth.service";
 import { UsermanagementComponent } from './components/usermanagement/usermanagement.component';
+import { AdManagAdminComponent } from './components/ad-manag-admin/ad-manag-admin.component';
 import { UserAddComponent } from './components/user-add/user-add.component';
 import { SubscriptionFormComponent } from './components/subscription-form/subscription-form.component';
-<<<<<<< Updated upstream
-=======
 import { SubscriptionOrderManagementComponent } from './components/subscription-order-management/subscription-order-management.component';
 import { ModifAdComponent } from './components/modif-ad/modif-ad.component';
 import { SubscriptionorderFormComponent } from './components/subscriptionorder-form/subscriptionorder-form.component';
->>>>>>> Stashed changes
 
 
 
@@ -47,15 +45,11 @@ import { SubscriptionorderFormComponent } from './components/subscriptionorder-f
     SubscriptionComponent,
     AddAdComponent,
     UsermanagementComponent,
+    AdManagAdminComponent,
     UserAddComponent,
-<<<<<<< Updated upstream
-    SubscriptionFormComponent
-=======
     SubscriptionFormComponent,
     SubscriptionOrderManagementComponent,
-    ModifAdComponent,
-    SubscriptionorderFormComponent
->>>>>>> Stashed changes
+    ModifAdComponent
   ],
   imports: [
     BrowserModule,

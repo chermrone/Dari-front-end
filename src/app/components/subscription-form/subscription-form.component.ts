@@ -3,6 +3,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 import {SubscriptionService} from '../../services/subscription.service';
 import {NgForm} from '@angular/forms';
 import {Subscription} from '../../models/subscription';
+import {SubscriptionOrder} from '../../models/subscriptionOrder';
 
 @Component({
   selector: 'app-subscription-form',
@@ -29,12 +30,32 @@ export class SubscriptionFormComponent implements OnInit {
   }
 
   onsubmit(f: NgForm) {
-    console.log(f.value);
+    if (this.ss.idsubscription === 0){
+      console.log(f.value);
+      this.subscription.subscriptiontype = f.value.subscriptiontype;
+      this.subscription.validity = f.value.validity;
+      this.subscription.duration = f.value.duration;
+      this.subscription.descriptionOffer = f.value.descriptionOffer;
+      this.subscription.price = f.value.price;
+      this.ss.createSubscription(this.subscription).subscribe(data => console.log(data));
+    }
+    else{
+      console.log(f.value);
+      this.subscription.subscriptiontype = f.value.subscriptiontype;
+      this.subscription.validity = f.value.validity;
+      this.subscription.duration = f.value.duration;
+      this.subscription.descriptionOffer = f.value.descriptionOffer;
+      this.subscription.price = f.value.price;
+      console.log(this.subscription);
+      this.ss.updateSubscription(this.subscription).subscribe(data => console.log(data));
+    }
     this.ss.idsubscription = 0;
+    this.subscription = new Subscription();
   }
 
   onclose(){
     this.matdialogref.close();
     this.ss.idsubscription = 0;
+    this.subscription = new Subscription();
   }
 }

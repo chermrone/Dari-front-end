@@ -34,8 +34,6 @@ export class SubscriptionService {
   deleteSubscription(id: number){
     return this.http.delete(`${this.url}dari/subscriptions/delete/` + id);
   }
-<<<<<<< Updated upstream
-=======
 
   // tslint:disable-next-line:typedef
   createSubscription(subscription: Subscription){
@@ -49,5 +47,5 @@ export class SubscriptionService {
   getSubscriptionBySubscriptionType(subscriptiontype: string){
     return this.http.get(`${this.url}dari/subscriptions/findBytype/` + subscriptiontype);
   }
->>>>>>> Stashed changes
+
 }

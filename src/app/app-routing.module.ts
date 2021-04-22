@@ -13,6 +13,8 @@ import {SubscriptionComponent} from './components/subscription/subscription.comp
 import {AddAdComponent} from './components/add-ad/add-ad.component';
 import {UserComponent} from './components/user/user.component';
 import {UsermanagementComponent} from "./components/usermanagement/usermanagement.component";
+import {AdManagAdminComponent} from "./components/ad-manag-admin/ad-manag-admin.component";
+import {SubscriptionOrderManagementComponent} from './components/subscription-order-management/subscription-order-management.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -27,7 +29,9 @@ const routes: Routes = [
   {path: 'subscription', component: SubscriptionComponent},
   {path: 'Ad/Add', component: AddAdComponent},
   {path: 'user', component: UserComponent},
-  {path: 'User', component: UsermanagementComponent}
+  {path: 'managuser', component: UsermanagementComponent},
+  {path:'managad',component:AdManagAdminComponent},
+  {path: 'sordmanag', component: SubscriptionOrderManagementComponent}
 
 ];
 

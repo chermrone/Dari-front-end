@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Environment} from '@angular/compiler-cli/src/ngtsc/typecheck/src/environment';
-<<<<<<< Updated upstream
-=======
 import {Observable} from 'rxjs';
 import {SubscriptionOrder} from '../models/subscriptionOrder';
 import {environment} from '../../environments/environment';
 import {Subscription} from '../models/subscription';
->>>>>>> Stashed changes
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +23,6 @@ export class SubscriptionOrderService {
 
   constructor(private http: HttpClient) { }
 
-<<<<<<< Updated upstream
-=======
   getAllSubscription_orders(){
     return this.http.get(`${this.url}dari/subscriptionorder/all`);
   }
@@ -36,7 +31,6 @@ export class SubscriptionOrderService {
     return this.http.get(`${this.url}dari/subscriptionorder/find/` + id);
   }
 
->>>>>>> Stashed changes
   // tslint:disable-next-line:typedef
   UpgradePremium(id: number, value: any){
     return this.http.post(`${this.url}dari/subscriptionorder/addpremium/` + `${id}`, value);

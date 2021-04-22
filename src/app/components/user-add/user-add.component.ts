@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/user';
+import {Gender} from "../../models/gender.enum";
 
 @Component({
   selector: 'app-user-add',
@@ -11,64 +12,56 @@ import {User} from '../../models/user';
 })
 export class UserAddComponent implements OnInit {
   hide = true;
-  user: User = new User();
-  registerForm: FormGroup;
+user: User = new User();
+
 
   constructor(public matdialogref: MatDialogRef<UserAddComponent>, private us: UserService) { }
 
   ngOnInit(): void {
+      if (this.us.iduser != 0) {
+        console.log(this.us.iduser);
+        this.us.getUserById(this.us.iduser).subscribe(user1 => {
+          this.user = user1;
+          console.log(this.user);
 
-      this.registerForm = new FormGroup({
-        firstName: new FormControl('',[Validators.required]),
-        lastName: new FormControl('', [Validators.required]),
-        userName: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required, Validators.minLength(4)]),
-        age: new FormControl('', [Validators.required]),
-        cin: new FormControl('', [Validators.required]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        gender: new FormControl('', [Validators.required]),
-        phoneNumber: new FormControl('', [Validators.required, Validators.minLength(8)])
-      });
-      if (this.us.iduser === 1) {
-      this.us.getUserById(this.us.iduser).subscribe( user1 => {
-        this.user = user1;
-        console.log(this.user);
-        console.log(typeof(this.user.firstName));
-      });
-      this.registerForm.patchValue({firstName: this.user.firstName});
-      /*this.registerForm.setValue({
-        firstName: this.user.firstName,
-        lastName: this.user.lastName,
-        userName: this.user.userName,
-        password: this.user.password,
-        age: this.user.age,
-        cin: this.user.cin,
-        email: this.user.email,
-        gender: this.user.gender,
-        phoneNumber: this.user.phoneNumber,
-      });*/
-      console.log(this.registerForm.value);
-      /*this.registerForm = new FormGroup({
-        firstName: new FormControl(this.user.firstName, [Validators.required]),
-        lastName: new FormControl(this.user.lastName, [Validators.required]),
-        userName: new FormControl(this.user.userName, [Validators.required]),
-        password: new FormControl(this.user.password, [Validators.required, Validators.minLength(4)]),
-        age: new FormControl(this.user.age, [Validators.required]),
-        cin: new FormControl(this.user.cin, [Validators.required]),
-        email: new FormControl(this.user.email, [Validators.required, Validators.email]),
-        gender: new FormControl(this.user.gender, [Validators.required]),
-        phoneNumber: new FormControl(this.user.phoneNumber, [Validators.required, Validators.minLength(8)])
-      });*/
-    }
-  }
+        });
 
+      }}
   // tslint:disable-next-line:typedef
-  onsubmit(){
-    console.log(this.registerForm);
-  }
+  onsubmit(f: NgForm) {
+          if (this.us.iduser === 0){
+            console.log(f.value);
+            this.user.firstName = f.value.firstName;
+            this.user.lastName = f.value.lastName;
+            this.user.userName = f.value.userName;
+            this.user.password = f.value.password;
+            this.user.age = f.value.age;
+            this.user.phoneNumber = f.value.phoneNumber;
+            this.user.email = f.value.phoneNumber;
+            this.user.gender = f.value.gender;
+            this.us.createUser(this.user).subscribe(data => console.log(data));
+          }
+          else{
+            console.log(f.value);
+            this.user.firstName = f.value.firstName;
+            this.user.lastName = f.value.lastName;
+            this.user.userName = f.value.userName;
+            this.user.password = f.value.password;
+            this.user.age = f.value.age;
+            this.user.phoneNumber = f.value.phoneNumber;
+            this.user.email = f.value.phoneNumber;
+            this.user.gender = f.value.gender;
+            console.log(this.user);
+            this.us.updateUser(this.user).subscribe(data => console.log(data));
+          }
+          this.us.iduser = 0;
+          this.user = new User();
+        }
 
   // tslint:disable-next-line:typedef
   onCancel() {
     this.matdialogref.close();
+    this.us.iduser = 0;
+    this.user = new User();
   }
 }
