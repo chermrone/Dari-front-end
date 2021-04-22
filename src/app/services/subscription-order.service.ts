@@ -40,8 +40,8 @@ export class SubscriptionOrderService {
     return this.http.delete(`${this.url}dari/subscriptionorder/delete/` + id);
   }
 
-  createSubscriptionorder(subscriptionorder: SubscriptionOrder, id: string){
-    return this.http.post(`${this.url}dari/subscriptionorder/add/` + id, subscriptionorder);
+  createSubscriptionorder(subscriptionorder: SubscriptionOrder, id: string, iduser: number){
+    return this.http.post(`${this.url}dari/subscriptionorder/addtouser/` + id + '/' + iduser, subscriptionorder);
   }
 
   updateSubscriptionorder(subscriptionorder: SubscriptionOrder){

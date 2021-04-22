@@ -25,6 +25,7 @@ export class SubscriptionorderFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscriptionOrder.subscription = this.subscription;
+    this.subscriptionOrder.us = this.us;
     if (this.sos.idsubscription != 0){
       this.sos.getById(this.sos.idsubscription).subscribe(data => {
         this.subscriptionOrder = data as SubscriptionOrder;
@@ -42,11 +43,10 @@ export class SubscriptionorderFormComponent implements OnInit {
   }
 
   onsubmit(f: NgForm) {
-    console.log(this.sos.idsubscription);
     if (this.sos.idsubscription === 0){ // create
-
       this.subscriptionOrder.enable = f.value.enable;
-      this.sos.createSubscriptionorder(this.subscriptionOrder, f.value.subscriptiontype).subscribe(d => {
+      console.log(f.value.user);
+      this.sos.createSubscriptionorder(this.subscriptionOrder, f.value.subscriptiontype, f.value.user).subscribe(d => {
         console.log(d);
       });
     }
