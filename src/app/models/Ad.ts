@@ -1,5 +1,5 @@
 import {Typead} from "../enumeration/Typead";
-import {TypeBatiment} from "../enumeration/TypeBatiment";
+import {TypeBatiment} from '../enumeration/TypeBatiment';
 
 export class Ad {
   adId!: number;

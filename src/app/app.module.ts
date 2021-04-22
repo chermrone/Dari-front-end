@@ -26,6 +26,8 @@ import { UserAddComponent } from './components/user-add/user-add.component';
 import { SubscriptionFormComponent } from './components/subscription-form/subscription-form.component';
 import { SubscriptionOrderManagementComponent } from './components/subscription-order-management/subscription-order-management.component';
 import { ModifAdComponent } from './components/modif-ad/modif-ad.component';
+import { ClaimsmanagementComponent } from './components/claimsmanagement/claimsmanagement.component';
+import { ClaimsupdateComponent } from './components/claimsupdate/claimsupdate.component';
 
 
 
@@ -48,7 +50,9 @@ import { ModifAdComponent } from './components/modif-ad/modif-ad.component';
     UserAddComponent,
     SubscriptionFormComponent,
     SubscriptionOrderManagementComponent,
-    ModifAdComponent
+    ModifAdComponent,
+    ClaimsmanagementComponent,
+    ClaimsupdateComponent
   ],
   imports: [
     BrowserModule,

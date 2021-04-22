@@ -1,4 +1,4 @@
-import {Gender} from './gender.enum';
+import {Gender} from '../enumeration/gender.enum';
 
 export class User{
    idUser: number;

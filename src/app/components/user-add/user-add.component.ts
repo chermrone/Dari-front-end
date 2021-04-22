@@ -3,7 +3,7 @@ import {NgForm} from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/user';
-import {Gender} from "../../models/gender.enum";
+import {Gender} from "../../enumeration/gender.enum";
 
 @Component({
   selector: 'app-user-add',
@@ -37,7 +37,7 @@ user: User = new User();
             this.user.password = f.value.password;
             this.user.age = f.value.age;
             this.user.phoneNumber = f.value.phoneNumber;
-            this.user.email = f.value.phoneNumber;
+            this.user.email = f.value.email;
             this.user.gender = f.value.gender;
             this.us.createUser(this.user).subscribe(data => console.log(data));
           }
@@ -49,7 +49,7 @@ user: User = new User();
             this.user.password = f.value.password;
             this.user.age = f.value.age;
             this.user.phoneNumber = f.value.phoneNumber;
-            this.user.email = f.value.phoneNumber;
+            this.user.email = f.value.email;
             this.user.gender = f.value.gender;
             console.log(this.user);
             this.us.updateUser(this.user).subscribe(data => console.log(data));
