@@ -16,6 +16,7 @@ import {UsermanagementComponent} from './components/usermanagement/usermanagemen
 import {AdManagAdminComponent} from './components/ad-manag-admin/ad-manag-admin.component';
 import {SubscriptionOrderManagementComponent} from './components/subscription-order-management/subscription-order-management.component';
 import {ClaimsmanagementComponent} from './components/claimsmanagement/claimsmanagement.component';
+import {OffersComponent} from './components/offers/offers.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path: 'managuser', component: UsermanagementComponent},
   {path: 'managad', component: AdManagAdminComponent},
   {path: 'managclaim', component: ClaimsmanagementComponent},
-  {path: 'sordmanag', component: SubscriptionOrderManagementComponent}
+  {path: 'sordmanag', component: SubscriptionOrderManagementComponent},
+  {path: 'offers', component: OffersComponent}
 
 ];
 

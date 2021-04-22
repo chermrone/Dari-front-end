@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Environment} from '@angular/compiler-cli/src/ngtsc/typecheck/src/environment';
-import {Observable} from 'rxjs';
 import {SubscriptionOrder} from '../models/subscriptionOrder';
 import {environment} from '../../environments/environment';
 
@@ -42,6 +40,10 @@ export class SubscriptionOrderService {
 
   createSubscriptionorder(subscriptionorder: SubscriptionOrder, id: string, iduser: number){
     return this.http.post(`${this.url}dari/subscriptionorder/addtouser/` + id + '/' + iduser, subscriptionorder);
+  }
+
+  subscribe(subscriptionorder: SubscriptionOrder, id: string){
+    return this.http.post(`${this.url}dari/subscriptionorder/add/` + id, subscriptionorder);
   }
 
   updateSubscriptionorder(subscriptionorder: SubscriptionOrder){

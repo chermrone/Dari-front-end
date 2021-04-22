@@ -23,10 +23,13 @@ export class SubscriptionOrderManagementComponent implements OnInit {
   constructor(private elementRef: ElementRef, private dialog: MatDialog, private sos: SubscriptionOrderService) { }
 
   ngOnInit(): void {
+
     this.sos.getAllSubscription_orders().subscribe((data) => {
       console.log(data);
       this.subscriptionOrder_list = Object.assign(this.subscriptionOrder_list, data);
       this.dataSource.data = this.subscriptionOrder_list;
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
   }
 

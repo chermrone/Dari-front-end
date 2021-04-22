@@ -22,7 +22,8 @@ export class SubscriptionComponent implements OnInit {
   displayedColumns: string[] = ['id', 'description', 'SubscriptionType', 'validity', 'duration', 'price', 'Edit', 'Delete'];
   dataSource = new MatTableDataSource(this.subscriptions_list);
 
-  constructor(private ss: SubscriptionService, private elementRef: ElementRef, private dialog: MatDialog, private sos: SubscriptionOrderService) {
+  // tslint:disable-next-line:max-line-length
+  constructor(private ss: SubscriptionService, private elementRef: ElementRef, private dialog: MatDialog) {
   }
 
 
@@ -45,8 +46,7 @@ export class SubscriptionComponent implements OnInit {
 
   deleteSubscription(id: number) {
     this.ss.deleteSubscription(id).subscribe((data) => {
-        //window.location.reload();
-      this.dataSource.data
+        // window.location.reload();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
