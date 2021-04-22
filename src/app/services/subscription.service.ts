@@ -43,4 +43,8 @@ export class SubscriptionService {
   updateSubscription(subscription: Subscription){
     return this.http.put(`${this.url}dari/subscriptions/update`, subscription);
   }
+
+  getSubscriptionBySubscriptionType(subscriptiontype: string){
+    return this.http.get(`http://localhost:8082/dari/subscriptions/findBytype/` + subscriptiontype);
+  }
 }
