@@ -4,6 +4,7 @@ import {environment} from '../../environments/environment';
 import {Ad} from '../models/Ad';
 import {Observable} from 'rxjs';
 import {catchError} from "rxjs/operators";
+import {FilesAd} from "../models/FilesAd";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,9 @@ export class AdService {
     return this.http.get(`${this.url}dari/ads/ad/`+id) ; }
   getAd(){
     return this.http.get<Ad[]>(`${this.url}dari/ads/all` );
+  }
+  getFiles(){
+    return this.http.get<FilesAd[]>(`${this.url}dari/imgads/all`);
   }
   public postAd(Ad:Ad){
     return this.http.post(`${this.url}dari/ads/add/ad`,Ad);

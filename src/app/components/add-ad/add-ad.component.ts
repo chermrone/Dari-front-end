@@ -41,17 +41,16 @@ type="";typeimg="";
 
 // tslint:disable-next-line:label-
   private sub: Subscription;
-
   ngOnInit(): void {
 
   }
-
+verif=true;
   PostAd(f: NgForm) {
     const p = {} as Ad;
     if (typeof(this.currentFile) != 'undefined') {
-      this.currentFile = this.selectedFiles.item(0);
+      this.currentFile = this.selectedFiles.item(0);console.log(this.currentFile);
     }
-    else {this.notif='you need to enter images';this.sub.unsubscribe();
+    else {this.verif=true;
     }
 
     if (typeof(this.currentFileVid) != 'undefined') {
@@ -63,16 +62,16 @@ type="";typeimg="";
     console.log(p);
     this.sub=this.AdServ.postAd(p).subscribe(data => {
       console.log('success');
-      this.AdServ.getLastAd().subscribe(data => {  if (typeof(this.currentFile) == 'undefined') this.sub.unsubscribe();
+      this.AdServ.getLastAd().subscribe(data => {
         this.message = '';
 
         for (let i = 0; i < this.selectedFiles.length; i++) {
           this.upload(i, this.selectedFiles[i]);
-        }
 
+        if (typeof(this.currentFileVid) != 'undefined') {
         for (let i = 0; i < this.selectedFilesvid.length; i++) {
           this.uploadVideo(i, this.selectedFilesvid[i]);
-        }
+        }}}
       });
     });
   }
@@ -152,7 +151,7 @@ type="";typeimg="";
   selectFiles(event) {
     this.progressInfos = [];
     this.selectedFiles = event.target.files;    this.typeimg="image";
-
+  this.verif=false;
   }
 }
 

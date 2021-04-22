@@ -28,6 +28,8 @@ import { SubscriptionOrderManagementComponent } from './components/subscription-
 import { ModifAdComponent } from './components/modif-ad/modif-ad.component';
 import { ClaimsmanagementComponent } from './components/claimsmanagement/claimsmanagement.component';
 import { ClaimsupdateComponent } from './components/claimsupdate/claimsupdate.component';
+import { SubscriptionorderFormComponent } from './components/subscriptionorder-form/subscriptionorder-form.component';
+
 
 
 
@@ -51,8 +53,12 @@ import { ClaimsupdateComponent } from './components/claimsupdate/claimsupdate.co
     SubscriptionFormComponent,
     SubscriptionOrderManagementComponent,
     ModifAdComponent,
+
     ClaimsmanagementComponent,
-    ClaimsupdateComponent
+    ClaimsupdateComponent,
+
+    SubscriptionorderFormComponent
+
   ],
   imports: [
     BrowserModule,

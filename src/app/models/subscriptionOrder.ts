@@ -6,8 +6,8 @@ export class SubscriptionOrder{
   payingDate: Date;
   enable: boolean;
   nbrOfWin: number;
-  //us: User;
-  //subscription: Subscription;
+  us: User;
+  subscription: Subscription;
 
 
   constructor() {

@@ -111,7 +111,6 @@
       </div>
     </div></div>
   </div>
-
   <label class="btn btn-default">
   <div> pictures </div>  <input type="file" style="font-weight: 600;font-size: 10px" multiple (change)="selectFiles($event)" />
   </label>
@@ -132,11 +131,11 @@
         </div></div>
       </div>
       <label class="btn btn-default">
-        <div> videos </div>  <input type="file" style="font-weight: 600;font-size: 10px" multiple (change)="selectvideos($event)" />
+        <div> videos </div>  <input type="file"  style="font-weight: 600;font-size: 10px" multiple (change)="selectvideos($event)" />
       </label>
   <div class="response" role="alert">{{ message }}</div>
       <div class="row flex">
-  <button type="submit" (click)="PostAd(f)" class="btn btn-ghost"><span
+  <button type="submit" [disabled]="verif==true" (click)="PostAd(f)" class="btn btn-ghost"><span
     style="letter-spacing: 3px !important;">ADD</span>
   </button>
 </div>
