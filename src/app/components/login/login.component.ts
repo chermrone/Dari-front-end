@@ -4,6 +4,8 @@ import {TokenStorageService} from '../../auth/token-storage.service';
 import {LoginInfo} from '../../auth/login-info';
 import {Router} from '@angular/router';
 import {VerifAuthService} from '../../services/verif-auth.service';
+import {NgForm} from "@angular/forms";
+
 
 @Component({
   selector: 'app-login',
@@ -17,9 +19,10 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   private loginInfo!: LoginInfo;
+  hide = true;
 
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router, private verifauth: VerifAuthService) {
+  constructor( private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router, private verifauth: VerifAuthService) {
   }
 
   ngOnInit(): void {
@@ -63,5 +66,6 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
 
 }

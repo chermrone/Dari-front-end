@@ -9,10 +9,12 @@
           <!--first and last name-->
           <div class="header-fullname">
             <b>{{u.firstName}} {{u.lastName}}</b>
-            <a href="#">
-              <mat-icon style="color: #a71d2a">create</mat-icon>
+            <a>
+              <mat-icon style="color: #a71d2a" (click)="onEdit(u.idUser)" class="alert-danger" >create</mat-icon>
             </a>
+
           </div>
+
           <!--/first and last name-->
           <!--age-->
           <div class="header-fullname">Age: {{u.age}}</div>

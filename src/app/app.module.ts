@@ -13,7 +13,7 @@ import { AdComponent } from './components/ad/ad.component';
 import {HttpClientModule} from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
 import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
+
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
@@ -30,6 +30,9 @@ import { ClaimsmanagementComponent } from './components/claimsmanagement/claimsm
 import { ClaimsupdateComponent } from './components/claimsupdate/claimsupdate.component';
 import { SubscriptionorderFormComponent } from './components/subscriptionorder-form/subscriptionorder-form.component';
 import { OffersComponent } from './components/offers/offers.component';
+import {LoginComponent} from "./components/login/login.component";
+
+
 
 
 
@@ -45,7 +48,7 @@ import { OffersComponent } from './components/offers/offers.component';
     AdComponent,
     UserComponent,
     RegisterComponent,
-    LoginComponent,
+ LoginComponent,
     SubscriptionComponent,
     AddAdComponent,
     UsermanagementComponent,
@@ -59,7 +62,8 @@ import { OffersComponent } from './components/offers/offers.component';
     ClaimsupdateComponent,
 
     SubscriptionorderFormComponent,
-      OffersComponent
+      OffersComponent,
+
 
   ],
   imports: [

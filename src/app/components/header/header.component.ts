@@ -4,6 +4,9 @@ import {Router} from '@angular/router';
 import {SubscriptionOrderService} from '../../services/subscription-order.service';
 import {SubscriptionOrder} from '../../models/subscriptionOrder';
 import {VerifAuthService} from "../../services/verif-auth.service";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {UserAddComponent} from "../user-add/user-add.component";
+import {LoginComponent} from "../login/login.component";
 
 
 @Component({
@@ -12,7 +15,7 @@ import {VerifAuthService} from "../../services/verif-auth.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
+  constructor(private dialog: MatDialog, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
   }
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
@@ -79,5 +82,12 @@ export class HeaderComponent implements OnInit {
   RedirectAddProduct() {
     this.router.navigate(['Ad/Add']);
 
+  }
+  onCreate(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '30%';
+    this.dialog.open(LoginComponent, dialogConfig);
   }
 }

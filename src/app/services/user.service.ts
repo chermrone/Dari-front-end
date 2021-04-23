@@ -44,6 +44,9 @@ export class UserService {
   deleteUser(id: number){
     return this.http.delete(`${this.url}dari/Users/delete/` + id);
   }
+  banUser(id: number){
+    return this.http.put(`${this.url}dari/Users/ban/` + id, {responseType: 'text'});
+  }
 
   // tslint:disable-next-line:typedef
   updateUser(user: User){
@@ -53,4 +56,5 @@ export class UserService {
   createUser(user: User){
     return this.http.post(`${this.url}api/auth/signup`, user);
   }
+
 }

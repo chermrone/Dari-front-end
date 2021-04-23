@@ -1,7 +1,40 @@
 <div *ngIf="isLoggedIn; else loggedOut">
   Logged in as {{roles}}.
 </div>
+<ng-template #loggedOut>
+<form  #f="ngForm"  (ngSubmit)="onSubmit()"  novalidate>
+  <mat-grid-list cols="1" rowHeight="400px">
+    <mat-grid-tile>
+      <div class="example-container">
+        <mat-form-field appearance="fill" class="width-50 col-25" >
+          <mat-label>Username</mat-label>
+          <input matInput name="username" [(ngModel)]="form.username" ngModel #username="ngModel" required>
 
+
+        </mat-form-field>
+<br>
+
+        <mat-form-field appearance="fill" class=" width-50 col-20" >
+          <mat-label>Enter password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" name="password"  [(ngModel)]="form.password" ngModel #password="ngModel"required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <br>
+        <button mat-stroked-button class="ml-3" style="background-color: #b0bec5" [disabled]="f.invalid">Login</button>
+        <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
+          Login failed: {{errorMessage}}
+        </div>
+        <p>Don't have an account?</p>
+        <a routerLink="signup" class="btn btn-success">Sign Up</a>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form></ng-template>
+
+<!--
 <ng-template #loggedOut>
   <div class="row col-sm-6" style="max-width:350px;">
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
@@ -23,7 +56,7 @@
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary">Login</button>
+        <button class="btn btn-primary" >Login</button>
         <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
           Login failed: {{errorMessage}}
         </div>
@@ -34,3 +67,4 @@
     <a routerLink="signup" class="btn btn-success">Sign Up</a>
   </div>
 </ng-template>
+-->

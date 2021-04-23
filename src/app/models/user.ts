@@ -1,4 +1,5 @@
 import {Gender} from '../enumeration/gender.enum';
+import {claims} from "./claims";
 
 export class User{
    idUser: number;
@@ -19,7 +20,7 @@ export class User{
    banDate: Date;
    banNbr: number;
    userSate: boolean;
-
+claim: claims[];
 
   constructor() {
   }
