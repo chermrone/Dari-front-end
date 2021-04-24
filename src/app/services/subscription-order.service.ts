@@ -7,6 +7,13 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class SubscriptionOrderService {
+  get premium(): number {
+    return this._premium;
+  }
+
+  set premium(value: number) {
+    this._premium = value;
+  }
   get idsubscription(): number {
     return this._idsubscription;
   }
@@ -17,6 +24,7 @@ export class SubscriptionOrderService {
   private url = environment.serverURL;
   // tslint:disable-next-line:variable-name
   private _idsubscription = 0;
+  private _premium = 0;
 
   constructor(private http: HttpClient) { }
 
