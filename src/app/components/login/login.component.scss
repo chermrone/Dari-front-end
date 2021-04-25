@@ -1,6 +1,6 @@
 .mat-grid-list{
   background-color: transparent;
-  background-image: url("../../../assets/img/house1.jpg") ;
+  background-image: url("../../../assets/img/h.jpg") ;
 
 }
 .id{border: #a71d2a}
@@ -9,5 +9,39 @@
 }
 .mat-dialog-container{
   padding: 0px;
+}
+.b{
+  margin-left: 70px;
+ justify-content: center;
+  text-decoration-color: #424242;
+  width: 120px;
+  font-size: 20px;
+  color: white;
+}
+.matInput{
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #455331 !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #455331 !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #455331 !important;;
+}
+.mat{
+  font-weight: bold;
+}
+.btn btn-success{
+  position: center;
+  margin-left: 70px;
+  width: 120px;
 }
 

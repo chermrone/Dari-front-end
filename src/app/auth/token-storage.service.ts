@@ -9,6 +9,7 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 })
 export class TokenStorageService {
   private roles: Array<string> = [];
+  private gender: Array<string> = [];
 
   constructor() {
   }

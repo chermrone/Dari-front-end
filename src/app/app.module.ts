@@ -37,6 +37,7 @@ import {LoginComponent} from "./components/login/login.component";
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,7 @@ import {LoginComponent} from "./components/login/login.component";
     ClaimsupdateComponent,
 
     SubscriptionorderFormComponent,
-      OffersComponent,
+      OffersComponent
 
 
   ],
