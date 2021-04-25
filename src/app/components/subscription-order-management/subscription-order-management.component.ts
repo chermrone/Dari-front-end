@@ -5,9 +5,6 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {SubscriptionOrder} from '../../models/subscriptionOrder';
 import {MatTableDataSource} from '@angular/material/table';
 import {SubscriptionOrderService} from '../../services/subscription-order.service';
-import {HttpErrorResponse} from '@angular/common/http';
-import {UserService} from '../../services/user.service';
-import {SubscriptionFormComponent} from '../subscription-form/subscription-form.component';
 import {SubscriptionorderFormComponent} from '../subscriptionorder-form/subscriptionorder-form.component';
 
 @Component({
@@ -26,10 +23,13 @@ export class SubscriptionOrderManagementComponent implements OnInit {
   constructor(private elementRef: ElementRef, private dialog: MatDialog, private sos: SubscriptionOrderService) { }
 
   ngOnInit(): void {
+
     this.sos.getAllSubscription_orders().subscribe((data) => {
       console.log(data);
-      /*this.subscriptionOrder_list = Object.assign(this.subscriptionOrder_list, data);
-      this.dataSource.data = this.subscriptionOrder_list;*/
+      this.subscriptionOrder_list = Object.assign(this.subscriptionOrder_list, data);
+      this.dataSource.data = this.subscriptionOrder_list;
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
   }
 

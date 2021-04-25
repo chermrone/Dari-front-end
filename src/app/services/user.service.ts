@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpRequest} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {environment} from '../../environments/environment';
 import {User} from '../models/user';
 import {Subscription} from "../models/subscription";
+import {SignupInfo} from "../auth/signup-info";
+import {LoginComponent} from "../components/login/login.component";
 
 
 
@@ -44,13 +46,19 @@ export class UserService {
   deleteUser(id: number){
     return this.http.delete(`${this.url}dari/Users/delete/` + id);
   }
+  banUser(id: number){
+    return this.http.put(`${this.url}dari/Users/ban/` + id, {responseType: 'text'});
+  }
 
   // tslint:disable-next-line:typedef
-  updateUser(user: User){
+  updateUser(user: SignupInfo){
     return this.http.put(`${this.url}dari/Users/update`, user);
   }
 
-  createUser(user: User){
+  createUser(user: SignupInfo){
     return this.http.post(`${this.url}api/auth/signup`, user);
+  }
+  resetpassword(reset: LoginComponent){
+    return this.http.post(`${this.url}forgot`, reset);
   }
 }

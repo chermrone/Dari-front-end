@@ -4,6 +4,11 @@
       <div class="example-container">
         <br>
 
+        <mat-form-field appearance="fill" class="width-50 col-10">
+          <mat-label>user</mat-label>
+          <input matInput type="number" name="user" [(ngModel)]="subscriptionOrder.us.idUser" ngModel #user="ngModel" required>
+        </mat-form-field>
+
         <label id="example-radio-group-label" class="ml-3">State: </label>
         <br>
 

@@ -12,7 +12,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCardModule} from '@angular/material/card';
 
 const materialComponent = [
   MatButtonModule,
@@ -29,7 +29,7 @@ const materialComponent = [
   MatRadioModule,
   MatGridListModule,
   MatDialogModule,
-  MatDatepickerModule
+  MatCardModule
 ];
 
 @NgModule({

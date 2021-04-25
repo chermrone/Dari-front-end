@@ -1,0 +1,3 @@
+export enum ClaimType{
+  HARASSMENT, FAKE_INFORMATIONS, SCAM, OTHERS
+}

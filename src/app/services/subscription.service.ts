@@ -45,7 +45,6 @@ export class SubscriptionService {
   }
 
   getSubscriptionBySubscriptionType(subscriptiontype: string){
-    return this.http.get(`${this.url}dari/subscriptions/findBytype/` + subscriptiontype);
+    return this.http.get(`http://localhost:8082/dari/subscriptions/findBytype/` + subscriptiontype);
   }
-
 }

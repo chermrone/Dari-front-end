@@ -18,7 +18,7 @@ export class UsermanagementComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
     user: User [] = [];
-    displayedColumns: string[] = ['idUser', 'firstName', 'lastName', 'username', 'cin', 'phoneNumber', 'connected', 'email', 'gender', 'age', 'creationDate', 'userState', 'banDate', 'banNbr', 'Edit', 'Delete'];
+    displayedColumns: string[] = ['idUser', 'firstName', 'lastName', 'username', 'cin', 'phoneNumber', 'connected', 'email', 'gender', 'age', 'creationDate', 'userState', 'banDate', 'banNbr', 'BanUser', 'Edit', 'Delete'];
   dataSource = new MatTableDataSource(this.user);
   constructor(private us: UserService, private elementRef: ElementRef, private dialog: MatDialog) { }
 
@@ -58,14 +58,19 @@ export class UsermanagementComponent implements OnInit {
     this.dialog.open(UserAddComponent, dialogConfig);
   }
 
-  onEdit(userid:number){
+  onEdit(userid:number) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "30%";
     dialogConfig.autoFocus = true;
     this.dialog.open(UserAddComponent, dialogConfig);
-    this.us.iduser = userid ;
+    this.us.iduser = userid;
+  }
+  onBan(id: number){
+    this.us.banUser(id).subscribe(data => { console.log(data); },
+    error => console.log(error));
+    window.location.reload();
   }
 
 }

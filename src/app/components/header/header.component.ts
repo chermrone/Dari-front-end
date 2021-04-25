@@ -4,7 +4,10 @@ import {Router} from '@angular/router';
 import {SubscriptionOrderService} from '../../services/subscription-order.service';
 import {SubscriptionOrder} from '../../models/subscriptionOrder';
 import {VerifAuthService} from "../../services/verif-auth.service";
-
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {UserAddComponent} from "../user-add/user-add.component";
+import {LoginComponent} from "../login/login.component";
+import {RegisterComponent} from "../register/register.component";
 
 @Component({
   selector: 'app-header',
@@ -12,7 +15,7 @@ import {VerifAuthService} from "../../services/verif-auth.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
+  constructor(private dialog: MatDialog, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
   }
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
@@ -78,6 +81,24 @@ export class HeaderComponent implements OnInit {
   // tslint:disable-next-line:typedef
   RedirectAddProduct() {
     this.router.navigate(['Ad/Add']);
+
+  }
+  onCreate(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '30%';
+    this.dialog.open(LoginComponent, dialogConfig);
+  }
+
+  onCreate1() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '50%';
+    dialogConfig.height = '100%';
+
+    this.dialog.open(RegisterComponent, dialogConfig);
 
   }
 }

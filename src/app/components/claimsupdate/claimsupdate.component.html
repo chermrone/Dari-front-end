@@ -1,0 +1,46 @@
+<form #f="ngForm"  (ngSubmit)="onsubmit(f)">
+  <mat-grid-list cols="1" rowHeight="500px">
+    <mat-grid-tile>
+      <div class="example-container">
+        <mat-form-field appearance="fill" class="width-50 col-5">
+          <mat-label>Object Of Clm</mat-label>
+          <input matInput name="objectOfClm" [(ngModel)]="claim.objectOfClm" ngModel #objectOfClm="ngModel" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="width-50 col-5">
+          <mat-label>Content</mat-label>
+          <input matInput name="content" [(ngModel)]="claim.content" ngModel #content="ngModel" required>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="fill" class="width-50 col-5">
+          <mat-label>Date Of Clm</mat-label>
+          <input type="Date" matInput name="dateOfClm" [(ngModel)]="claim.dateOfClm" ngModel #dateOfClm="ngModel" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="col-5">
+          <mat-label>Clm Id</mat-label>
+          <input matInput name="clmId" [(ngModel)]="claim.clmId" ngModel #clmId="ngModel" required>
+
+        </mat-form-field>
+        <br>
+
+        <br>
+        <label id="example-radio-group-label" class="ml-3">Type Of Clm: </label>
+        <br>
+        <mat-radio-group name="typeClm" aria-label="Select an option" [(ngModel)]="claim.typeClm" ngModel #typeClm="ngModel" class="ml-3">
+          <br><mat-radio-button  value="HARASSMENT" class="example-radio-button" required>HARASSMENT</mat-radio-button><br>
+          <br><mat-radio-button class="example-radio-button" value="FAKE_INFORMATIONS" required>FAKE_INFORMATIONS</mat-radio-button><br>
+          <br><mat-radio-button  value="SCAM" class="example-radio-button" required>SCAM</mat-radio-button><br>
+         <br> <mat-radio-button  value="OTHERS" class="example-radio-button" required>OTHERS</mat-radio-button><br>
+        </mat-radio-group>
+
+
+
+        <button mat-stroked-button class="ml-3" style="background-color: #b0bec5" [disabled]="f.invalid">submit</button>
+        <button mat-stroked-button type="reset" class="ml-3" style="background-color: #b0bec5" >reset</button>
+        <button type="button" mat-stroked-button class="ml-3" style="background-color: #b0bec5" (click)="onCancel()">cancel</button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

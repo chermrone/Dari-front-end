@@ -5,7 +5,7 @@ export class Subscription{
   subscriptionId: number;
   descriptionOffer: string;
   price: number;
-  subscriptiontype: SubscriptionType;
+  subscriptiontype: string;
   validity: boolean;
   duration: number;
   subscriptionOrder: SubscriptionOrder[];
