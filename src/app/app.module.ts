@@ -32,6 +32,7 @@ import { SubscriptionorderFormComponent } from './components/subscriptionorder-f
 import { OffersComponent } from './components/offers/offers.component';
 import {LoginComponent} from "./components/login/login.component";
 
+import {LoginComponent} from './components/login/login.component';
 
 
 
@@ -48,7 +49,7 @@ import {LoginComponent} from "./components/login/login.component";
     AdComponent,
     UserComponent,
     RegisterComponent,
- LoginComponent,
+    LoginComponent,
     SubscriptionComponent,
     AddAdComponent,
     UsermanagementComponent,
@@ -57,26 +58,16 @@ import {LoginComponent} from "./components/login/login.component";
     SubscriptionFormComponent,
     SubscriptionOrderManagementComponent,
     ModifAdComponent,
-
     ClaimsmanagementComponent,
     ClaimsupdateComponent,
-
     SubscriptionorderFormComponent,
-
-
-
     OffersComponent,
     CancelComponent,
     SuccessComponent,
     HeaderComponent
 
-      OffersComponent,
 
-
-      OffersComponent,
-
-
-  ],
+      OffersComponent  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
