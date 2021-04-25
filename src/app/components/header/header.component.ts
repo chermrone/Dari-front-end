@@ -101,5 +101,4 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(RegisterComponent, dialogConfig);
 
   }
-
 }
