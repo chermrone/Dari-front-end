@@ -4,7 +4,10 @@ import {Router} from '@angular/router';
 import {SubscriptionOrderService} from '../../services/subscription-order.service';
 import {SubscriptionOrder} from '../../models/subscriptionOrder';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 28b4700 (payment with stripe ok)
 =======
 >>>>>>> parent of 28b4700 (payment with stripe ok)
 import {VerifAuthService} from "../../services/verif-auth.service";
@@ -12,7 +15,10 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {UserAddComponent} from "../user-add/user-add.component";
 import {LoginComponent} from "../login/login.component";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {RegisterComponent} from "../register/register.component";
+=======
+>>>>>>> parent of 28b4700 (payment with stripe ok)
 =======
 >>>>>>> parent of 28b4700 (payment with stripe ok)
 
@@ -99,6 +105,7 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(LoginComponent, dialogConfig);
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   onCreate1() {
     const dialogConfig = new MatDialogConfig();
@@ -117,6 +124,8 @@ export class HeaderComponent implements OnInit {
     this.sos.premium = this.user.idUser;
 
   }
+=======
+>>>>>>> parent of 28b4700 (payment with stripe ok)
 =======
 >>>>>>> parent of 28b4700 (payment with stripe ok)
 }

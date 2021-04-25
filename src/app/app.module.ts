@@ -31,7 +31,10 @@ import { ClaimsupdateComponent } from './components/claimsupdate/claimsupdate.co
 import { SubscriptionorderFormComponent } from './components/subscriptionorder-form/subscriptionorder-form.component';
 import { OffersComponent } from './components/offers/offers.component';
 import {LoginComponent} from "./components/login/login.component";
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 28b4700 (payment with stripe ok)
 
 
 
@@ -64,6 +67,7 @@ import {LoginComponent} from "./components/login/login.component";
 
     SubscriptionorderFormComponent,
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
@@ -76,6 +80,10 @@ import {LoginComponent} from "./components/login/login.component";
 
 >>>>>>> parent of 28b4700 (payment with stripe ok)
 
+=======
+      OffersComponent,
+
+>>>>>>> parent of 28b4700 (payment with stripe ok)
 
   ],
   imports: [
