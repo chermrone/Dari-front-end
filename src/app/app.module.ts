@@ -49,7 +49,8 @@ import { SubscriptionorderFormComponent } from './components/subscriptionorder-f
     UserAddComponent,
     SubscriptionFormComponent,
     SubscriptionOrderManagementComponent,
-    ModifAdComponent
+    ModifAdComponent,
+    SubscriptionorderFormComponent
   ],
   imports: [
     BrowserModule,
