@@ -7,28 +7,40 @@
     <mat-grid-tile>
       <div class="example-container">
         <mat-form-field appearance="fill" class="width-50 col-25" >
-          <mat-label>Username</mat-label>
-          <input matInput name="username" [(ngModel)]="form.username" ngModel #username="ngModel" required>
+          <mat-label class="mat"  style="color: #a71d2a">Username</mat-label>
+          <input matInput  name="username" size="150" [(ngModel)]="form.username" ngModel #username="ngModel" required>
 
-
-        </mat-form-field>
-<br>
-
-        <mat-form-field appearance="fill" class=" width-50 col-20" >
-          <mat-label>Enter password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" name="password"  [(ngModel)]="form.password" ngModel #password="ngModel"required>
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <button mat-icon-button matSuffix >
+            <mat-icon> person_pin</mat-icon>
           </button>
         </mat-form-field>
 
+
+<br>
+
+        <mat-form-field appearance="fill" class=" width-50 col-20" >
+          <mat-label class="mat" style="color: #a71d2a" >Enter password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" name="password"  [(ngModel)]="form.password" ngModel #password="ngModel"required>
+          <button mat-icon-button  matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
         <br>
-        <button mat-stroked-button class="ml-3" style="background-color: #b0bec5" [disabled]="f.invalid">Login</button>
+        <a
+
+
+         style="color: #15161D" (click)="resetpass(form.userName)">
+          Forgot Password?
+        </a>
+
+        <br>
+        <button mat-button class="b"   [disabled]="f.invalid" style="background-color:#424242 "  >Login</button>
         <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
           Login failed: {{errorMessage}}
         </div>
-        <p>Don't have an account?</p>
-        <a routerLink="signup" class="btn btn-success">Sign Up</a>
+        <p>If you don't have an account?</p>
+        <a routerLink="signup" class="btn btn-success" style="margin-left: 70px; width: 120px">Sign Up</a>
+        <button type="button" type="reset" mat-stroked-button class="ml-3" style="background-color: #b0bec5" (click)="onclose()" >cancel</button>
       </div>
     </mat-grid-tile>
   </mat-grid-list>

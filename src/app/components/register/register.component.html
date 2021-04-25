@@ -1,11 +1,136 @@
 <div *ngIf="isSignedUp; else signupForm">
   Your registration is successful. Please login!
 </div>
+<ng-template #signupForm>
+  <form  #f="ngForm"  (ngSubmit)="onSubmit()"  novalidate>
+    <mat-grid-list cols="1" rowHeight="800px">
+      <mat-grid-tile>
+        <div class="example-container">
+          <mat-form-field appearance="fill" class="width-50 col-25" >
+            <mat-label class="mat"  style="color: #a71d2a">Firstname</mat-label>
+            <input matInput  name="firstName" size="150" [(ngModel)]="form.firstName" ngModel #firstName="ngModel" required>
 
+            <button mat-icon-button matSuffix >
+              <mat-icon> person_pin_circle</mat-icon>
+            </button>
+          </mat-form-field>
+
+
+          <br>
+          <mat-form-field appearance="fill" class="width-50 col-25" >
+            <mat-label class="mat"  style="color: #a71d2a">Lastname</mat-label>
+            <input matInput  name="lastName" size="150" [(ngModel)]="form.lastName" ngModel #lastName="ngModel" required>
+
+            <button mat-icon-button matSuffix >
+              <mat-icon> person_pin_circle</mat-icon>
+            </button>
+          </mat-form-field>
+
+
+          <br>
+          <mat-form-field appearance="fill" class="width-50 col-25" >
+            <mat-label class="mat"  style="color: #a71d2a">Username</mat-label>
+            <input matInput  name="userName" size="150" [(ngModel)]="form.userName" ngModel #userName="ngModel" required>
+
+            <button mat-icon-button matSuffix >
+              <mat-icon> person_pin</mat-icon>
+            </button>
+
+          </mat-form-field>
+
+
+          <br>
+          <mat-form-field appearance="fill" class="width-50 col-25" >
+            <mat-label class="mat"  style="color: #a71d2a">Age</mat-label>
+            <input matInput type="number"  name="age" size="150" [(ngModel)]="form.age" ngModel #age="ngModel" required>
+
+            <button mat-icon-button matSuffix >
+              <mat-icon> </mat-icon>
+            </button>
+          </mat-form-field>
+
+
+          <br>
+          <mat-form-field appearance="fill" class="width-50 col-25" >
+            <mat-label class="mat"  style="color: #a71d2a">Phonenumber</mat-label>
+            <input matInput  name="phoneNumber" size="150" [(ngModel)]="form.phoneNumber" ngModel #phoneNumber="ngModel" required>
+
+            <button mat-icon-button matSuffix >
+              <mat-icon> call</mat-icon>
+            </button>
+          </mat-form-field>
+
+
+          <br>
+          <mat-form-field appearance="fill" class="width-50 col-25" >
+            <mat-label class="mat"  style="color: #a71d2a">CIN</mat-label>
+            <input matInput  name="cin" size="150" [(ngModel)]="form.cin" ngModel #cin="ngModel" required>
+
+            <button mat-icon-button matSuffix >
+              <mat-icon> perm_identity</mat-icon>
+            </button>
+          </mat-form-field>
+
+
+          <br>
+          <mat-form-field appearance="fill" class="width-50 col-25" >
+            <mat-label class="mat"  style="color: #a71d2a">Email</mat-label>
+            <input matInput  placeholder="Ex. pat@example.com" type="email" name="email" size="150" [(ngModel)]="form.email" ngModel #email="ngModel" required>
+
+            <button mat-icon-button matSuffix >
+              <mat-icon> alternate_email</mat-icon>
+            </button>
+          </mat-form-field>
+
+
+          <br>
+
+
+
+          <mat-form-field appearance="fill" class=" width-50 col-20" >
+            <mat-label class="mat" style="color: #a71d2a" >Enter password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" name="password"  [(ngModel)]="form.password" ngModel #password="ngModel"required>
+            <button mat-icon-button  matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <br>
+
+          <label id="example-radio-group-label" class="ml-2">Gender: </label>
+          <br>
+
+
+          <mat-radio-group  aria-label="Select an option" class="ml-3" name="gender" #gender="ngModel" [(ngModel)]="form.gender" ngModel>
+            <mat-radio-button class="example-radio-button ml-2" value="MALE" required>MALE</mat-radio-button>
+            <br>
+            <mat-radio-button class="example-radio-button ml-4" value="FEMALE" required >FEMALE</mat-radio-button>
+            <br>
+          </mat-radio-group>
+          <br>
+
+
+          <button mat-button class="b"   [disabled]="f.invalid" style="background-color:#424242 "  >Register</button>
+          <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-danger">
+
+
+          </div>
+          <button type="button" type="reset" mat-stroked-button class="ml-3" style="background-color: #b0bec5" (click)="onclose()" >cancel</button>
+
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form></ng-template>
+
+<!--
+<div *ngIf="isSignedUp; else signupForm">
+  Your registration is successful. Please login!
+</div>
+<div class="img">
 <ng-template #signupForm>
   <div class="row col-sm-6" style="max-width:350px;">
-    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <!--first name-->
+    <form name="form" class="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      &lt;!&ndash;first name&ndash;&gt;
       <div class="form-group">
         <label for="firstName">Firstname</label>
         <input type="text" id="firstName" class="form-control" name="firstName" [(ngModel)]="form.firstName" #firstName="ngModel" required />
@@ -13,8 +138,8 @@
           <div *ngIf="firstName.errors.required">FirstName is required</div>
         </div>
       </div>
-      <!--/first name-->
-      <!--last name -->
+      &lt;!&ndash;/first name&ndash;&gt;
+      &lt;!&ndash;last name &ndash;&gt;
       <div class="form-group">
         <label for="lastName">Lastname</label>
         <input type="text" id="lastName" class="form-control" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" required />
@@ -22,8 +147,8 @@
           <div *ngIf="lastName.errors.required">LastName is required</div>
         </div>
       </div>
-      <!--/last name-->
-      <!--user name-->
+      &lt;!&ndash;/last name&ndash;&gt;
+      &lt;!&ndash;user name&ndash;&gt;
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" id="username" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
@@ -32,8 +157,8 @@
           <div *ngIf="username.errors.required">Username is required</div>
         </div>
       </div>
-      <!--/user name-->
-      <!--age-->
+      &lt;!&ndash;/user name&ndash;&gt;
+      &lt;!&ndash;age&ndash;&gt;
       <div class="form-group">
         <label for="age">Age</label>
         <input type="number" id="age" class="form-control" name="age" [(ngModel)]="form.age" #age="ngModel"
@@ -42,8 +167,8 @@
           <div *ngIf="age.errors.required">Age is required</div>
         </div>
       </div>
-      <!--/age-->
-      <!--phone nbr-->
+      &lt;!&ndash;/age&ndash;&gt;
+      &lt;!&ndash;phone nbr&ndash;&gt;
       <div class="form-group">
         <label for="phoneNumber">Phonenumber</label>
         <input type="number" id="phoneNumber" class="form-control" name="phoneNumber" [(ngModel)]="form.phoneNumber" #phoneNumber="ngModel"
@@ -52,8 +177,8 @@
           <div *ngIf="phoneNumber.errors.required">Age is required</div>
         </div>
       </div>
-      <!--/phone nbr-->
-      <!--cin-->
+      &lt;!&ndash;/phone nbr&ndash;&gt;
+      &lt;!&ndash;cin&ndash;&gt;
       <div class="form-group">
         <label for="cin">CIN</label>
         <input type="number" id="cin" class="form-control" name="cin" [(ngModel)]="form.cin" #cin="ngModel"
@@ -62,8 +187,8 @@
           <div *ngIf="cin.errors.required">cin is required</div>
         </div>
       </div>
-      <!--/cin-->
-      <!--email-->
+      &lt;!&ndash;/cin&ndash;&gt;
+      &lt;!&ndash;email&ndash;&gt;
       <div class="form-group">
         <label for="email">Email</label>
         <input type="text" id="email" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required email />
@@ -72,8 +197,8 @@
           <div *ngIf="email.errors.email">Email must be a valid email address</div>
         </div>
       </div>
-      <!--/email-->
-      <!--password-->
+      &lt;!&ndash;/email&ndash;&gt;
+      &lt;!&ndash;password&ndash;&gt;
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" id="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
@@ -83,12 +208,12 @@
           <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
         </div>
       </div>
-      <!--/password-->
+      &lt;!&ndash;/password&ndash;&gt;
 
 
-      <!--ROLES-->
+      &lt;!&ndash;ROLES&ndash;&gt;
         <input type="hidden" id="BUYER" class="form-control" name="roles" [(ngModel)]="form.roles" value="BUYER" #BUYER="ngModel"/>
-      <!--/ROLES-->
+      &lt;!&ndash;/ROLES&ndash;&gt;
 
       <div class="form-group">
         <button class="btn btn-primary">Register</button>
@@ -96,6 +221,10 @@
           Signup failed!<br/>{{errorMessage}}
         </div>
       </div>
+
     </form>
   </div>
-</ng-template><p>register works!</p>
+
+</ng-template>
+</div>
+-->
