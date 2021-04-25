@@ -19,6 +19,7 @@ import {ClaimsmanagementComponent} from './components/claimsmanagement/claimsman
 import {OffersComponent} from './components/offers/offers.component';
 import {SuccessComponent} from './components/success/success.component';
 import {CancelComponent} from './components/cancel/cancel.component';
+import {UsermanagementguardGuard} from "./routeGuard/usermanagementguard.guard";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -33,7 +34,7 @@ const routes: Routes = [
   {path: 'subscription', component: SubscriptionComponent},
   {path: 'Ad/Add', component: AddAdComponent},
   {path: 'user', component: UserComponent},
-  {path: 'managuser', component: UsermanagementComponent},
+  {path: 'managuser', component: UsermanagementComponent, canActivate : [UsermanagementguardGuard ]  },
   {path: 'managad', component: AdManagAdminComponent},
   {path: 'managclaim', component: ClaimsmanagementComponent},
   {path: 'sordmanag', component: SubscriptionOrderManagementComponent},
