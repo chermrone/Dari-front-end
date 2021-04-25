@@ -101,11 +101,5 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(RegisterComponent, dialogConfig);
 
   }
-  premium(); {
-    this.us.getUserByUserName(this.token.getUsername()).subscribe(u => {
-      this.user = u;
-    });
-    this.sos.premium = this.user.idUser;
 
-  }
 }

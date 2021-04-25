@@ -14,7 +14,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
 import { RegisterComponent } from './components/register/register.component';
 
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 import {MaterialModule} from './material/material.module';
@@ -30,9 +30,11 @@ import { ClaimsmanagementComponent } from './components/claimsmanagement/claimsm
 import { ClaimsupdateComponent } from './components/claimsupdate/claimsupdate.component';
 import { SubscriptionorderFormComponent } from './components/subscriptionorder-form/subscriptionorder-form.component';
 import { OffersComponent } from './components/offers/offers.component';
-import {LoginComponent} from "./components/login/login.component";
+
 
 import {LoginComponent} from './components/login/login.component';
+import {SuccessComponent} from './components/success/success.component';
+import {CancelComponent} from './components/cancel/cancel.component';
 
 
 
@@ -64,9 +66,7 @@ import {LoginComponent} from './components/login/login.component';
     OffersComponent,
     CancelComponent,
     SuccessComponent,
-    HeaderComponent
-
-
+    HeaderComponent,
       OffersComponent  ],
   imports: [
     BrowserModule,
@@ -75,7 +75,7 @@ import {LoginComponent} from './components/login/login.component';
     HttpClientModule,
     FormsModule,
     MaterialModule,
-    ReactiveFormsModule
+
   ],
   providers: [httpInterceptorProviders, VerifAuthService],
   bootstrap: [AppComponent]
