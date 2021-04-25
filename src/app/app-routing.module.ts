@@ -16,10 +16,14 @@ import {UsermanagementComponent} from './components/usermanagement/usermanagemen
 import {AdManagAdminComponent} from './components/ad-manag-admin/ad-manag-admin.component';
 import {SubscriptionOrderManagementComponent} from './components/subscription-order-management/subscription-order-management.component';
 import {ClaimsmanagementComponent} from './components/claimsmanagement/claimsmanagement.component';
+// @ts-ignore
 import {OffersComponent} from './components/offers/offers.component';
+// @ts-ignore
 import {SuccessComponent} from './components/success/success.component';
 import {CancelComponent} from './components/cancel/cancel.component';
-import {UsermanagementguardGuard} from "./routeGuard/usermanagementguard.guard";
+// @ts-ignore
+import {UsermanagementguardGuard} from './routeGuard/usermanagementguard.guard';
+import {StatisticsComponent} from './components/statistics/statistics.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -41,7 +45,8 @@ const routes: Routes = [
   {path: 'offers', component: OffersComponent},
   {path: 'checkout', component: CheckoutComponent},
   { path: 'cancel', component: CancelComponent },
-  { path: 'success', component: SuccessComponent }
+  { path: 'success', component: SuccessComponent },
+  { path: 'statistics', component: StatisticsComponent}
 ];
 
 @NgModule({

@@ -29,10 +29,14 @@ import { ModifAdComponent } from './components/modif-ad/modif-ad.component';
 import { ClaimsmanagementComponent } from './components/claimsmanagement/claimsmanagement.component';
 import { ClaimsupdateComponent } from './components/claimsupdate/claimsupdate.component';
 import { SubscriptionorderFormComponent } from './components/subscriptionorder-form/subscriptionorder-form.component';
+// @ts-ignore
 import { OffersComponent } from './components/offers/offers.component';
 import {LoginComponent} from './components/login/login.component';
+// @ts-ignore
 import {SuccessComponent} from './components/success/success.component';
 import {CancelComponent} from './components/cancel/cancel.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import {ChartsModule} from 'ng2-charts';
 
 
 
@@ -66,7 +70,8 @@ import {CancelComponent} from './components/cancel/cancel.component';
     SuccessComponent,
     HeaderComponent,
 
-      OffersComponent,  ],
+      OffersComponent,
+        StatisticsComponent,  ],
 
 
   imports: [
@@ -76,7 +81,7 @@ import {CancelComponent} from './components/cancel/cancel.component';
     HttpClientModule,
     FormsModule,
     MaterialModule,
-
+    ChartsModule
   ],
   providers: [httpInterceptorProviders, VerifAuthService],
   bootstrap: [AppComponent]
