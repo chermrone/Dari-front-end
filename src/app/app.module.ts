@@ -30,9 +30,9 @@ import { ClaimsmanagementComponent } from './components/claimsmanagement/claimsm
 import { ClaimsupdateComponent } from './components/claimsupdate/claimsupdate.component';
 import { SubscriptionorderFormComponent } from './components/subscriptionorder-form/subscriptionorder-form.component';
 import { OffersComponent } from './components/offers/offers.component';
-import {LoginComponent} from "./components/login/login.component";
-
 import {LoginComponent} from './components/login/login.component';
+import {SuccessComponent} from './components/success/success.component';
+import {CancelComponent} from './components/cancel/cancel.component';
 
 
 
@@ -64,10 +64,8 @@ import {LoginComponent} from './components/login/login.component';
     OffersComponent,
     CancelComponent,
     SuccessComponent,
-    HeaderComponent
-
-
-      OffersComponent  ],
+    HeaderComponent,
+    OffersComponent  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
