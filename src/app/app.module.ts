@@ -10,7 +10,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdComponent } from './components/ad/ad.component';
-import {HttpClientModule, HttpHeaders} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
 import { RegisterComponent } from './components/register/register.component';
 
@@ -30,11 +30,7 @@ import { ClaimsmanagementComponent } from './components/claimsmanagement/claimsm
 import { ClaimsupdateComponent } from './components/claimsupdate/claimsupdate.component';
 import { SubscriptionorderFormComponent } from './components/subscriptionorder-form/subscriptionorder-form.component';
 import { OffersComponent } from './components/offers/offers.component';
-import {LoginComponent} from './components/login/login.component';
-import {NgxStripeModule} from 'ngx-stripe';
-import { CancelComponent } from './components/cancel/cancel.component';
-import { SuccessComponent } from './components/success/success.component';
-
+import {LoginComponent} from "./components/login/login.component";
 
 
 
@@ -53,7 +49,7 @@ import { SuccessComponent } from './components/success/success.component';
     AdComponent,
     UserComponent,
     RegisterComponent,
-    LoginComponent,
+ LoginComponent,
     SubscriptionComponent,
     AddAdComponent,
     UsermanagementComponent,
@@ -62,9 +58,12 @@ import { SuccessComponent } from './components/success/success.component';
     SubscriptionFormComponent,
     SubscriptionOrderManagementComponent,
     ModifAdComponent,
+
     ClaimsmanagementComponent,
     ClaimsupdateComponent,
+
     SubscriptionorderFormComponent,
+<<<<<<< HEAD
 
 
 
@@ -72,6 +71,10 @@ import { SuccessComponent } from './components/success/success.component';
     CancelComponent,
     SuccessComponent,
     HeaderComponent
+=======
+      OffersComponent,
+
+>>>>>>> parent of 28b4700 (payment with stripe ok)
 
 
   ],
@@ -82,8 +85,7 @@ import { SuccessComponent } from './components/success/success.component';
     HttpClientModule,
     FormsModule,
     MaterialModule,
-    ReactiveFormsModule,
-    NgxStripeModule.forRoot('pk_test_51IixohHzeUiEGzCi3zYdD9q5QavNNSG30gir37DJ48Vi5N6LlMgeo41SwF09ROh7U7zkJC093gvsCgFtbCOZdOIk00RyDj3Q1c')
+    ReactiveFormsModule
   ],
   providers: [httpInterceptorProviders, VerifAuthService],
   bootstrap: [AppComponent]
