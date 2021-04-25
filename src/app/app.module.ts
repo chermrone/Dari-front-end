@@ -30,7 +30,7 @@ import { ClaimsmanagementComponent } from './components/claimsmanagement/claimsm
 import { ClaimsupdateComponent } from './components/claimsupdate/claimsupdate.component';
 import { SubscriptionorderFormComponent } from './components/subscriptionorder-form/subscriptionorder-form.component';
 import { OffersComponent } from './components/offers/offers.component';
-import {LoginComponent} from "./components/login/login.component";
+import {LoginComponent} from './components/login/login.component';
 
 
 
