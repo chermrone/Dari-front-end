@@ -10,7 +10,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdComponent } from './components/ad/ad.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HttpHeaders} from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
 import { RegisterComponent } from './components/register/register.component';
 
@@ -30,7 +30,11 @@ import { ClaimsmanagementComponent } from './components/claimsmanagement/claimsm
 import { ClaimsupdateComponent } from './components/claimsupdate/claimsupdate.component';
 import { SubscriptionorderFormComponent } from './components/subscriptionorder-form/subscriptionorder-form.component';
 import { OffersComponent } from './components/offers/offers.component';
-import {LoginComponent} from "./components/login/login.component";
+import {LoginComponent} from './components/login/login.component';
+import {NgxStripeModule} from 'ngx-stripe';
+import { CancelComponent } from './components/cancel/cancel.component';
+import { SuccessComponent } from './components/success/success.component';
+
 
 
 
@@ -49,7 +53,7 @@ import {LoginComponent} from "./components/login/login.component";
     AdComponent,
     UserComponent,
     RegisterComponent,
- LoginComponent,
+    LoginComponent,
     SubscriptionComponent,
     AddAdComponent,
     UsermanagementComponent,
@@ -58,12 +62,16 @@ import {LoginComponent} from "./components/login/login.component";
     SubscriptionFormComponent,
     SubscriptionOrderManagementComponent,
     ModifAdComponent,
-
     ClaimsmanagementComponent,
     ClaimsupdateComponent,
-
     SubscriptionorderFormComponent,
-      OffersComponent
+
+
+
+    OffersComponent,
+    CancelComponent,
+    SuccessComponent,
+    HeaderComponent
 
 
   ],
@@ -74,7 +82,8 @@ import {LoginComponent} from "./components/login/login.component";
     HttpClientModule,
     FormsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxStripeModule.forRoot('pk_test_51IixohHzeUiEGzCi3zYdD9q5QavNNSG30gir37DJ48Vi5N6LlMgeo41SwF09ROh7U7zkJC093gvsCgFtbCOZdOIk00RyDj3Q1c')
   ],
   providers: [httpInterceptorProviders, VerifAuthService],
   bootstrap: [AppComponent]
