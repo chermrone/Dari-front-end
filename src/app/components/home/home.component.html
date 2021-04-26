@@ -125,7 +125,23 @@
   <!-- /container -->
 
   <!-- /SECTION -->
+  <div style="text-align:center; margin-top: 150px;">
 
+    <h1 style="font-size: 4em;">
+      <div id="chatDisplay">
+        <ul>
+          <li *ngFor = "let msg of messages">{{ msg }}</li>
+        </ul>
+      </div>
+      Notifications : <span style="color: red;">+{{notifications}}</span>
+   <!-- /*  <div class="content">
+          <div *ngFor="let mmsg of webSocketService.msg">hjg
+           {{mmsg}}
+          </div>
+          </div> */-->
+    </h1>
+
+  </div>
   <!-- HOT DEAL SECTION -->
   <div id="hot-deal" class="section">
     <!-- container -->

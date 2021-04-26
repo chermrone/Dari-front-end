@@ -4,6 +4,7 @@ import {TokenStorageService} from '../../auth/token-storage.service';
 import {LoginInfo} from '../../auth/login-info';
 import {Router} from '@angular/router';
 import {VerifAuthService} from '../../services/verif-auth.service';
+import {WebSocketAPI} from "../../services/webSocketAPI";
 
 @Component({
   selector: 'app-login',
@@ -17,9 +18,10 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   private loginInfo!: LoginInfo;
+  private notifications: any;
 
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router, private verifauth: VerifAuthService) {
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router ,private verifauth: VerifAuthService) {
   }
 
   ngOnInit(): void {
@@ -52,6 +54,18 @@ export class LoginComponent implements OnInit {
             this.verifauth.verifrole = true;
           }
         }
+      //  let stompClient = this.webSocketService.connect();
+      /*  stompClient.connect({}, frame => {
+          console.log(stompClient);
+
+          // Subscribe to notification topic
+          stompClient.subscribe('/topic/notification', notifications => {
+            console.log(this.notifications);
+            // Update notifications attribute with the recent messsage sent from the server
+            this.notifications = JSON.parse(notifications.body);
+console.log(this.notifications);
+          })
+        });*/
 
         this.router.navigate(['']);
       },

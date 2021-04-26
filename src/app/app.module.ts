@@ -26,6 +26,10 @@ import { UserAddComponent } from './components/user-add/user-add.component';
 import { SubscriptionFormComponent } from './components/subscription-form/subscription-form.component';
 import { SubscriptionOrderManagementComponent } from './components/subscription-order-management/subscription-order-management.component';
 import { ModifAdComponent } from './components/modif-ad/modif-ad.component';
+import {NbChatModule, NbThemeModule, NbLayoutModule, NbCardModule, NbInputModule, NbButtonModule} from "@nebular/theme";
+import {WebsocketService} from "./services/websocket.service";
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -48,7 +52,8 @@ import { ModifAdComponent } from './components/modif-ad/modif-ad.component';
     UserAddComponent,
     SubscriptionFormComponent,
     SubscriptionOrderManagementComponent,
-    ModifAdComponent
+    ModifAdComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -57,9 +62,16 @@ import { ModifAdComponent } from './components/modif-ad/modif-ad.component';
     HttpClientModule,
     FormsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NbChatModule,
+    NbThemeModule.forRoot({name: 'default'}),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbCardModule,
+    NbInputModule,
+    NbButtonModule
   ],
-  providers: [httpInterceptorProviders, VerifAuthService],
+  providers: [httpInterceptorProviders, VerifAuthService, WebsocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

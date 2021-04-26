@@ -7,6 +7,7 @@ import {TypeBatiment} from '../../enumeration/TypeBatiment';
 import {Observable, Subscription} from 'rxjs';
 import {UploadFileService} from '../../services/upload-file.service';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
+import {WebSocketAPI} from "../../services/webSocketAPI";
 
 @Component({
   selector: 'app-add-ad',
@@ -20,6 +21,7 @@ export class AddAdComponent implements OnInit {
   symbolsBat = TypeBatiment;
   estimationPrice: any;
   estimationDuration: any;
+  webSocketAPI: WebSocketAPI;
 
   selectedFiles: FileList;
   selectedFilesvid: FileList;
@@ -31,7 +33,8 @@ export class AddAdComponent implements OnInit {
   progressInfos = [];  progressInfosVid = [];
 type="";typeimg="";
    notif: string;
-  constructor(private AdServ: AdService, private uploadService: UploadFileService) {
+ notifications: any;
+  constructor(private AdServ: AdService, private uploadService: UploadFileService ) {
     this.keysBat = Object.keys(this.symbolsBat);
     this.keysTyp = Object.keys(this.symbols);
 
@@ -43,7 +46,7 @@ type="";typeimg="";
   private sub: Subscription;
   ngOnInit(): void {
 
-  }
+  }stompClient: any;
 verif=true;
   PostAd(f: NgForm) {
     const p = {} as Ad;
@@ -62,7 +65,26 @@ verif=true;
     console.log(p);
     this.sub=this.AdServ.postAd(p).subscribe(data => {
       console.log('success');
+    //  console.log(this.webSocketService.stompClient)
+     // this.webSocketService.sendMessage("helloooo");
+
       this.AdServ.getLastAd().subscribe(data => {
+    //    this.stompClient.send("/app/sendmsg", {}, JSON.stringify(data));
+      //  this.webSocketAPI._send(data);
+
+
+        /*let stompClient = this.webSocketService.connect(); console.log(stompClient);
+        stompClient.connect({}, function( frame ){
+          console.log( "Connected :- "+frame );
+          stompClient.subscribe("/notification/topic", function( notifications ) {
+            alert( notifications );
+          });
+          stompClient.send(`/app/sendmsg`, {}, JSON.stringify(data as Ad));console.log(stompClient);
+*/
+
+
+
+
         this.message = '';
 
         for (let i = 0; i < this.selectedFiles.length; i++) {
@@ -153,5 +175,11 @@ verif=true;
     this.selectedFiles = event.target.files;    this.typeimg="image";
   this.verif=false;
   }
+input;
+  sendMessage() {
+   /* if (this.input) {
+      this.webSocketService.sendMessage(this.input);
+      this.input = '';
+  }*/}
 }
 

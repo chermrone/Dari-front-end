@@ -12,7 +12,7 @@ import {VerifAuthService} from "../../services/verif-auth.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
+  constructor(private token: TokenStorageService, private router: Router , public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
   }
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
@@ -64,6 +64,7 @@ export class HeaderComponent implements OnInit {
     this.token.signOut();
     this.verifauth.verif = false;
     this.verifauth.verifrole = false;
+  //  this.webSocketService.disconnect();
     this.router.navigate(['']);
   }
 
