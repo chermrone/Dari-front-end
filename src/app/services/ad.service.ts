@@ -58,4 +58,13 @@ public deleteAdById(id:number){
   public updateAd(Ad: Ad) {
 return this.http.put(`${this.url}dari/ads/update/ad/`,Ad);
   }
+
+  /********************STATISTICS************************/
+  public getByedHousesByRegion(region: string) {
+    return this.http.get(`${this.url}dari/ads/buyedAdByRegion/` + region);
+  }
+
+  public getRegionsOrdredByBuyingAdsAsc(){
+    return this.http.get(`${this.url}dari/ads/GetRegionsordredbybuyingasc/`);
+  }
 }
