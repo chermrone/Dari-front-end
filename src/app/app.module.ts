@@ -37,6 +37,7 @@ import {SuccessComponent} from './components/success/success.component';
 import {CancelComponent} from './components/cancel/cancel.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import {ChartsModule} from 'ng2-charts';
+import { RessetpasswordComponent } from './components/ressetpassword/ressetpassword.component';
 
 
 
@@ -71,7 +72,8 @@ import {ChartsModule} from 'ng2-charts';
     HeaderComponent,
 
       OffersComponent,
-        StatisticsComponent,  ],
+        StatisticsComponent,
+        RessetpasswordComponent,  ],
 
 
   imports: [

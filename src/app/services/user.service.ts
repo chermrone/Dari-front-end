@@ -6,6 +6,8 @@ import {User} from '../models/user';
 import {Subscription} from "../models/subscription";
 import {SignupInfo} from "../auth/signup-info";
 import {LoginComponent} from "../components/login/login.component";
+import {LoginInfo} from "../auth/login-info";
+import {resetpassword} from "../models/resetpassword";
 
 
 
@@ -58,7 +60,10 @@ export class UserService {
   createUser(user: SignupInfo){
     return this.http.post(`${this.url}api/auth/signup`, user);
   }
-  resetpassword(reset: LoginComponent){
+  resetpassword(reset: LoginInfo){
     return this.http.post(`${this.url}forgot`, reset);
+  }
+  updatepassword(pass: resetpassword){
+    return this.http.post(`${this.url}reset`, pass);
   }
 }
