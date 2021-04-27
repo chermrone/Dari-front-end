@@ -1,1 +1,52 @@
-<p>product works!</p>
+<div class="container espace">
+
+  <div class="card mb-3" style="padding:30px 50px;margin: 30px 70px!important;margin-bottom: 100px!important;">
+    <div *ngFor="let im of Img">
+      <img src="{{im}}" class="card-img-top"
+           style="cursor:pointer;width: 70%;height:200px;margin-right: 60px;margin-left: 108px"
+      ></div>
+    <div class="card-body">
+      <div style="margin-left: 5%;margin-top:30px;display: flex ; justify-content:space-between;width: 90%"><h3
+        class="card-title">{{Ad.titleAd}}</h3>
+        <h3 class="card-title">{{Ad.price}} DT</h3></div>
+      <div style="display: flex "class="carac" >
+        <div *ngIf="Ad.builda!=0"> {{Ad.city}} •</div>
+        <div>{{Ad.numbreOfRooms}} rooms •</div>
+        <div>{{Ad.numberOfBathrooms}}  bth.rooms •</div>
+        <div *ngIf="Ad.area!=0">Area : {{Ad.area}} m² •</div>
+        <div *ngIf="Ad.builda!=0"> blt.Area : {{Ad.builda}} m²</div>
+      </div>
+      <p class="card-text">{{Ad.description}}</p>
+      <p class="card-text"><small class="text-muted">{{Ad.creationDate}}</small></p>
+
+    </div>
+    <div class="coulleur"> NEW</div>
+  </div></div>
+  <!--
+
+  <figure class="pizza">
+    <div class="pizza__hero">
+      <div *ngFor="let im of Img">
+        <div class="col-2">
+          <img src="{{im}}" class="pizza__img"
+               style="cursor:pointer;width: 100px" ></div></div>
+
+    </div>
+
+    <div class="pizza__content">
+      <div class="pizza__title">
+    <h1 class="pizza__heading"> {{Ad.titleAd}}</h1>
+    <div class="pizza__tag pizza__tag&#45;&#45;1">#Vegiterian</div>
+    <div class="pizza__tag pizza__tag&#45;&#45;2">#Italian</div>
+    </div>
+    <p class="pizza__description">{{Ad.description}}</p>
+    <div class="pizza__details">
+      <p class="pizza__detail"><span class="emoji">🍕</span>{{Ad.numberOfBathrooms}} </p>
+      <p class="pizza__detail"><span class="emoji">⏱</span>{{Ad.creationDate}}</p>
+      <p class="pizza__detail"><span class="emoji">⭐️</span>{{Ad.city}}</p>
+    </div>
+    </div>
+    <div class="pizza__price">{{Ad.price}} DT</div>
+
+  </figure>
+  -->

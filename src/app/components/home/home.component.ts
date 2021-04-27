@@ -51,11 +51,11 @@ export class HomeComponent implements OnInit {
         this.products = data;
         this.Adservice.getFiles().subscribe(res => {
            this.retrieveResonse = res as FilesAd[];
-            for(let i of this.retrieveResonse)
-            {this.base64Data.push([i.picByte,i.id]); //console.log(this.retrieveResonse);
+           for (const i of this.retrieveResonse)
+            {this.base64Data.push([i.picByte, i.id]); // console.log(this.retrieveResonse);
               }
-            for(let t of this.base64Data)
-            {this.retrievedImage.push(['data:image/jpeg;base64,' + t[0],t[1]]);//console.log(this.retrievedImage);
+           for (const t of this.base64Data)
+            {this.retrievedImage.push(['data:image/jpeg;base64,' + t[0], t[1]]); // console.log(this.retrievedImage);
             }}
          );
 
@@ -88,11 +88,11 @@ export class HomeComponent implements OnInit {
   }
 
 // tslint:disable-next-line:typedef
-  selectAd(id
-             :
-             number
-  ) {
-    this.router.navigate(['/ad', id]).then();
+  selectAd(id: number) {
+    this.router.navigate(['/ad', id]);
   }
 
+  AddTofav(adId: number) {
+    this.Adservice.postFav(adId).subscribe(data=> console.log("succes"));
+  }
 }

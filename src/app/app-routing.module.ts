@@ -33,7 +33,7 @@ import {RentComponent} from "./components/rent/rent.component";
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'Product', component: AdComponent},
-  {path: 'Product/:adId', component: AdComponent},
+  {path: 'ad/:id', component: AdComponent},
   {path: 'cart', component: CartComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'signup', component: RegisterComponent},
