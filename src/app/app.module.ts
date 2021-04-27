@@ -40,7 +40,8 @@ import {ChartsModule} from 'ng2-charts';
 import { RessetpasswordComponent } from './components/ressetpassword/ressetpassword.component';
 import { FounitureAdComponent } from './components/founiture-ad/founiture-ad.component';
 import { AdOwnedComponent } from './components/ad-owned/ad-owned.component';
-
+import { SellComponent } from './components/sell/sell.component';
+import { RentComponent } from './components/rent/rent.component';
 
 
 
@@ -77,7 +78,10 @@ import { AdOwnedComponent } from './components/ad-owned/ad-owned.component';
         StatisticsComponent,
         RessetpasswordComponent,
         FounitureAdComponent,
-        AdOwnedComponent],
+        AdOwnedComponent,
+        SellComponent,
+        RentComponent,
+       ],
 
 
   imports: [

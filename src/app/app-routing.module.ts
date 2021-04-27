@@ -27,6 +27,8 @@ import {StatisticsComponent} from './components/statistics/statistics.component'
 import {RessetpasswordComponent} from "./components/ressetpassword/ressetpassword.component";
 import {FounitureAdComponent} from './components/founiture-ad/founiture-ad.component';
 import {AdOwnedComponent} from "./components/ad-owned/ad-owned.component";
+import {SellComponent} from "./components/sell/sell.component";
+import {RentComponent} from "./components/rent/rent.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -52,7 +54,11 @@ const routes: Routes = [
   { path: 'statistics', component: StatisticsComponent},
   {path: 'reset' , component: RessetpasswordComponent},
   {path: 'fournitureAd' , component: FounitureAdComponent},
-  {path:'adOwned',component:AdOwnedComponent}
+  {path:'adOwned',component: AdOwnedComponent},
+  {path:'sell',component: SellComponent},
+  {path:'rent',component: RentComponent},
+
+
 ];
 
 @NgModule({

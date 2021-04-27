@@ -8,26 +8,29 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {UserAddComponent} from "../user-add/user-add.component";
 import {LoginComponent} from "../login/login.component";
 import {RegisterComponent} from "../register/register.component";
+import {Typead} from "../../enumeration/Typead";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
   constructor(private dialog: MatDialog, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
+    this.keys = Object.keys(this.symbol);
   }
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
   id = 1;
   roles: string[];
-  authority: string;
+
+
 
   // tslint:disable-next-line:typedef
   SigninRouting(){
     this.router.navigate(['signin']);
   }
-
+  authority: string;
   // tslint:disable-next-line:typedef
   SignupRouting(){
     this.router.navigate(['signup']);
