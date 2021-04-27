@@ -59,6 +59,13 @@ public deleteAdById(id:number){
 return this.http.put(`${this.url}dari/ads/update/ad/`,Ad);
   }
 
+  getOwnedAd() {
+    return this.http.get<Ad[]>(`${this.url}dari/ads/adowned`);
+  }
+
+  public deleteImgById(id:number){
+    return this.http.delete(`http://localhost:8082/dari/imgads/delete/img/`+id);}
+
   /********************STATISTICS************************/
   public getByedHousesByRegion(region: string) {
     return this.http.get(`${this.url}dari/ads/buyedAdByRegion/` + region);
@@ -67,4 +74,5 @@ return this.http.put(`${this.url}dari/ads/update/ad/`,Ad);
   public getRegionsOrdredByBuyingAdsAsc(){
     return this.http.get(`${this.url}dari/ads/GetRegionsordredbybuyingasc/`);
   }
+
 }

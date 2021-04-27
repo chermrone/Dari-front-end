@@ -1,32 +1,31 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource} from "@angular/material/table";
-import {AdService} from "../../services/ad.service";
-import {HttpErrorResponse} from "@angular/common/http";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {MatTableDataSource} from "@angular/material/table";
+import {AdService} from "../../services/ad.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {Router} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
 import {ModifAdComponent} from "../modif-ad/modif-ad.component";
-import {Route, Router, Routes} from "@angular/router";
 import { Ad } from 'src/app/models/Ad';
-import {FilesAd} from "../../models/FilesAd";
 
 @Component({
-  selector: 'app-ad-manag-admin',
-  templateUrl: './ad-manag-admin.component.html',
-  styleUrls: ['./ad-manag-admin.component.scss']
+  selector: 'app-ad-owned',
+  templateUrl: './ad-owned.component.html',
+  styleUrls: ['./ad-owned.component.scss']
 })
-export class AdManagAdminComponent implements OnInit {
+export class AdOwnedComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  ad_list:Ad[]=[];
+  ad_list: Ad[] =[];
   dataSource= new MatTableDataSource(this.ad_list);
   displayedColumns: string[] = ['adId', 'titleAd', 'type', 'description', 'creationDate', 'buyingDate','sell', 'numbreOfRooms', 'price', 'city', 'builda', 'area', 'typead', 'numberOfBathrooms', 'checkInDate', 'checkOutDate', 'Edit', 'Delete'];
 
-  constructor(private adserv : AdService,private dialog: MatDialog,private route:Router) { }
+  constructor(private adserv :AdService,private dialog: MatDialog,private route:Router) { }
 
   ngOnInit(): void {
-    this.adserv.getAd().subscribe((data ) => {
+    this.adserv.getOwnedAd().subscribe((data ) => {
         this.ad_list = data;
         console.log(this.ad_list);
         this.dataSource.data = this.ad_list;
@@ -67,4 +66,5 @@ export class AdManagAdminComponent implements OnInit {
   oncreate() {
     this.route.navigate(['Ad/Add']);
   }
+
 }

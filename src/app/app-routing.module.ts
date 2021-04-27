@@ -26,6 +26,7 @@ import {UsermanagementguardGuard} from './routeGuard/usermanagementguard.guard';
 import {StatisticsComponent} from './components/statistics/statistics.component';
 import {RessetpasswordComponent} from "./components/ressetpassword/ressetpassword.component";
 import {FounitureAdComponent} from './components/founiture-ad/founiture-ad.component';
+import {AdOwnedComponent} from "./components/ad-owned/ad-owned.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -50,7 +51,8 @@ const routes: Routes = [
   { path: 'success', component: SuccessComponent },
   { path: 'statistics', component: StatisticsComponent},
   {path: 'reset' , component: RessetpasswordComponent},
-  {path: 'fournitureAd' , component: FounitureAdComponent}
+  {path: 'fournitureAd' , component: FounitureAdComponent},
+  {path:'adOwned',component:AdOwnedComponent}
 ];
 
 @NgModule({
