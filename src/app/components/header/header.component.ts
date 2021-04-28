@@ -9,30 +9,40 @@ import {UserAddComponent} from "../user-add/user-add.component";
 import {LoginComponent} from "../login/login.component";
 import {RegisterComponent} from "../register/register.component";
 import {Typead} from "../../enumeration/Typead";
+import {Observable} from "rxjs";
+import {UploadFileService} from "../../services/upload-file.service";
+import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {Ad} from "../../models/Ad";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
-  constructor(private dialog: MatDialog, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
+export class HeaderComponent implements OnInit {
+  keys = [];
+  symbol = Typead;
+
+  constructor(private dialog: MatDialog, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService, public verifauth: VerifAuthService) {
     this.keys = Object.keys(this.symbol);
   }
+
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
   id = 1;
   roles: string[];
 
 
-
   // tslint:disable-next-line:typedef
-  SigninRouting(){
+  SigninRouting() {
     this.router.navigate(['signin']);
   }
+
   authority: string;
+
   // tslint:disable-next-line:typedef
-  SignupRouting(){
+  SignupRouting() {
     this.router.navigate(['signup']);
   }
 
@@ -43,12 +53,10 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
         if (role === 'ADMIN') {
           this.authority = 'ADMIN';
           return false;
-        }
-        else if (role === 'LANDLORD') {
+        } else if (role === 'LANDLORD') {
           this.authority = 'LANDLORD';
           return false;
-        }
-        else if (role === 'PREMIUM') {
+        } else if (role === 'PREMIUM') {
           this.authority = 'PREMIUM';
           return false;
         }
@@ -76,8 +84,8 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
   // tslint:disable-next-line:typedef
   UpgradePremium() {
     this.sos.UpgradePremium(this.id, this.subscriptionOrder).subscribe(data => {
-      console.log(data);
-    },
+        console.log(data);
+      },
       error => console.log(error));
   }
 
@@ -86,7 +94,8 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
     this.router.navigate(['Ad/Add']);
 
   }
-  onCreate(){
+
+  onCreate() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -104,4 +113,5 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
     this.dialog.open(RegisterComponent, dialogConfig);
 
   }
+
 }
