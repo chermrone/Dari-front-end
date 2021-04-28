@@ -73,8 +73,8 @@ getFav(){
   return this.http.get<Ad[]>(`${this.url}dari/ads/fav`);
 
 }
-  postFav(id: number) {console.log(id+"fdf");
-    return this.http.post(`${this.url}dari/ads/ass/favorite/`,id);
+  postFav(id: number, username:string) {console.log(id+"fdf");
+    return this.http.post(`${this.url}dari/ads/ass/favorite/`,{id,username});
   }
   public deleteImgById(id:number){
     return this.http.delete(`http://localhost:8082/dari/imgads/delete/img/`+id);}

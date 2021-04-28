@@ -24,15 +24,14 @@ export class HomeComponent implements OnInit {
 
   constructor(private Adservice: AdService, private router: Router, private token: TokenStorageService) {
   }
-
   File: FilesAd[];
-
   ngOnInit(): void {
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities()
     };
+
 
     this.Adservice.getAd().subscribe(
       (data) => {
@@ -91,8 +90,8 @@ export class HomeComponent implements OnInit {
   selectAd(id: number) {
     this.router.navigate(['/ad', id]);
   }
-ii:number;
+public ii:number;
   AddTofav(adId: number) {console.log(adId);this.ii=adId;
-    this.Adservice.postFav(adId).subscribe(data=> console.log("succes"));
+    this.Adservice.postFav(adId,this.token.getUsername()).subscribe(data=> console.log("succes"));
   }
 }

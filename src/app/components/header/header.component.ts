@@ -10,6 +10,7 @@ import {LoginComponent} from "../login/login.component";
 import {RegisterComponent} from "../register/register.component";
 import {Typead} from "../../enumeration/Typead";
 import {AdService} from "../../services/ad.service";
+import {Ad} from "../../models/Ad";
 
 @Component({
   selector: 'app-header',
@@ -17,14 +18,14 @@ import {AdService} from "../../services/ad.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
-  constructor(private dialog: MatDialog,private adserv:AdService, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
+  constructor(private Adservice: AdService,private dialog: MatDialog,private adserv:AdService, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
     this.keys = Object.keys(this.symbol);
   }
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
   id = 1;
   roles: string[];
-
+  countFav:number;adFav:Ad[];
 
 
   // tslint:disable-next-line:typedef
@@ -63,6 +64,10 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities()
     };
+
+    this.Adservice.getFav().subscribe((data)=>{console.log(data);
+      this.adFav=data;
+      this.countFav=this.adFav.length});
     console.log(this.verifauth.verif);
   this.adserv.getFav().subscribe(data=>console.log(data))
   }
