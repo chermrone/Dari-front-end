@@ -1,0 +1,35 @@
+<!--
+<div style="margin: 100px 300px;" class="row justify-content-center col-5 ">
+  <div class="col-md-12">
+    <h2>{{username}} </h2>
+    <div
+      *ngFor="let message of chatService.messages">
+      <div class="container">
+        <div>{{message.user.name}}</div>
+        <img src="{{message.user.avatar}}" alt="Avatar" style="width:50px;height: 50px">
+        <input class="form-control" type="text" placeholder="Type a message" [(ngModel)]="message.text">
+        <span class="time-right">{{message.date}}</span>
+      </div>
+    </div>
+    &lt;!&ndash; [reply]="message.user.name == this.username"
+
+   >{{message.text}}&ndash;&gt;
+
+    <button (click)="sendMessage($event, avatar)" class="btn btn-ghost">send
+    </button>
+
+    <div *ngFor="let string of chatService.messages">
+      <div class="container">
+        <p>{{string.}}</p>
+      </div>
+    </div>
+    <form #loginForm=ngForm>
+      <div>
+        <br>
+        <textarea autocomplete="off" placeholder="Type Your Message..." name="newmessage" [(ngModel)]="string.text" required></textarea>
+        <button class="btn btn-primary" (click)="sendMessage($event, avatar)" [disabled]="!loginForm.valid">Send</button>
+      </div>
+    </form>
+  </div>
+</div>
+-->

@@ -43,6 +43,9 @@ import { AdOwnedComponent } from './components/ad-owned/ad-owned.component';
 import { SellComponent } from './components/sell/sell.component';
 import { RentComponent } from './components/rent/rent.component';
 import { GetfavoComponent } from './components/getfavo/getfavo.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { FirstchatComponent } from './components/firstchat/firstchat.component';
+import {WebsocketService} from "./services/websocket.service";
 
 
 
@@ -83,6 +86,8 @@ import { GetfavoComponent } from './components/getfavo/getfavo.component';
         SellComponent,
         RentComponent,
         GetfavoComponent,
+        ChatComponent,
+        FirstchatComponent,
        ],
 
 
@@ -95,7 +100,7 @@ import { GetfavoComponent } from './components/getfavo/getfavo.component';
     MaterialModule,
     ChartsModule
   ],
-  providers: [httpInterceptorProviders, VerifAuthService],
+  providers: [httpInterceptorProviders, VerifAuthService, WebsocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
