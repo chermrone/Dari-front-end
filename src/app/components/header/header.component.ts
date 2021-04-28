@@ -9,40 +9,36 @@ import {UserAddComponent} from "../user-add/user-add.component";
 import {LoginComponent} from "../login/login.component";
 import {RegisterComponent} from "../register/register.component";
 import {Typead} from "../../enumeration/Typead";
-import {Observable} from "rxjs";
-import {UploadFileService} from "../../services/upload-file.service";
-import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {AdService} from "../../services/ad.service";
 import {Ad} from "../../models/Ad";
-import {User} from "../../models/user";
+import {TypeBatiment} from "../../enumeration/TypeBatiment";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-  keys = [];
-  symbol = Typead;
+export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
+  constructor(private Adservice: AdService,private dialog: MatDialog,private adserv:AdService, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
+    this.keys = Object.keys(this.symbol);       this.keysBat = Object.keys(this.symbolsBat);
 
-  constructor(private dialog: MatDialog, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService, public verifauth: VerifAuthService) {
-    this.keys = Object.keys(this.symbol);
+
   }
-
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
   id = 1;
   roles: string[];
+  countFav:number;adFav:Ad[];
+  symbolsBat = TypeBatiment;  keysBat = [];
 
 
   // tslint:disable-next-line:typedef
-  SigninRouting() {
+  SigninRouting(){
     this.router.navigate(['signin']);
   }
-
   authority: string;
-
   // tslint:disable-next-line:typedef
-  SignupRouting() {
+  SignupRouting(){
     this.router.navigate(['signup']);
   }
 
@@ -53,10 +49,12 @@ export class HeaderComponent implements OnInit {
         if (role === 'ADMIN') {
           this.authority = 'ADMIN';
           return false;
-        } else if (role === 'LANDLORD') {
+        }
+        else if (role === 'LANDLORD') {
           this.authority = 'LANDLORD';
           return false;
-        } else if (role === 'PREMIUM') {
+        }
+        else if (role === 'PREMIUM') {
           this.authority = 'PREMIUM';
           return false;
         }
@@ -70,7 +68,13 @@ export class HeaderComponent implements OnInit {
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities()
     };
+
+    this.Adservice.getFav().subscribe((data)=>{console.log(data);
+      this.adFav=data;
+      this.countFav=this.adFav.length});
     console.log(this.verifauth.verif);
+  this.adserv.getFav().subscribe(data=>console.log(data));
+
   }
 
   // tslint:disable-next-line:typedef
@@ -84,18 +88,18 @@ export class HeaderComponent implements OnInit {
   // tslint:disable-next-line:typedef
   UpgradePremium() {
     this.sos.UpgradePremium(this.id, this.subscriptionOrder).subscribe(data => {
-        console.log(data);
-      },
+      console.log(data);
+    },
       error => console.log(error));
   }
 
   // tslint:disable-next-line:typedef
+  countfav: any;
   RedirectAddProduct() {
     this.router.navigate(['Ad/Add']);
 
   }
-
-  onCreate() {
+  onCreate(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -113,5 +117,4 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(RegisterComponent, dialogConfig);
 
   }
-
 }

@@ -12,7 +12,7 @@
           </div>
           <div class="shop-body">
             <h3>Houses<br>For Sell</h3>
-            <a href="#" class="cta-btn"> Check now <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#"  routerLink="sell" class="cta-btn"> Check now <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
@@ -22,11 +22,11 @@
       <div class="col-md-4 col-xs-6">
         <div class="shop">
           <div class="shop-img">
-            <img src="./../../../assets/img/Oregon%20-%20Courtesy%20CIRE_Luxe%20Platinum%20Properties.png" alt="">
+            <img src="./../../../assets/img/Oregon%20-%20Courtesy%20CIRE_Luxe%20Platinum%20Properties.jpg" alt="">
           </div>
           <div class="shop-body">
             <h3>Appartments<br> for Rent</h3>
-            <a href="#" class="cta-btn"> Check now <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#"  routerLink="rent" class="cta-btn"> Check now <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
@@ -78,8 +78,9 @@
 
 
             <div class="card my-2">
+
               <div *ngFor="let adimg of p.imgads">
-                <div *ngFor="let f of retrievedImage; let last = last">
+                <div *ngFor="let f of retrievedImage">
                   <div *ngIf="f[1]==adimg.id" >
                     <img src="{{f[0]}}" alt="{{p.adId}}" width="200px" class="card-img-top" style="cursor:pointer;"
                          (click)="selectAd(p.adId)">
@@ -93,21 +94,21 @@
               <div class="card-header">
                 <div class="card-title">
                   <p>Titre {{p.titleAd | titlecase}}</p>
-                </div>
+                  <a (click)="AddTofav(p.adId)" style="cursor: pointer ;position: absolute;right:0px;left:300px;top:10px"><i (click)="AddTofav(p.adId)" class="fa fa-heart ii" aria-hidden="true"></i> </a></div>
               </div>
               <div class="card-body">
                 <h6>{{p.description}} ....</h6>
                 <p class="lead">{{p.price | currency:'DT'}}</p>
               </div>
 
-              <div class="row d-flex justify-content-center border-primary my-3">
+              <div class="row d-flex justify-content-center  my-3">
                 <div class="col-md-6 ">
-                  <button class="btn btn-outline-primary btn-sm btn-block">
+                  <button (click)="selectAd(p.adId)" class="btn btn-ghost  btn-sm btn-block" >
                     <!--[class.disabled]="p.quantity < 1"
                    [class.btn-outline-danger]="p.quantity < 1"
                   (click)="AddProduct(p.id)" [disabled]="p.quantity < 1"-->
                     <!-- {{ p.quantity < 1 ? "NO STOCK" : "Add To Cart"}}-->
-                    Buy
+                    Details
                   </button>
                 </div>
               </div>

@@ -62,9 +62,26 @@ return this.http.put(`${this.url}dari/ads/update/ad/`,Ad);
   getOwnedAd() {
     return this.http.get<Ad[]>(`${this.url}dari/ads/adowned`);
   }
+  getRentAd() {
+    return this.http.get<Ad[]>(`${this.url}dari/ads/ad/rent`);
+  }
+  getSellAd() {
+    return this.http.get<Ad[]>(`${this.url}dari/ads/ad/sell`);
+  }
 
+getFav(){
+  return this.http.get<Ad[]>(`${this.url}dari/ads/fav`);
+
+}
+  postFav(id: number, username:string) {console.log(id+"fdf");
+    return this.http.post(`${this.url}dari/ads/ass/favorite`,{id,username});
+  }
   public deleteImgById(id:number){
     return this.http.delete(`http://localhost:8082/dari/imgads/delete/img/`+id);}
+
+  deleteFavAdById(idAd: number) {
+    return this.http.delete(`http://localhost:8082/dari/ads/delete/fav/`+idAd)  ;
+  }
 
   /********************STATISTICS************************/
   public getByedHousesByRegion(region: string) {
@@ -74,5 +91,6 @@ return this.http.put(`${this.url}dari/ads/update/ad/`,Ad);
   public getRegionsOrdredByBuyingAdsAsc(){
     return this.http.get(`${this.url}dari/ads/GetRegionsordredbybuyingasc/`);
   }
+
 
 }

@@ -9,6 +9,8 @@
         <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
       </ul>
       <ul class="header-links pull-right">
+        <li><a href="#" routerLink="chat"><i class="fa fa-commenting-o" aria-hidden="true"></i>
+          Chat Now!</a></li>
         <li><a href="#"><i class="fa fa-dollar"></i> Appointments</a></li>
 
         <li><a  routerLink="checkout"><i class="fa fa-user-o"></i> Upgrade premium</a></li>
@@ -49,15 +51,22 @@
         <!-- /LOGO -->
 
         <!-- SEARCH BAR -->
-        <div class="col-md-6">
+        <div class="col-md-6" style="margin-top: 10px">
           <div class="header-search">
             <form>
 
 
-              <select id="inputState" name="type" ngModel #type="ngModel" class="input-select">
+              <select id="inputState" name="type" ngModel #typead="ngModel" class="input-select col-2">
                 <option *ngFor="let key of keys" [value]="key">{{symbol[key]}}</option>
               </select>
-              <input class="input" placeholder="Search here">
+              <select id="inputState" name="type" ngModel #type="ngModel" class="input-select " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px" >
+                <option *ngFor="let key of keysBat" [value]="key">{{symbolsBat[key]}}</option>
+              </select>
+
+              <input id="inputState"placeholder="DT"  name="type" type="number" ngModel #type="ngModel"  class="input-select col-2 " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px"  >
+              <input id="inputState"placeholder="n°rooms"  name="type" type="number" ngModel #type="ngModel"  class="input-select col-2 " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px"  >
+
+              <input style="width: 13%" class="input" placeholder="Search here">
               <button class="search-btn">Search</button>
             </form>
           </div>
@@ -65,14 +74,14 @@
         <!-- /SEARCH BAR -->
 
         <!-- ACCOUNT -->
-        <div class="col-md-3 clearfix">
+        <div class="col-md-3 clearfix" style="margin-top: 10px">
           <div class="header-ctn">
             <!-- Wishlist -->
             <div>
-              <a href="#">
+              <a href="#" routerLink="/getfav">
                 <i class="fa fa-heart-o"></i>
-                <span>Your Wishlist</span>
-                <div class="qty">0</div>
+                <span>Your Favorites</span>
+                <div class="qty">{{countFav}}</div>
               </a>
             </div>
             <!-- /Wishlist -->
@@ -144,8 +153,8 @@
       <!-- NAV -->
       <ul class="main-nav nav py-3">
         <li class="active"><a routerLink="/">Home</a></li>
-        <li><a routerLink="product/">Buy a House</a></li>
-        <li><a href="#">Rent a House</a></li>
+        <li><a routerLink="sell">Buy a House</a></li>
+        <li><a href="#"  routerLink="rent">Rent a House</a></li>
         <li><a href="/fournitureAd">Fourniture Ads</a></li>
         <li class="dropdown" >
           <a class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"

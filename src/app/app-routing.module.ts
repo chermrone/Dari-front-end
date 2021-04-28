@@ -29,11 +29,13 @@ import {FounitureAdComponent} from './components/founiture-ad/founiture-ad.compo
 import {AdOwnedComponent} from "./components/ad-owned/ad-owned.component";
 import {SellComponent} from "./components/sell/sell.component";
 import {RentComponent} from "./components/rent/rent.component";
+import {GetfavoComponent} from "./components/getfavo/getfavo.component";
+import {ChatComponent} from "./components/chat/chat.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'Product', component: AdComponent},
-  {path: 'Product/:adId', component: AdComponent},
+  {path: 'ad/:id', component: AdComponent},
   {path: 'cart', component: CartComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'signup', component: RegisterComponent},
@@ -57,7 +59,8 @@ const routes: Routes = [
   {path:'adOwned',component: AdOwnedComponent},
   {path:'sell',component: SellComponent},
   {path:'rent',component: RentComponent},
-
+  {path:'getfav',component: GetfavoComponent},
+  {path:'chat',component: ChatComponent},
 
 ];
 
