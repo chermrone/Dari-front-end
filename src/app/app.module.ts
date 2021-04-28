@@ -42,6 +42,7 @@ import { FounitureAdComponent } from './components/founiture-ad/founiture-ad.com
 import { AdOwnedComponent } from './components/ad-owned/ad-owned.component';
 import { SellComponent } from './components/sell/sell.component';
 import { RentComponent } from './components/rent/rent.component';
+import { GetfavoComponent } from './components/getfavo/getfavo.component';
 
 
 
@@ -81,6 +82,7 @@ import { RentComponent } from './components/rent/rent.component';
         AdOwnedComponent,
         SellComponent,
         RentComponent,
+        GetfavoComponent,
        ],
 
 

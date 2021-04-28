@@ -49,15 +49,22 @@
         <!-- /LOGO -->
 
         <!-- SEARCH BAR -->
-        <div class="col-md-6">
+        <div class="col-md-6" style="margin-top: 10px">
           <div class="header-search">
             <form>
 
 
-              <select id="inputState" name="type" ngModel #type="ngModel" class="input-select">
+              <select id="inputState" name="type" ngModel #typead="ngModel" class="input-select col-2">
                 <option *ngFor="let key of keys" [value]="key">{{symbol[key]}}</option>
               </select>
-              <input class="input" placeholder="Search here">
+              <select id="inputState" name="type" ngModel #type="ngModel" class="input-select " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px" >
+                <option *ngFor="let key of keysBat" [value]="key">{{symbolsBat[key]}}</option>
+              </select>
+
+              <input id="inputState"placeholder="DT"  name="type" type="number" ngModel #type="ngModel"  class="input-select col-2 " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px"  >
+              <input id="inputState"placeholder="nb.rooms"  name="type" type="number" ngModel #type="ngModel"  class="input-select col-2 " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px"  >
+
+              <input style="width: 13%" class="input" placeholder="Search here">
               <button class="search-btn">Search</button>
             </form>
           </div>
@@ -65,13 +72,13 @@
         <!-- /SEARCH BAR -->
 
         <!-- ACCOUNT -->
-        <div class="col-md-3 clearfix">
+        <div class="col-md-3 clearfix" style="margin-top: 10px">
           <div class="header-ctn">
             <!-- Wishlist -->
             <div>
-              <a href="#">
+              <a href="#" routerLink="/getfav">
                 <i class="fa fa-heart-o"></i>
-                <span>Your Wishlist</span>
+                <span>Your Favorites</span>
                 <div class="qty">{{countFav}}</div>
               </a>
             </div>

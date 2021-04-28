@@ -74,10 +74,14 @@ getFav(){
 
 }
   postFav(id: number, username:string) {console.log(id+"fdf");
-    return this.http.post(`${this.url}dari/ads/ass/favorite/`,{id,username});
+    return this.http.post(`${this.url}dari/ads/ass/favorite`,{id,username});
   }
   public deleteImgById(id:number){
     return this.http.delete(`http://localhost:8082/dari/imgads/delete/img/`+id);}
+
+  deleteFavAdById(idAd: number) {
+    return this.http.delete(`http://localhost:8082/dari/ads/delete/fav/`+idAd)  ;
+  }
 
   /********************STATISTICS************************/
   public getByedHousesByRegion(region: string) {
@@ -87,4 +91,6 @@ getFav(){
   public getRegionsOrdredByBuyingAdsAsc(){
     return this.http.get(`${this.url}dari/ads/GetRegionsordredbybuyingasc/`);
   }
+
+
 }

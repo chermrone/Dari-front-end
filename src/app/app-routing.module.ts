@@ -29,6 +29,7 @@ import {FounitureAdComponent} from './components/founiture-ad/founiture-ad.compo
 import {AdOwnedComponent} from "./components/ad-owned/ad-owned.component";
 import {SellComponent} from "./components/sell/sell.component";
 import {RentComponent} from "./components/rent/rent.component";
+import {GetfavoComponent} from "./components/getfavo/getfavo.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -57,7 +58,7 @@ const routes: Routes = [
   {path:'adOwned',component: AdOwnedComponent},
   {path:'sell',component: SellComponent},
   {path:'rent',component: RentComponent},
-
+  {path:'getfav',component: GetfavoComponent},
 
 ];
 

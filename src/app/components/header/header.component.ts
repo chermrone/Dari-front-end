@@ -11,6 +11,7 @@ import {RegisterComponent} from "../register/register.component";
 import {Typead} from "../../enumeration/Typead";
 import {AdService} from "../../services/ad.service";
 import {Ad} from "../../models/Ad";
+import {TypeBatiment} from "../../enumeration/TypeBatiment";
 
 @Component({
   selector: 'app-header',
@@ -19,13 +20,16 @@ import {Ad} from "../../models/Ad";
 })
 export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
   constructor(private Adservice: AdService,private dialog: MatDialog,private adserv:AdService, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
-    this.keys = Object.keys(this.symbol);
+    this.keys = Object.keys(this.symbol);       this.keysBat = Object.keys(this.symbolsBat);
+
+
   }
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
   id = 1;
   roles: string[];
   countFav:number;adFav:Ad[];
+  symbolsBat = TypeBatiment;  keysBat = [];
 
 
   // tslint:disable-next-line:typedef
@@ -69,7 +73,8 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
       this.adFav=data;
       this.countFav=this.adFav.length});
     console.log(this.verifauth.verif);
-  this.adserv.getFav().subscribe(data=>console.log(data))
+  this.adserv.getFav().subscribe(data=>console.log(data));
+
   }
 
   // tslint:disable-next-line:typedef
