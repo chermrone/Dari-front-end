@@ -5,7 +5,11 @@
   <p>Hello. How are you today?</p>
   <span class="time-right">11:00</span>
 </div>
--->      <div class="row justify-content-center" style="margin: 100px 500px;">
+
+-->
+<table>
+  <tr>
+<td><div class="row justify-content-center" style="margin: 100px 70px;">
   <div class="col-md-8" >
     Please enter your username :
     <input  class="form-control"
@@ -23,11 +27,11 @@
     </button>
   </div>
   <div class="col-md-4"></div>
-</div>
+</div></td>
 <!-- Display the chat component and pass the username, theme, and avatar as input for the chat session -->
 <app-firstchat
   *ngIf="isReady"
   [username]="username"
   [theme]="selectedTheme"
-  [avatar]="selectedAvatar"
-></app-firstchat>
+></app-firstchat></tr>
+</table>

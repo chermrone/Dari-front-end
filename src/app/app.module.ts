@@ -46,6 +46,8 @@ import { GetfavoComponent } from './components/getfavo/getfavo.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { FirstchatComponent } from './components/firstchat/firstchat.component';
 import {WebsocketService} from "./services/websocket.service";
+import {NbThemeModule, NbLayoutModule, NbChatModule} from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 
 
@@ -98,7 +100,13 @@ import {WebsocketService} from "./services/websocket.service";
     HttpClientModule,
     FormsModule,
     MaterialModule,
-    ChartsModule
+    ChartsModule,
+ //   NbThemeModule.forRoot({name: 'default'}),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbChatModule,
+    NbThemeModule.forRoot({ name: 'dark' }),
+   // NbThemeModule.forRoot({ name: 'default' })
   ],
   providers: [httpInterceptorProviders, VerifAuthService, WebsocketService],
   bootstrap: [AppComponent]

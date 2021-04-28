@@ -1,35 +1,21 @@
-<!--
-<div style="margin: 100px 300px;" class="row justify-content-center col-5 ">
-  <div class="col-md-12">
-    <h2>{{username}} </h2>
-    <div
-      *ngFor="let message of chatService.messages">
-      <div class="container">
-        <div>{{message.user.name}}</div>
-        <img src="{{message.user.avatar}}" alt="Avatar" style="width:50px;height: 50px">
-        <input class="form-control" type="text" placeholder="Type a message" [(ngModel)]="message.text">
-        <span class="time-right">{{message.date}}</span>
+<div class="card mb-3" style="padding:60px 10px;margin: 20px 30px!important;margin-bottom: 100px!important;">
+  <div class="card-body" >
+    <div style="margin-left: 250px">
+    <div class="input-group mb-3">
+      <input class="form-control col-4" type="text" style="margin-top: 20px ; height: 48px" placeholder="message" [(ngModel)]="mtxt" >
+      <div class="input-group-append">
+        <button class="btn btn-ghost" (click)="sendMessage()">Send</button>
       </div>
     </div>
-    &lt;!&ndash; [reply]="message.user.name == this.username"
-
-   >{{message.text}}&ndash;&gt;
-
-    <button (click)="sendMessage($event, avatar)" class="btn btn-ghost">send
-    </button>
-
-    <div *ngFor="let string of chatService.messages">
-      <div class="container">
-        <p>{{string.}}</p>
-      </div>
     </div>
-    <form #loginForm=ngForm>
-      <div>
-        <br>
-        <textarea autocomplete="off" placeholder="Type Your Message..." name="newmessage" [(ngModel)]="string.text" required></textarea>
-        <button class="btn btn-primary" (click)="sendMessage($event, avatar)" [disabled]="!loginForm.valid">Send</button>
-      </div>
-    </form>
+    <div class="content container" >
+      <div class="overflow-auto" style="margin-bottom: 30px">
+        <div  *ngFor="let msg of chatService.messages" [ngClass]="username==msg.name? 'own' : 'receive' ">
+          <div class="username" style="margin-top: 10px;font-size: 15px">{{msg.name}}</div>
+          <div style="margin-top: 9px;font-size: 12px!important;">{{msg.text}}</div>
+        <div class="date"  style="margin-top: 10px">{{msg.date}}</div>
+        </div></div>
+    </div>
+
   </div>
 </div>
--->

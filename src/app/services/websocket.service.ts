@@ -32,26 +32,23 @@ export class WebsocketService {
       that.stompClient.subscribe('/topic/messages', message => {
         if (message.body) {
           let obj = JSON.parse(message.body);
-          that.addMessage(obj.text, obj.username, obj.avatar);
+          that.addMessage(obj.text, obj.username);console.log(obj.username)
         }
       });
     });
   }
 
   // Prepare and push the chat messages into the messages array
-  addMessage(message: any, username: string, avatar: string) {
+  addMessage(message: any, username: string) {
     this.messages.push({
       text: message,
       date: new Date(),
-      user: {
-        name: username,
-        avatar: avatar
-      }
+      name: username,
     });
   }
 
   // Send a chat message using stomp client
   sendMessage(msg: Message) {
-    this.stompClient.send('/app/sendmsg', {}, JSON.stringify(msg));
+    this.stompClient.send('/app/sendmsg', {}, JSON.stringify(msg));console.log(msg.username);
   }
 }

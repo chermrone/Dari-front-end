@@ -12,7 +12,6 @@ export class FirstchatComponent implements OnInit {
   messages: any[] = [];
   username: string = '';
   theme: string = '';
-  avatar: string = '';
 
   @Input('username')
   set setUsername(value: string) {
@@ -23,23 +22,16 @@ export class FirstchatComponent implements OnInit {
   set setTheme(value: string) {
     this.theme = value;
   }
-  @Input('avatar')
-  set setAvatar(value: string) {
-    this.avatar = value;
-  }
-
+mtxt:any;
   constructor(public chatService: WebsocketService) {}
   ngOnInit(): void {}
 
   // Prepare the chat message then call the chatService method 'sendMessage' to actually send the message
-  sendMessage(event: any, avatar: string) {
+  sendMessage() {
     let obj: Message = {
-      text: event.message,
-      avatar: avatar,
-      username: this.username
-    };
-
-    this.chatService.sendMessage(obj);
+      text: this.mtxt,
+      username: this.username};
+    this.chatService.sendMessage(obj);  this.mtxt='';
   }
 
 }
