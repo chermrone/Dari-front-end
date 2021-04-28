@@ -94,7 +94,7 @@
               <div class="card-header">
                 <div class="card-title">
                   <p>Titre {{p.titleAd | titlecase}}</p>
-                  <a (click)="AddTofav(p.adId)" style="cursor: pointer ;position: absolute;right:0px;left:300px;top:10px"><i class="fa fa-heart ii" aria-hidden="true"></i> </a></div>
+                  <a (click)="AddTofav(p.adId)" style="cursor: pointer ;position: absolute;right:0px;left:300px;top:10px"><i (click)="AddTofav(p.adId)" class="fa fa-heart ii" aria-hidden="true"></i> </a></div>
               </div>
               <div class="card-body">
                 <h6>{{p.description}} ....</h6>

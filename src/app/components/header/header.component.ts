@@ -9,6 +9,7 @@ import {UserAddComponent} from "../user-add/user-add.component";
 import {LoginComponent} from "../login/login.component";
 import {RegisterComponent} from "../register/register.component";
 import {Typead} from "../../enumeration/Typead";
+import {AdService} from "../../services/ad.service";
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,7 @@ import {Typead} from "../../enumeration/Typead";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
-  constructor(private dialog: MatDialog, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
+  constructor(private dialog: MatDialog,private adserv:AdService, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
     this.keys = Object.keys(this.symbol);
   }
   info: any;
@@ -63,6 +64,7 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
       authorities: this.token.getAuthorities()
     };
     console.log(this.verifauth.verif);
+  this.adserv.getFav().subscribe(data=>console.log(data))
   }
 
   // tslint:disable-next-line:typedef
@@ -82,6 +84,7 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
   }
 
   // tslint:disable-next-line:typedef
+  countfav: any;
   RedirectAddProduct() {
     this.router.navigate(['Ad/Add']);
 

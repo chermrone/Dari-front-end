@@ -91,8 +91,8 @@ export class HomeComponent implements OnInit {
   selectAd(id: number) {
     this.router.navigate(['/ad', id]);
   }
-
-  AddTofav(adId: number) {
+ii:number;
+  AddTofav(adId: number) {console.log(adId);this.ii=adId;
     this.Adservice.postFav(adId).subscribe(data=> console.log("succes"));
   }
 }

@@ -69,9 +69,12 @@ return this.http.put(`${this.url}dari/ads/update/ad/`,Ad);
     return this.http.get<Ad[]>(`${this.url}dari/ads/ad/sell`);
   }
 
+getFav(){
+  return this.http.get<Ad[]>(`${this.url}dari/ads/fav`);
 
-  postFav(adId: number) {
-    return this.http.post(`${this.url}dari/ads/add/favorite/`,Ad);
+}
+  postFav(id: number) {console.log(id+"fdf");
+    return this.http.post(`${this.url}dari/ads/ass/favorite/`,id);
   }
   public deleteImgById(id:number){
     return this.http.delete(`http://localhost:8082/dari/imgads/delete/img/`+id);}
