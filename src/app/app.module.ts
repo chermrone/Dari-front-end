@@ -46,6 +46,8 @@ import { GetfavoComponent } from './components/getfavo/getfavo.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { FirstchatComponent } from './components/firstchat/firstchat.component';
 import {WebsocketService} from "./services/websocket.service";
+import { DisplaySearchAdComponent } from './components/display-search-ad/display-search-ad.component';
+import {AdService} from "./services/ad.service";
 
 
 
@@ -88,6 +90,7 @@ import {WebsocketService} from "./services/websocket.service";
         GetfavoComponent,
         ChatComponent,
         FirstchatComponent,
+        DisplaySearchAdComponent,
        ],
 
 
@@ -102,7 +105,7 @@ import {WebsocketService} from "./services/websocket.service";
  //   NbThemeModule.forRoot({name: 'default'}),
    // NbThemeModule.forRoot({ name: 'default' })
   ],
-  providers: [httpInterceptorProviders, VerifAuthService, WebsocketService],
+  providers: [httpInterceptorProviders, VerifAuthService, WebsocketService,AdService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

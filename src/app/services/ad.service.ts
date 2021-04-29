@@ -1,15 +1,17 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Ad} from '../models/Ad';
 import {Observable} from 'rxjs';
-import {catchError} from "rxjs/operators";
 import {FilesAd} from "../models/FilesAd";
+import {Typead} from "../enumeration/Typead";
+import {TypeBatiment} from "../enumeration/TypeBatiment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdService {
+
   get idAd(): number {
     return this._idAd;
   }
@@ -82,7 +84,33 @@ getFav(){
   deleteFavAdById(idAd: number) {
     return this.http.delete(`http://localhost:8082/dari/ads/delete/fav/`+idAd)  ;
   }
+ public ads: Ad[];
+SearchCriteria(price: number,  city:string, rooms:number, typeAd:Typead ,
+  typebat: TypeBatiment)
+{console.log(city +""+typebat)
+  if(city!="" && typebat!=null)
+{let params = new HttpParams();
+  params = params.append("city", city);
+  params = params.append("typebat", typebat);
+  if(rooms!=0 && rooms!=null)
+  {params = params.append("rooms", rooms.toString());}
+  if(typeAd==Typead.RENT || Typead.SELL)
+  {params = params.append("typeAd", typeAd);}
+  if(price!=0 && price!=null)
+  params = params.append("price", price.toString());
+  console.log(params);
 
+  this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+    params: params,
+  }).subscribe(data =>{this.ads=data as Ad[];console.log(data);console.log(this.ads)}  );
+  return this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+    params: params,
+  })}
+  else     return this.http.get<Ad[]>(`${this.url}dari/ads/all` );
+
+  /*.subscribe(data =>{this.ads=data as Ad[];console.log(data);console.log(this._ads)}  );
+   return this.ads;*/
+}
   /********************STATISTICS************************/
   public getByedHousesByRegion(region: string) {
     return this.http.get(`${this.url}dari/ads/buyedAdByRegion/` + region);

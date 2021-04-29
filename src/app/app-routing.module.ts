@@ -31,6 +31,7 @@ import {SellComponent} from "./components/sell/sell.component";
 import {RentComponent} from "./components/rent/rent.component";
 import {GetfavoComponent} from "./components/getfavo/getfavo.component";
 import {ChatComponent} from "./components/chat/chat.component";
+import {DisplaySearchAdComponent} from "./components/display-search-ad/display-search-ad.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -61,7 +62,7 @@ const routes: Routes = [
   {path:'rent',component: RentComponent},
   {path:'getfav',component: GetfavoComponent},
   {path:'chat',component: ChatComponent},
-
+  {path:'SearchAd',component: DisplaySearchAdComponent}
 ];
 
 @NgModule({

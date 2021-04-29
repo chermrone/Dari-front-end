@@ -117,4 +117,11 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
     this.dialog.open(RegisterComponent, dialogConfig);
 
   }
+ads:Ad[];
+  searchbycriteria(typead: any, typebat: any, price: any, rooms: any,city:any) {
+    this.Adservice.SearchCriteria(price,  city, rooms, typead,
+      typebat).subscribe( data=>{this.ads=data as Ad[];this.Adservice.ads=this.ads});
+    console.log(this.Adservice.ads);
+    this.router.navigate(['SearchAd']);
+  }
 }
