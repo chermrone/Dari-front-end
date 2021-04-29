@@ -56,11 +56,11 @@ const routes: Routes = [
   { path: 'statistics', component: StatisticsComponent},
   {path: 'reset' , component: RessetpasswordComponent},
   {path: 'fournitureAd' , component: FounitureAdComponent},
-  {path:'adOwned',component: AdOwnedComponent},
-  {path:'sell',component: SellComponent},
-  {path:'rent',component: RentComponent},
-  {path:'getfav',component: GetfavoComponent},
-  {path:'chat',component: ChatComponent},
+  {path: 'adOwned', component: AdOwnedComponent},
+  {path: 'sell', component: SellComponent},
+  {path: 'rent', component: RentComponent},
+  {path: 'getfav', component: GetfavoComponent},
+  {path: 'chat', component: ChatComponent},
 
 ];
 
