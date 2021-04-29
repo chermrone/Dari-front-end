@@ -48,9 +48,26 @@ export class StatisticsComponent implements OnInit {
     }
   };
 
-
   public barCharData1: ChartDataSets[] = [
     { data: [], label: 'number of houses sold by region and max price' }
+  ];
+
+  /**********************************get houses by region and min or max ****************************************/
+  public barChartOptions2: ChartOptions = {
+    responsive: true,
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: { xAxes: [{}], yAxes: [{}] },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
+    }
+  };
+
+
+  public barCharData2: ChartDataSets[] = [
+    { data: [], label: 'number of houses sold by region in less the a period' }
   ];
 
   constructor(private as: AdService) { }
@@ -78,6 +95,9 @@ export class StatisticsComponent implements OnInit {
             });
             this.as.getByedHousesByRegionAndMaxPrice(this.allcities[i], 300000000000).subscribe(r => {
               this.barCharData1[0].data.push(r as number);
+            });
+            this.as.getByedHousesByRegionAndperiod(this.allcities[i], 30).subscribe(r => {
+                this.barCharData2[0].data.push(r as number);
             });
           }
       }
@@ -112,6 +132,16 @@ export class StatisticsComponent implements OnInit {
         });
       });
     }
+  }
+
+  public OnSubmit1(f1: NgForm){
+    console.log(f1.value.period);
+    this.barCharData2[0].data = [];
+    this.allcities.forEach(c => {
+      this.as.getByedHousesByRegionAndperiod(c, f1.value.period).subscribe(r => {
+        this.barCharData2[0].data.push(r as number);
+      });
+    });
   }
 
 }

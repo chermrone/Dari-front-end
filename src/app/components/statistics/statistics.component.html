@@ -46,23 +46,20 @@
 <div style="display: flex; margin-top: 5%; margin-left: 2%">
   <div style="width: 40%; height: 40%; margin-right: 5%">
     <div style="display: block">
+      <div class="row">
+        <form #f1="ngForm" (ngSubmit)="OnSubmit1(f1)">
+
+          <mat-form-field appearance="fill">
+            <mat-label>enter the eriod (days)</mat-label>
+            <input matInput type="number" name="period" ngModel #period="ngModel" style="background-color: #BBBBBB; height: 29px;">
+          </mat-form-field>
+          <button mat-raised-button >Submit</button>
+        </form>
+      </div>
       <canvas baseChart
-              [datasets]="barChartData"
+              [datasets]="barCharData2"
               [labels]="barChartLabels"
-              [options]="barChartOptions"
-              [plugins]="barChartPlugins"
-              [legend]="barChartLegend"
-              [chartType]="barChartType">
-      </canvas>
-    </div>
-    <!--<button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>-->
-  </div>
-  <div style="width: 40%; height: 40%; margin-left: 2.5%">
-    <div style="display: block">
-      <canvas baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
+              [options]="barChartOptions2"
               [plugins]="barChartPlugins"
               [legend]="barChartLegend"
               [chartType]="barChartType">
