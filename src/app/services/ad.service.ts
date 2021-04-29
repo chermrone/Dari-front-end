@@ -116,9 +116,23 @@ SearchCriteria(price: number,  city:string, rooms:number, typeAd:Typead ,
     return this.http.get(`${this.url}dari/ads/buyedAdByRegion/` + region);
   }
 
+  public getByedHousesByRegionAndMaxPrice(region: string, maxprice: number) {
+    return this.http.get(`${this.url}dari/ads/buyedAdByRegionandMaxPrice/` + region + '/' + maxprice);
+  }
+
+  public getByedHousesByRegionAndMinPrice(region: string, minprice: number) {
+    return this.http.get(`${this.url}dari/ads/buyedAdByRegionandMinPrice/` + region + '/' + minprice);
+  }
+
+  public getByedHousesByRegionAndperiod(region: string, period: number) {
+    return this.http.get(`${this.url}dari/ads/buyedAdInPeriod/` + region + '/' + period);
+  }
+
   public getRegionsOrdredByBuyingAdsAsc(){
     return this.http.get(`${this.url}dari/ads/GetRegionsordredbybuyingasc/`);
   }
+
+
 
 
 }
