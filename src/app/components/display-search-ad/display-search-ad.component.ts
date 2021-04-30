@@ -51,6 +51,6 @@ export class DisplaySearchAdComponent implements OnInit {
     this.router.navigate(['/ad', id]);
   }
   AddTofav(adId: number) {console.log(adId); this.ii = adId;
-                          this.Adservice.postFav(adId, this.token.getUsername()).subscribe(data => console.log('succes'));
+                          this.Adservice.postFav(adId).subscribe(data => console.log('succes'));
   }
 }

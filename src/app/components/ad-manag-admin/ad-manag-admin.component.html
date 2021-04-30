@@ -3,6 +3,10 @@
   <button mat-raised-button (click)="oncreate()" style="margin-left: 1%;background-color: #424242">
     <mat-icon style="color:#D10024;background-color: #424242">add</mat-icon> Create
 </button>
+  <button mat-raised-button (click)="Advanced()" style="margin-left: 1%;background-color: #424242">
+    <i class="fa fa-cogs" aria-hidden="true" style="color:#D10024;background-color: #424242"></i>
+     Advanced Search
+  </button>
   <mat-form-field style="margin-left: 1%;color: #424242">
     <input  matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
   </mat-form-field>

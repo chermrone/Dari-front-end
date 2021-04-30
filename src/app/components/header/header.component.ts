@@ -19,7 +19,7 @@ import {TypeBatiment} from "../../enumeration/TypeBatiment";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
-  constructor(private Adservice: AdService,private dialog: MatDialog,private adserv:AdService, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
+  constructor(public Adservice: AdService,private dialog: MatDialog,public adserv:AdService, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
     this.keys = Object.keys(this.symbol);       this.keysBat = Object.keys(this.symbolsBat);
 
 

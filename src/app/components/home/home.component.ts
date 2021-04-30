@@ -58,6 +58,6 @@ export class HomeComponent implements OnInit {
   }
 public ii:number;
   AddTofav(adId: number) {console.log(adId);this.ii=adId;
-    this.Adservice.postFav(adId,this.token.getUsername()).subscribe(data=> console.log("succes"));
+    this.Adservice.postFav(adId).subscribe(data=> console.log("succes"));
   }
 }

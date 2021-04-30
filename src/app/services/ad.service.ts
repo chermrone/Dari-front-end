@@ -11,6 +11,7 @@ import {TypeBatiment} from "../enumeration/TypeBatiment";
   providedIn: 'root'
 })
 export class AdService {
+countfav: number;
 
   get idAd(): number {
     return this._idAd;
@@ -72,11 +73,13 @@ return this.http.put(`${this.url}dari/ads/update/ad/`,Ad);
   }
 
 getFav(){
+  this.http.get<Ad[]>(`${this.url}dari/ads/fav`).subscribe(data=>this.countfav=data.length)
   return this.http.get<Ad[]>(`${this.url}dari/ads/fav`);
 
 }
-  postFav(id: number, username:string) {console.log(id+"fdf");
-    return this.http.post(`${this.url}dari/ads/ass/favorite`,{id,username});
+
+  postFav(id: number) {console.log(id+"fdf");
+    return this.http.get(`${this.url}dari/ads/af/favorite/`+id);
   }
   public deleteImgById(id:number){
     return this.http.delete(`http://localhost:8082/dari/imgads/delete/img/`+id);}
@@ -111,6 +114,19 @@ SearchCriteria(price: number,  city:string, rooms:number, typeAd:Typead ,
   /*.subscribe(data =>{this.ads=data as Ad[];console.log(data);console.log(this._ads)}  );
    return this.ads;*/
 }
+
+
+    getAdsBannedByDate(role:number,datefrom:Date,dateto:Date){
+
+    let params = new HttpParams();
+    params = params.append("fromDate", datefrom.toString());
+    params = params.append("toDate", dateto.toString());
+    return this.http.get<Ad[]>(`${this.url}dari/ads/banned/`+role, {
+      params: params
+    });
+
+  }
+
   /********************STATISTICS************************/
   public getByedHousesByRegion(region: string) {
     return this.http.get(`${this.url}dari/ads/buyedAdByRegion/` + region);

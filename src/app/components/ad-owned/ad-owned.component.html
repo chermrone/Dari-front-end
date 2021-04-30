@@ -43,12 +43,12 @@
   </ng-container>
 
   <ng-container matColumnDef="numbreOfRooms">
-    <th mat-header-cell *matHeaderCellDef>numbre Of Rooms </th>
+    <th mat-header-cell *matHeaderCellDef>nb.Rooms </th>
     <td mat-cell *matCellDef="let element"> {{element.numbreOfRooms}} </td>
   </ng-container>
 
   <ng-container matColumnDef="numberOfBathrooms">
-    <th mat-header-cell *matHeaderCellDef>numbre Of bathrooms </th>
+    <th mat-header-cell *matHeaderCellDef>nb.Bathrooms </th>
     <td mat-cell *matCellDef="let element"> {{element.numberOfBathrooms}} </td>
   </ng-container>
 
@@ -104,6 +104,15 @@
     <td mat-cell *matCellDef="let element"> <button mat-button (click)="onEdit(element.adId)"><mat-icon style="color:#D10024 !important;">create</mat-icon></button> </td>
   </ng-container>
 
+
+  <ng-container matColumnDef="feedback">
+    <th mat-header-cell *matHeaderCellDef > Suggestion </th>
+    <td mat-cell *matCellDef="let element"> <button mat-button (click)="Feedback(element.adId)">
+    <i class="fa fa-handshake-o" style="color:#D10024 !important;" aria-hidden="true"></i>
+
+      </button>
+    </td>
+  </ng-container>
 
   <!-- Delete Column -->
   <ng-container matColumnDef="Delete">

@@ -20,7 +20,7 @@ export class AdOwnedComponent implements OnInit {
 
   ad_list: Ad[] =[];
   dataSource= new MatTableDataSource(this.ad_list);
-  displayedColumns: string[] = ['adId', 'titleAd', 'type', 'description', 'creationDate', 'buyingDate','sell', 'numbreOfRooms', 'price', 'city', 'builda', 'area', 'typead', 'numberOfBathrooms', 'checkInDate', 'checkOutDate', 'Edit', 'Delete'];
+  displayedColumns: string[] = ['adId', 'titleAd', 'type', 'description', 'creationDate', 'buyingDate','sell', 'numbreOfRooms', 'price', 'city', 'builda', 'area', 'typead', 'numberOfBathrooms', 'checkInDate', 'checkOutDate', 'feedback','Edit', 'Delete'];
 
   constructor(private adserv :AdService,private dialog: MatDialog,private route:Router) { }
 
@@ -67,4 +67,7 @@ export class AdOwnedComponent implements OnInit {
     this.route.navigate(['Ad/Add']);
   }
 
+  Feedback(adId: any) {
+    
+  }
 }
