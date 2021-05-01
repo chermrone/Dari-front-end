@@ -49,6 +49,7 @@ import {WebsocketService} from "./services/websocket.service";
 import { DisplaySearchAdComponent } from './components/display-search-ad/display-search-ad.component';
 import {AdService} from "./services/ad.service";
 import { AdadvancSearchAdminComponent } from './components/adadvanc-search-admin/adadvanc-search-admin.component';
+import { SituationAdComponent } from './components/situation-ad/situation-ad.component';
 
 
 
@@ -93,6 +94,7 @@ import { AdadvancSearchAdminComponent } from './components/adadvanc-search-admin
         FirstchatComponent,
         DisplaySearchAdComponent,
         AdadvancSearchAdminComponent,
+        SituationAdComponent,
        ],
 
 

@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ModifAdComponent} from "../modif-ad/modif-ad.component";
 import { Ad } from 'src/app/models/Ad';
+import {SituationAdComponent} from "../situation-ad/situation-ad.component";
 
 @Component({
   selector: 'app-ad-owned',
@@ -68,6 +69,11 @@ export class AdOwnedComponent implements OnInit {
   }
 
   Feedback(adId: any) {
-    
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "45%";
+    this.dialog.open(SituationAdComponent, dialogConfig);
+    this.adserv.idAd= adId;
   }
 }
