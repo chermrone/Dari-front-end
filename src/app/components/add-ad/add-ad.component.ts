@@ -31,6 +31,7 @@ export class AddAdComponent implements OnInit {
   progressInfos = [];  progressInfosVid = [];
 type="";typeimg="";
    notif: string;
+   msgComplete: string;
   constructor(private AdServ: AdService, private uploadService: UploadFileService) {
     this.keysBat = Object.keys(this.symbolsBat);
     this.keysTyp = Object.keys(this.symbols);
@@ -71,7 +72,7 @@ verif=true;
         if (typeof(this.currentFileVid) != 'undefined') {
         for (let i = 0; i < this.selectedFilesvid.length; i++) {
           this.uploadVideo(i, this.selectedFilesvid[i]);
-        }}}
+        }}} this.msgComplete=" you Ad has been successfully Added"
       });
     });
   }

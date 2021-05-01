@@ -19,7 +19,7 @@ import {TypeBatiment} from "../../enumeration/TypeBatiment";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
-  constructor(private Adservice: AdService,private dialog: MatDialog,private adserv:AdService, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
+  constructor(public Adservice: AdService,private dialog: MatDialog,public adserv:AdService, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
     this.keys = Object.keys(this.symbol);       this.keysBat = Object.keys(this.symbolsBat);
 
 
@@ -69,11 +69,13 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
       authorities: this.token.getAuthorities()
     };
 
-    this.Adservice.getFav().subscribe((data)=>{console.log(data);
-      this.adFav=data;
-      this.countFav=this.adFav.length});
+    this.Adservice.getFav().subscribe((data) => {
+      console.log(data);
+      this.adFav = data;
+      this.countFav = this.adFav.length;
+    });
     console.log(this.verifauth.verif);
-  this.adserv.getFav().subscribe(data=>console.log(data));
+    this.adserv.getFav().subscribe(data => console.log(data));
 
   }
 
@@ -116,5 +118,12 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
 
     this.dialog.open(RegisterComponent, dialogConfig);
 
+  }
+ads:Ad[];
+  searchbycriteria(typead: any, typebat: any, price: any, rooms: any,city:any) {
+    this.Adservice.SearchCriteria(price,  city, rooms, typead,
+      typebat).subscribe( data=>{this.ads=data as Ad[];this.Adservice.ads=this.ads});
+    console.log(this.Adservice.ads);
+    this.router.navigate(['SearchAd']);
   }
 }

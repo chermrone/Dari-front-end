@@ -56,18 +56,18 @@
             <form>
 
 
-              <select id="inputState" name="type" ngModel #typead="ngModel" class="input-select col-2">
+              <select id="inputState" name="typead" ngModel #typead="ngModel" class="input-select col-2">
                 <option *ngFor="let key of keys" [value]="key">{{symbol[key]}}</option>
               </select>
               <select id="inputState" name="type" ngModel #type="ngModel" class="input-select " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px" >
                 <option *ngFor="let key of keysBat" [value]="key">{{symbolsBat[key]}}</option>
               </select>
 
-              <input id="inputState"placeholder="DT"  name="type" type="number" ngModel #type="ngModel"  class="input-select col-2 " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px"  >
-              <input id="inputState"placeholder="n°rooms"  name="type" type="number" ngModel #type="ngModel"  class="input-select col-2 " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px"  >
+              <input id="inputState"placeholder="DT"  name="price" type="number" ngModel #price="ngModel"  class="input-select col-2 " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px"  >
+              <input id="inputState"placeholder="n°rooms"  name="rooms" type="number" ngModel #rooms="ngModel"  class="input-select col-2 " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px"  >
 
-              <input style="width: 13%" class="input" placeholder="Search here">
-              <button class="search-btn">Search</button>
+              <input style="width: 13%"  name="city"  ngModel #city="ngModel" class="input" placeholder="Search here">
+              <button class="search-btn" (click)="searchbycriteria(typead.value,type.value,price.value,rooms.value,city.value)">Search</button>
             </form>
           </div>
         </div>
@@ -81,7 +81,7 @@
               <a href="#" routerLink="/getfav">
                 <i class="fa fa-heart-o"></i>
                 <span>Your Favorites</span>
-                <div class="qty">{{countFav}}</div>
+                <div class="qty">{{adserv.countfav}}</div>
               </a>
             </div>
             <!-- /Wishlist -->
