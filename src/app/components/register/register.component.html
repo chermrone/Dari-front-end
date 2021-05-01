@@ -87,9 +87,11 @@
 
 
 
-          <mat-form-field appearance="fill" class=" width-50 col-20" >
+          <mat-form-field appearance="fill" hintLabel="Max 10 characters"  class=" width-50 col-20" >
             <mat-label class="mat" style="color: #a71d2a" >Enter password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" name="password"  [(ngModel)]="form.password" ngModel #password="ngModel"required>
+            <input matInput [type]="hide ? 'password' : 'text'" name="password" #input minlength="4"   [(ngModel)]="form.password" ngModel #password="ngModel"required>
+            <mat-hint align="end">{{input.value?.length || 4}}/10</mat-hint>
+
             <button mat-icon-button  matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
