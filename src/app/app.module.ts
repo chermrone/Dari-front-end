@@ -39,7 +39,18 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import {ChartsModule} from 'ng2-charts';
 import { RessetpasswordComponent } from './components/ressetpassword/ressetpassword.component';
 import { FounitureAdComponent } from './components/founiture-ad/founiture-ad.component';
-
+import { AdOwnedComponent } from './components/ad-owned/ad-owned.component';
+import { SellComponent } from './components/sell/sell.component';
+import { RentComponent } from './components/rent/rent.component';
+import { GetfavoComponent } from './components/getfavo/getfavo.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { FirstchatComponent } from './components/firstchat/firstchat.component';
+import {WebsocketService} from "./services/websocket.service";
+import { DisplaySearchAdComponent } from './components/display-search-ad/display-search-ad.component';
+import {AdService} from "./services/ad.service";
+import { AdadvancSearchAdminComponent } from './components/adadvanc-search-admin/adadvanc-search-admin.component';
+import { AssuranceComponent } from './components/assurance/assurance.component';
+import { SurveillanceDeMaisonComponent } from './components/surveillance-de-maison/surveillance-de-maison.component';
 
 
 
@@ -75,7 +86,18 @@ import { FounitureAdComponent } from './components/founiture-ad/founiture-ad.com
       OffersComponent,
         StatisticsComponent,
         RessetpasswordComponent,
-        FounitureAdComponent,  ],
+        FounitureAdComponent,
+        AdOwnedComponent,
+        SellComponent,
+        RentComponent,
+        GetfavoComponent,
+        ChatComponent,
+        FirstchatComponent,
+        DisplaySearchAdComponent,
+        AdadvancSearchAdminComponent,
+        AssuranceComponent,
+        SurveillanceDeMaisonComponent,
+       ],
 
 
   imports: [
@@ -85,9 +107,11 @@ import { FounitureAdComponent } from './components/founiture-ad/founiture-ad.com
     HttpClientModule,
     FormsModule,
     MaterialModule,
-    ChartsModule
+    ChartsModule,
+ //   NbThemeModule.forRoot({name: 'default'}),
+   // NbThemeModule.forRoot({ name: 'default' })
   ],
-  providers: [httpInterceptorProviders, VerifAuthService],
+  providers: [httpInterceptorProviders, VerifAuthService, WebsocketService,AdService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

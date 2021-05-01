@@ -1,10 +1,65 @@
-<div>
-  <div>
+<div style="display: flex; margin-bottom: 5%; margin-left: 2%; margin-top: 2%">
+  <div style="width: 40%; height: 40%; margin-right: 2.5%; margin-top: 94px;">
     <div style="display: block">
       <canvas baseChart
               [datasets]="barChartData"
               [labels]="barChartLabels"
               [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+    <!--<button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>-->
+  </div>
+  <div style="width: 40%; height: 40%; margin-left: 5%">
+    <div style="display: block">
+      <div class="form-group flex-column">
+        <form #f="ngForm" (ngSubmit)="OnSubmit(f)">
+          <mat-form-field appearance="fill">
+            <mat-label>Choose Max Or Min Price</mat-label>
+            <select matNativeControl style="background-color: #BBBBBB" name="maxmin" ngModel #maxmin="ngModel">
+              <option value="max">Max Price</option>
+              <option value="min">Min Price</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Choose Max Or Min Price</mat-label>
+            <input matInput type="number" name="price" ngModel #price="ngModel" style="background-color: #BBBBBB; height: 29px;">
+          </mat-form-field>
+          <button mat-raised-button style="padding-bottom: 10px">Submit</button>
+        </form>
+      </div>
+      <canvas baseChart
+              [datasets]="barCharData1"
+              [labels]="barChartLabels"
+              [options]="barChartOptions1"
+              [plugins]="barChartPlugins"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+    <!--<button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>-->
+  </div>
+</div>
+
+<div style="display: flex; margin-top: 5%; margin-left: 2%">
+  <div style="width: 40%; height: 40%; margin-right: 5%">
+    <div style="display: block">
+      <div class="row">
+        <form #f1="ngForm" (ngSubmit)="OnSubmit1(f1)">
+
+          <mat-form-field appearance="fill">
+            <mat-label>enter the eriod (days)</mat-label>
+            <input matInput type="number" name="period" ngModel #period="ngModel" style="background-color: #BBBBBB; height: 29px;">
+          </mat-form-field>
+          <button mat-raised-button >Submit</button>
+        </form>
+      </div>
+      <canvas baseChart
+              [datasets]="barCharData2"
+              [labels]="barChartLabels"
+              [options]="barChartOptions2"
               [plugins]="barChartPlugins"
               [legend]="barChartLegend"
               [chartType]="barChartType">
