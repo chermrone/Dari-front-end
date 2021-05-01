@@ -1,0 +1,148 @@
+
+<div class="row">
+  <div class="container title" style="margin: 30px 330px;color:#D10024FF;font-weight: 700;font-size: 18px">
+    Display the ad of Banned users
+  </div>
+</div><div class="" style="display: flex">
+<div class="row">
+<div class="col-5"><label for="exampleInputEmail1"> from</label>
+  <input type="date" class="form-control" id="exampleInputEmail1"
+         aria-describedby="emailHelp" placeholder="Enter email" name="FromDate" ngModel
+         #FromDate="ngModel" >{{FromDate.value}}
+</div>
+<div class="col-5"><label for="exampleInputEmail1">to</label>
+  <input type="date" class="form-control" id="exampleInputEmail1"
+         aria-describedby="emailHelp" placeholder="Enter email" name="ToDate" ngModel
+         #ToDate="ngModel">
+</div></div>
+<div style="margin-left: 10px" class="col-4"><label>Role</label>
+
+  <select id="inputState" name="role"  ngModel #role="ngModel" class="form-control">
+    <option>ADMIN</option>
+    <option>BUYER</option>
+    <option>LANDLORD</option>
+    <option>PREMIUM</option>
+    <option>SELLER</option>
+  </select>
+
+</div>
+
+  <button
+    class="col-3 btn btn-ghost" (click)="getBannedAds(role.value,FromDate.value,ToDate.value)"
+  >
+    search
+  </button>
+</div>
+<div class="container" *ngIf="verif">
+
+  <div style="width: 100%; background-color: #424242;">
+    <mat-form-field style="margin-left: 1%;color: #424242">
+      <input  matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
+    </mat-form-field>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+    <!-- Position Column -->
+
+    <ng-container matColumnDef="adId">
+      <th mat-header-cell *matHeaderCellDef> id </th>
+      <td mat-cell *matCellDef="let element"> {{element.adId}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="titleAd">
+      <th mat-header-cell *matHeaderCellDef> title </th>
+      <td mat-cell *matCellDef="let element"> {{element.titleAd}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> category </th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="typead">
+      <th mat-header-cell *matHeaderCellDef> type </th>
+      <td mat-cell *matCellDef="let element"> {{element.typead}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numbreOfRooms">
+      <th mat-header-cell *matHeaderCellDef>numbre Of Rooms </th>
+      <td mat-cell *matCellDef="let element"> {{element.numbreOfRooms}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numberOfBathrooms">
+      <th mat-header-cell *matHeaderCellDef>numbre Of bathrooms </th>
+      <td mat-cell *matCellDef="let element"> {{element.numberOfBathrooms}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <ng-container  matColumnDef="city">
+      <th mat-header-cell  *matHeaderCellDef> city </th>
+      <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="area">
+      <th mat-header-cell *matHeaderCellDef> area </th>
+      <td mat-cell *matCellDef="let element"> {{element.area}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="buyingDate">
+      <th mat-header-cell *matHeaderCellDef> Buying Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.buyingDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sell">
+      <th mat-header-cell *matHeaderCellDef> sell </th>
+      <td mat-cell *matCellDef="let element"> {{element.sell}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="creationDate">
+      <th mat-header-cell *matHeaderCellDef> creationDate </th>
+      <td mat-cell *matCellDef="let element"> {{element.creationDate}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="builda">
+      <th mat-header-cell *matHeaderCellDef> build area </th>
+      <td mat-cell *matCellDef="let element"> {{element.builda}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="checkOutDate">
+      <th mat-header-cell *matHeaderCellDef> check Out Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.checkOutDate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="checkInDate">
+      <th mat-header-cell *matHeaderCellDef> check In Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.checkInDate}} </td>
+    </ng-container>
+    <!-- Delete Column -->
+    <ng-container matColumnDef="Delete">
+      <th mat-header-cell *matHeaderCellDef > Delete </th>
+      <td mat-cell *matCellDef="let element">
+        <button (click)="deleteAd(element.adId)"  mat-button>
+          <mat-icon  style="color:#D10024" >delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

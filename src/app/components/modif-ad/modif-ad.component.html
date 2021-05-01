@@ -1,60 +1,84 @@
 <form #f="ngForm" (ngSubmit)="onsubmit(f)">
-        <mat-grid-tile>Modify the Ad</mat-grid-tile>
-         <mat-dialog-content class="mat-typography"> <div class="example-container">
-            <mat-form-field appearance="fill" class="width-50 col-10">
-              <mat-label>Title of the ad</mat-label>
-              <input matInput [(ngModel)]="Ad.titleAd" name="titleAd" ngModel #titleAd="ngModel" required>
-            </mat-form-field>
-            <br>
+  <mat-grid-tile>Modify the Ad</mat-grid-tile>
+  <mat-dialog-content class="mat-typography">
+    <div class="example-container">
+      <mat-form-field appearance="fill" class="width-50 col-10">
+        <mat-label>Title of the ad</mat-label>
+        <input matInput [(ngModel)]="Ad.titleAd" name="titleAd" ngModel #titleAd="ngModel" required>
+      </mat-form-field>
+      <br>
 
-            <mat-form-field>
-              <mat-label>number of rooms</mat-label>
-              <div>
-                <input matInput name="numbreOfRooms" ngModel #numbreOfRooms="ngModel" type="number"
-                       [(ngModel)]="Ad.numbreOfRooms" required/></div></mat-form-field>
-            <mat-form-field>
-              <mat-label>number of bathrooms</mat-label>
-              <div >
-                <input matInput name="numberOfBathrooms" ngModel
-                       #numberOfBathrooms="ngModel" type="number" [(ngModel)]="Ad.numberOfBathrooms" required/>
+      <mat-form-field>
+        <mat-label>number of rooms</mat-label>
+        <div>
+          <input matInput name="numbreOfRooms" ngModel #numbreOfRooms="ngModel" type="number"
+                 [(ngModel)]="Ad.numbreOfRooms" required/></div>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>number of bathrooms</mat-label>
+        <div>
+          <input matInput name="numberOfBathrooms" ngModel
+                 #numberOfBathrooms="ngModel" type="number" [(ngModel)]="Ad.numberOfBathrooms" required/>
 
-              </div>
-            </mat-form-field>
-            <br>
+        </div>
+      </mat-form-field>
+      <br>
 
 
-            <mat-form-field>
-              <mat-label>City</mat-label>
-              <input matInput [(ngModel)]="Ad.city" class="ml-3" name="city" ngModel #city="ngModel" required>
-            </mat-form-field>
-<mat-form-field>
-           <mat-label id="example-radio-group-label" class="ml-3">Type ad </mat-label>
-              <mat-select [(ngModel)]="Ad.typead" id="inputState" name="typead" ngModel #typead="ngModel"
-                   class="col-3">
-                <mat-option *ngFor="let symbol of keysTyp" [value]="symbol">{{symbols[symbol]}}
-                </mat-option>
-              </mat-select></mat-form-field>
-            <br>
-           <mat-form-field>
-              <mat-label class="ml-3">Built Area:</mat-label>
-             <input matInput [(ngModel)]="Ad.builda" name="builda" ngModel #builda="ngModel"></mat-form-field>
-            <br>
-            <mat-form-field>
-                <mat-label>Total area</mat-label>
-              <input matInput [(ngModel)]="Ad.area" name="area" ngModel #area="ngModel" required></mat-form-field>
-              <mat-form-field><mat-label>Price</mat-label>
-              <input matInput [(ngModel)]="Ad.price" name="price" ngModel #price="ngModel" required></mat-form-field>
-             <mat-form-field><mat-label>Description</mat-label>
-              <input matInput [(ngModel)]="Ad.description" name="description" ngModel
-                     #description="ngModel" required>
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <input matInput [(ngModel)]="Ad.city" class="ml-3" name="city" ngModel #city="ngModel" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label id="example-radio-group-label" class="ml-3">Type ad</mat-label>
+        <mat-select [(ngModel)]="Ad.typead" id="inputState" name="typead" ngModel #typead="ngModel"
+                    class="col-3">
+          <mat-option *ngFor="let symbol of keysTyp" [value]="symbol">{{symbols[symbol]}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label class="ml-3">Built Area:</mat-label>
+        <input matInput [(ngModel)]="Ad.builda" name="builda" ngModel #builda="ngModel"></mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Total area</mat-label>
+        <input matInput [(ngModel)]="Ad.area" name="area" ngModel #area="ngModel" required></mat-form-field>
+      <mat-form-field>
+        <mat-label>Price</mat-label>
+        <input matInput [(ngModel)]="Ad.price" name="price" ngModel #price="ngModel" required></mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="Ad.description" name="description" ngModel
+               #description="ngModel" required>
 
-            </mat-form-field>
-            <button mat-stroked-button class="ml-3" style="background-color: #b0bec5" [mat-dialog-close]="true" [disabled]="f.invalid">submit
-            </button>
-            <button mat-stroked-button type="reset" class="ml-3" style="background-color: #b0bec5">reset</button>
-            <button type="reset" mat-stroked-button class="ml-3" style="background-color: #b0bec5"
-                    (click)="onclose()">cancel
-            </button>
-          </div></mat-dialog-content>
-    </form>
+        <!--                   <input matInput [(ngModel)]="Ad.area" name="area" ngModel #area="ngModel" required></div>-->
+
+
+      </mat-form-field>
+      <button mat-stroked-button class="ml-3" style="background-color: #b0bec5" [mat-dialog-close]="true"
+              [disabled]="f.invalid" (click)="update(f)">submit
+      </button>
+      <button mat-stroked-button type="reset" class="ml-3" style="background-color: #b0bec5">reset</button>
+      <button type="reset" mat-stroked-button class="ml-3" style="background-color: #b0bec5"
+              (click)="onclose()">cancel
+      </button>
+    </div>
+    <br>
+
+      <div *ngFor="let im of Img">
+          <div class="col-2">
+            <img src="{{im}}" class="card-img-top"
+                 style="cursor:pointer;"
+            ></div>
+          <div class="col-2">
+            <div type='button' name='delete' class='box'>
+              <a (click)="delete(im)"><i class='but-icon fa fa-lg fa-times' style="color:red"></i></a>
+
+            </div>
+          </div>
+        </div>
+  </mat-dialog-content>
+</form>
 
