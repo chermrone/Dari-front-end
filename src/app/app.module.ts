@@ -50,6 +50,8 @@ import { DisplaySearchAdComponent } from './components/display-search-ad/display
 import {AdService} from "./services/ad.service";
 import { AdadvancSearchAdminComponent } from './components/adadvanc-search-admin/adadvanc-search-admin.component';
 import { SituationAdComponent } from './components/situation-ad/situation-ad.component';
+import { AssuranceComponent } from './components/assurance/assurance.component';
+import { SurveillanceDeMaisonComponent } from './components/surveillance-de-maison/surveillance-de-maison.component';
 
 
 
@@ -95,6 +97,8 @@ import { SituationAdComponent } from './components/situation-ad/situation-ad.com
         DisplaySearchAdComponent,
         AdadvancSearchAdminComponent,
         SituationAdComponent,
+        AssuranceComponent,
+        SurveillanceDeMaisonComponent,
        ],
 
 

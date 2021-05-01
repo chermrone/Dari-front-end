@@ -22,12 +22,12 @@ export class AdService {
 
   constructor(private http: HttpClient) {
   }
-countfav: number;
+  countfav: number;
   private url = environment.serverURL;
 
 
   private _idAd = 0;
- public ads: Ad[];
+  public ads: Ad[];
 
   /*This is to fetch Ads from database*/
   // tslint:disable-next-line:typedef
@@ -53,14 +53,14 @@ countfav: number;
       {responseType: 'text'});
 
   }
-public getLastAd(){
+  public getLastAd(){
     return this.http.get(`${this.url}dari/ads/ad/lastad`);
-}
-public deleteAdById(id: number){
+  }
+  public deleteAdById(id: number){
     return this.http.delete(`${this.url}dari/ads/delete/` + id); }
 
   public updateAd(Ad: Ad) {
-return this.http.put(`${this.url}dari/ads/update/ad/`, Ad);
+    return this.http.put(`${this.url}dari/ads/update/ad/`, Ad);
   }
 
   getOwnedAd() {
@@ -73,14 +73,14 @@ return this.http.put(`${this.url}dari/ads/update/ad/`, Ad);
     return this.http.get<Ad[]>(`${this.url}dari/ads/ad/sell`);
   }
 
-getFav(){
-  this.http.get<Ad[]>(`${this.url}dari/ads/fav`).subscribe(data => this.countfav = data.length);
-  return this.http.get<Ad[]>(`${this.url}dari/ads/fav`);
+  getFav(){
+    this.http.get<Ad[]>(`${this.url}dari/ads/fav`).subscribe(data => this.countfav = data.length);
+    return this.http.get<Ad[]>(`${this.url}dari/ads/fav`);
 
-}
+  }
 
   postFav(id: number) {console.log(id + 'fdf');
-                       return this.http.get(`${this.url}dari/ads/af/favorite/` + id);
+    return this.http.get(`${this.url}dari/ads/af/favorite/` + id);
   }
   public deleteImgById(id: number){
     return this.http.delete(`http://localhost:8082/dari/imgads/delete/img/` + id); }
@@ -88,36 +88,36 @@ getFav(){
   deleteFavAdById(idAd: number) {
     return this.http.delete(`http://localhost:8082/dari/ads/delete/fav/` + idAd)  ;
   }
-SearchCriteria(price: number,  city: string, rooms: number, typeAd: Typead ,
-               typebat: TypeBatiment)
-{console.log(city + '' + typebat);
- if (city != '' && typebat != null)
-{let params = new HttpParams();
- params = params.append('city', city);
- params = params.append('typebat', typebat);
- if (rooms != 0 && rooms != null)
-  {params = params.append('rooms', rooms.toString()); }
- if (typeAd == Typead.RENT || Typead.SELL)
-  {params = params.append('typeAd', typeAd); }
- if (price != 0 && price != null) {
-  params = params.append('price', price.toString());
- }
- console.log(params);
+  SearchCriteria(price: number,  city: string, rooms: number, typeAd: Typead ,
+                 typebat: TypeBatiment)
+  {console.log(city + '' + typebat);
+    if (city != '' && typebat != null)
+    {let params = new HttpParams();
+      params = params.append('city', city);
+      params = params.append('typebat', typebat);
+      if (rooms != 0 && rooms != null)
+      {params = params.append('rooms', rooms.toString()); }
+      if (typeAd == Typead.RENT || Typead.SELL)
+      {params = params.append('typeAd', typeAd); }
+      if (price != 0 && price != null) {
+        params = params.append('price', price.toString());
+      }
+      console.log(params);
 
- this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
-    params,
-  }).subscribe(data => {this.ads = data as Ad[]; console.log(data); console.log(this.ads); }  );
- return this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
-    params,
-  }); }
-  else {     return this.http.get<Ad[]>(`${this.url}dari/ads/all` ); }
+      this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      }).subscribe(data => {this.ads = data as Ad[]; console.log(data); console.log(this.ads); }  );
+      return this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      }); }
+    else {     return this.http.get<Ad[]>(`${this.url}dari/ads/all` ); }
 
-  /*.subscribe(data =>{this.ads=data as Ad[];console.log(data);console.log(this._ads)}  );
-   return this.ads;*/
-}
+    /*.subscribe(data =>{this.ads=data as Ad[];console.log(data);console.log(this._ads)}  );
+     return this.ads;*/
+  }
 
 
-    getAdsBannedByDate(role: number, datefrom: Date, dateto: Date){
+  getAdsBannedByDate(role: number, datefrom: Date, dateto: Date){
 
     let params = new HttpParams();
     params = params.append('fromDate', datefrom.toString());
@@ -127,10 +127,10 @@ SearchCriteria(price: number,  city: string, rooms: number, typeAd: Typead ,
     });
 
   }
-GetSuggestionAd(id: number){
-  return this.http.get(`${this.url}dari/ads/ad/situation/` + id,
-    {responseType: 'text'});
-}
+  GetSuggestionAd(id: number){
+    return this.http.get(`${this.url}dari/ads/ad/situation/` + id,
+      {responseType: 'text'});
+  }
   /********************STATISTICS************************/
   public getByedHousesByRegion(region: string) {
     return this.http.get(`${this.url}dari/ads/buyedAdByRegion/` + region);

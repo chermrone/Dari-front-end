@@ -75,5 +75,6 @@ export class AdOwnedComponent implements OnInit {
     dialogConfig.width = "45%";
     this.dialog.open(SituationAdComponent, dialogConfig);
     this.adserv.idAd= adId;
+    
   }
 }
