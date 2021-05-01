@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import {SignupInfo } from '../../auth/signup-info';
-import {User} from "../../models/user";
-import {UserService} from "../../services/user.service";
-import {MatDialogRef} from "@angular/material/dialog";
-import {Observable} from "rxjs";
-import {HttpEventType, HttpResponse} from "@angular/common/http";
-import {UploadFileService} from "../../services/upload-file.service";
-import {Typead} from "../../enumeration/Typead";
-import {Ad} from "../../models/Ad";
-import {NgForm} from "@angular/forms";
+import {User} from '../../models/user';
+import {UserService} from '../../services/user.service';
+import {MatDialogRef} from '@angular/material/dialog';
+import {Observable} from 'rxjs';
+import {HttpEventType, HttpResponse} from '@angular/common/http';
+import {UploadFileService} from '../../services/upload-file.service';
+import {Typead} from '../../enumeration/Typead';
+import {Ad} from '../../models/Ad';
+import {NgForm} from '@angular/forms';
 
 
 @Component({
@@ -18,6 +18,7 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  constructor(private authService: AuthService, private us: UserService, private uploadService: UploadFileService, private matdialogref: MatDialogRef<RegisterComponent>) {this.keys = Object.keys(this.symbol); }
 
   form: any = {};
   signupInfo!: SignupInfo;
@@ -35,23 +36,22 @@ export class RegisterComponent implements OnInit {
   message = '';
   fileInfos: Observable<any>;
   progressInfos = [];  progressInfosVid = [];
-  type="";typeimg="";
-  verif= true;
+  type = ''; typeimg = '';
+  verif = true;
   symbol = Typead;
   keys = [];
-  constructor(private authService: AuthService,private us: UserService, private uploadService: UploadFileService, private matdialogref: MatDialogRef<RegisterComponent>) {this.keys = Object.keys(this.symbol); }
+
+  // tslint:disable-next-line:typedef
+  hide = true;
 
   // tslint:disable-next-line:typedef
   ngOnInit() { }
-
-  // tslint:disable-next-line:typedef
-  hide=true;
-  onSubmit(f:NgForm) {
+  onSubmit(f: NgForm) {
     const p = {} as User;
     if (typeof(this.currentFile) != 'undefined') {
-      this.currentFile = this.selectedFiles.item(0);console.log(this.currentFile);
+      this.currentFile = this.selectedFiles.item(0); console.log(this.currentFile);
     }
-    else {this.verif=true;
+    else {this.verif = true;
     }
 
 
@@ -78,15 +78,16 @@ export class RegisterComponent implements OnInit {
         console.log(data);
         this.isSignedUp = false;
         this.isSignUpFailed = false;
+        for (let i = 0; i < this.selectedFiles.length; i++) {
+          this.upload(i, this.selectedFiles[i]);}
 
-
-        this.us.getLastUser().subscribe(data => {
+     /*   this.us.getLastUser().subscribe(data => {
           this.message = '';
-console.log("entrer last user");
+          console.log(data);
 
           this.upload(0, this.selectedFiles[0]);
 
-        });
+        });*/
       }); }
     onclose(){
       this.matdialogref.close();
@@ -110,10 +111,10 @@ console.log("entrer last user");
 
 
   upload(idx, file) {
-    if (this.typeimg =='image') {
+    if (this.typeimg == 'image') {
       this.progressInfos[idx] = {value: 0, fileName: file.name};
       this.us.getLastUser().subscribe(data => {
-        this.uploadService.uploaded(file, this.type, data as User).subscribe(
+        this.uploadService.uploaded(file, data as User).subscribe(
           event => {
             if (event.type === HttpEventType.UploadProgress) {
               this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
@@ -129,7 +130,7 @@ console.log("entrer last user");
     }}
   selectFiles(event) {
     this.progressInfos = [];
-    this.selectedFiles = event.target.files;    this.typeimg="image";
+    this.selectedFiles = event.target.files;    this.typeimg = 'image';
     this.verif = false;
   }
 }

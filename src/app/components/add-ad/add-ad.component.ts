@@ -51,11 +51,11 @@ verif=true;
     if (typeof(this.currentFile) != 'undefined') {
       this.currentFile = this.selectedFiles.item(0);console.log(this.currentFile);
     }
-    else {this.verif=true;
+    else {this.verif = true;
     }
 
     if (typeof(this.currentFileVid) != 'undefined') {
-      this.currentFileVid=this.selectedFilesvid.item(0);
+      this.currentFileVid = this.selectedFilesvid.item(0);
 
     }
     console.log(f.value);
