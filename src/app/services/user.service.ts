@@ -8,6 +8,8 @@ import {SignupInfo} from "../auth/signup-info";
 import {LoginComponent} from "../components/login/login.component";
 import {LoginInfo} from "../auth/login-info";
 import {resetpassword} from "../models/resetpassword";
+import {FilesAd} from "../models/FilesAd";
+import {imguser} from "../models/imguser";
 
 
 
@@ -65,5 +67,11 @@ export class UserService {
   }
   updatepassword(pass: resetpassword){
     return this.http.post(`${this.url}reset`, pass);
+  }
+  getFiles(){
+    return this.http.get<imguser[]>(`${this.url}dari/imgusers/all` );
+  }
+  public getLastUser(){
+    return this.http.get(`${this.url}dari/Users/user/lastad`);
   }
 }

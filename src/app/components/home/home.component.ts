@@ -24,9 +24,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private Adservice: AdService, private router: Router, private token: TokenStorageService) {
   }
-
   File: FilesAd[];
-
   ngOnInit(): void {
     this.info = {
       token: this.token.getToken(),
@@ -34,51 +32,19 @@ export class HomeComponent implements OnInit {
       authorities: this.token.getAuthorities()
     };
 
+
     this.Adservice.getAd().subscribe(
       (data) => {
-        /* this.products = data;
-         this.Adservice.getFiles().subscribe(res => {
-             this.retrieveResonse = res as FilesAd[];
-             for (let i of this.retrieveResonse) {
-               this.base64Data.push(i);
-               console.log(i.picByte);
-             }
-             for (let i of this.base64Data) {
-               for(let x of i.picByte){     this.retrievedImage.push('data:image/jpg;base64,' + x);
-                 console.log(i);}
-
-             }*/
         this.products = data;
         this.Adservice.getFiles().subscribe(res => {
            this.retrieveResonse = res as FilesAd[];
-            for(let i of this.retrieveResonse)
-            {this.base64Data.push([i.picByte,i.id]); console.log(this.retrieveResonse);}
-            for(let t of this.base64Data)
-            {this.retrievedImage.push(['data:image/jpeg;base64,' + t[0],t[1]]);console.log(this.retrievedImage);
-            }}
-         );
-
-      }
-      ,
-          /*    for (let i of this.products) {
-            for (let j of i.imgads) {
-              for (let c of this.base64Data) {
-                if (j.id == c.id) {
-                  console.log(i);
-                  for (let x of j.picByte) {
-
-                 /*   consNG_CHAR = String.fromCharCode.apply(null, j.picByte);
-                    let base64String = btoa(STRING_CHAR);
-                    j.picByte = 'data:image/jpg;base64, ' + base64String
-                      ;
-                    }
-                  }
-                }
+           for (const i of this.retrieveResonse)
+            {this.base64Data.push([i.picByte, i.id]); // console.log(this.retrieveResonse);
               }
-            }*/
-            /* x.('data:image/jpeg;base64,' + c.picByte);console.log(i);*/
-
-
+           for (const t of this.base64Data)
+            {this.retrievedImage.push(['data:image/jpeg;base64,' + t[0], t[1]]); // console.log(this.retrievedImage);
+            }}
+         );},
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
@@ -87,11 +53,11 @@ export class HomeComponent implements OnInit {
   }
 
 // tslint:disable-next-line:typedef
-  selectAd(id
-             :
-             number
-  ) {
-    this.router.navigate(['/ad', id]).then();
+  selectAd(id: number) {
+    this.router.navigate(['/ad', id]);
   }
-
+public ii:number;
+  AddTofav(adId: number) {console.log(adId);this.ii=adId;
+    this.Adservice.postFav(adId).subscribe(data=> console.log("succes"));
+  }
 }

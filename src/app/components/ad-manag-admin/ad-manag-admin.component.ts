@@ -8,6 +8,8 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ModifAdComponent} from "../modif-ad/modif-ad.component";
 import {Route, Router, Routes} from "@angular/router";
 import { Ad } from 'src/app/models/Ad';
+import {FilesAd} from "../../models/FilesAd";
+import {AdadvancSearchAdminComponent} from "../adadvanc-search-admin/adadvanc-search-admin.component";
 
 @Component({
   selector: 'app-ad-manag-admin',
@@ -22,7 +24,7 @@ export class AdManagAdminComponent implements OnInit {
   dataSource= new MatTableDataSource(this.ad_list);
   displayedColumns: string[] = ['adId', 'titleAd', 'type', 'description', 'creationDate', 'buyingDate','sell', 'numbreOfRooms', 'price', 'city', 'builda', 'area', 'typead', 'numberOfBathrooms', 'checkInDate', 'checkOutDate', 'Edit', 'Delete'];
 
-  constructor(private adserv :AdService,private dialog: MatDialog,private route:Router) { }
+  constructor(private adserv : AdService,private dialog: MatDialog,private route:Router) { }
 
   ngOnInit(): void {
     this.adserv.getAd().subscribe((data ) => {
@@ -65,5 +67,13 @@ export class AdManagAdminComponent implements OnInit {
 
   oncreate() {
     this.route.navigate(['Ad/Add']);
+  }
+
+  Advanced() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "85%";
+    this.dialog.open(AdadvancSearchAdminComponent, dialogConfig);
   }
 }

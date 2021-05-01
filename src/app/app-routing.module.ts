@@ -26,11 +26,17 @@ import {UsermanagementguardGuard} from './routeGuard/usermanagementguard.guard';
 import {StatisticsComponent} from './components/statistics/statistics.component';
 import {RessetpasswordComponent} from "./components/ressetpassword/ressetpassword.component";
 import {FounitureAdComponent} from './components/founiture-ad/founiture-ad.component';
+import {AdOwnedComponent} from "./components/ad-owned/ad-owned.component";
+import {SellComponent} from "./components/sell/sell.component";
+import {RentComponent} from "./components/rent/rent.component";
+import {GetfavoComponent} from "./components/getfavo/getfavo.component";
+import {ChatComponent} from "./components/chat/chat.component";
+import {DisplaySearchAdComponent} from "./components/display-search-ad/display-search-ad.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'Product', component: AdComponent},
-  {path: 'Product/:adId', component: AdComponent},
+  {path: 'ad/:id', component: AdComponent},
   {path: 'cart', component: CartComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'signup', component: RegisterComponent},
@@ -50,7 +56,13 @@ const routes: Routes = [
   { path: 'success', component: SuccessComponent },
   { path: 'statistics', component: StatisticsComponent},
   {path: 'reset' , component: RessetpasswordComponent},
-  {path: 'fournitureAd' , component: FounitureAdComponent}
+  {path: 'fournitureAd' , component: FounitureAdComponent},
+  {path:'adOwned',component: AdOwnedComponent},
+  {path:'sell',component: SellComponent},
+  {path:'rent',component: RentComponent},
+  {path:'getfav',component: GetfavoComponent},
+  {path:'chat',component: ChatComponent},
+  {path:'SearchAd',component: DisplaySearchAdComponent}
 ];
 
 @NgModule({

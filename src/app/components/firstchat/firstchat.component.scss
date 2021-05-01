@@ -1,0 +1,33 @@
+
+
+
+.btn{color:#D10024;font-weight: 500;
+  display: inline-block;  /*by using inline block we can use sme padding margin*/
+  padding: 10px 20px;text-decoration: none; /*text-decoration hide the line of a*/z-index: 999999;
+  border-radius: 200px;border:2px solid #c23616;transition: background-color 0.5s,border 0.2s, color 0.2s/* color change slowly by transition*/
+}
+.btn-ghost{color:#D10024;
+  margin-top: 20px!important;margin-bottom: 20px;
+}
+.btn-ghost:hover{
+  background-color:#D10024;color:#FFF
+}
+.own {border-radius: 100px;border-bottom-left-radius: 0px;margin:5px 60px;  background:#3498db;color: #ecf0f1;
+ float: left;width:80%;margin-left: 6px;padding: 5px 60px;font-size: 8px;
+}
+.receive{ background: #95a5a6;color: #eff1f1;width:80%;margin:5px 60px;
+  float: right;border-radius: 100px;border-bottom-right-radius: 0px;padding: 3px 60px;font-size: 8px;
+}
+.username{
+  font-size: 13px;
+  text-transform: uppercase;
+  margin-right: 20px;margin-left: 20;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+ color: rgba(44, 62, 80, 0.89)
+}
+.date{margin-top: 20px;font-weight: 300}
+.receiver .date{color: rgba(236, 240, 241, 0.8)
+}
+.own .date{color: rgba(239, 241, 241, 0.69);}

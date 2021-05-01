@@ -1,0 +1,37 @@
+<!--
+
+<div class="container">
+  <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+  <p>Hello. How are you today?</p>
+  <span class="time-right">11:00</span>
+</div>
+
+-->
+<table>
+  <tr>
+<td><div class="row justify-content-center" style="margin: 100px 70px;">
+  <div class="col-md-8" >
+    Please enter your username :
+    <input  class="form-control"
+      type="text" style="width: 80%;margin: 30px 50px"
+      [(ngModel)]="username"
+      placeholder="username"
+      [disabled]="isReady"
+    />
+    <button
+      (click)="chat()"
+      [disabled]="isReady || username == ''"
+      class="ml-4 mb-1 btn btn-ghost"
+    >
+      Start
+    </button>
+  </div>
+  <div class="col-md-4"></div>
+</div></td>
+<!-- Display the chat component and pass the username, theme, and avatar as input for the chat session -->
+<app-firstchat
+  *ngIf="isReady"
+  [username]="username"
+  [theme]="selectedTheme"
+></app-firstchat></tr>
+</table>

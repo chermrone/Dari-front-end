@@ -8,26 +8,35 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {UserAddComponent} from "../user-add/user-add.component";
 import {LoginComponent} from "../login/login.component";
 import {RegisterComponent} from "../register/register.component";
+import {Typead} from "../../enumeration/Typead";
+import {AdService} from "../../services/ad.service";
+import {Ad} from "../../models/Ad";
+import {TypeBatiment} from "../../enumeration/TypeBatiment";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-  constructor(private dialog: MatDialog, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
+export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
+  constructor(public Adservice: AdService,private dialog: MatDialog,public adserv:AdService, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
+    this.keys = Object.keys(this.symbol);       this.keysBat = Object.keys(this.symbolsBat);
+
+
   }
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
   id = 1;
   roles: string[];
-  authority: string;
+  countFav:number;adFav:Ad[];
+  symbolsBat = TypeBatiment;  keysBat = [];
+
 
   // tslint:disable-next-line:typedef
   SigninRouting(){
     this.router.navigate(['signin']);
   }
-
+  authority: string;
   // tslint:disable-next-line:typedef
   SignupRouting(){
     this.router.navigate(['signup']);
@@ -59,7 +68,13 @@ export class HeaderComponent implements OnInit {
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities()
     };
+
+    this.Adservice.getFav().subscribe((data)=>{console.log(data);
+      this.adFav=data;
+      this.countFav=this.adFav.length});
     console.log(this.verifauth.verif);
+  this.adserv.getFav().subscribe(data=>console.log(data));
+
   }
 
   // tslint:disable-next-line:typedef
@@ -79,6 +94,7 @@ export class HeaderComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
+  countfav: any;
   RedirectAddProduct() {
     this.router.navigate(['Ad/Add']);
 
@@ -100,5 +116,12 @@ export class HeaderComponent implements OnInit {
 
     this.dialog.open(RegisterComponent, dialogConfig);
 
+  }
+ads:Ad[];
+  searchbycriteria(typead: any, typebat: any, price: any, rooms: any,city:any) {
+    this.Adservice.SearchCriteria(price,  city, rooms, typead,
+      typebat).subscribe( data=>{this.ads=data as Ad[];this.Adservice.ads=this.ads});
+    console.log(this.Adservice.ads);
+    this.router.navigate(['SearchAd']);
   }
 }

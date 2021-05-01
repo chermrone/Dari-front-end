@@ -6,6 +6,8 @@
       <div class="form-group ">
 
         <div class="row flex alert alert-danger" *ngIf="notif!=null" style="width: 30%;margin-left: 35%">{{notif}}</div>
+        <div class="row flex alert alert-success" *ngIf="msgComplete!=null" style="width: 30%;margin-left: 35%">{{msgComplete}}</div>
+
         <div class="row flex">
 
           <div class="col-4"><label for="exampleInputEmail1">Title of the ad</label>
@@ -19,22 +21,23 @@
               <option *ngFor="let key of keysBat" [value]="key">{{symbolsBat[key]}}</option>
             </select>
           </div>
-      </div>
+        </div>
 
 
         <div class="row flex">
           <div class="col-2" *ngIf="symbolsBat.ground!=type.value"><label>Type</label>
 
-            <select id="inputState" name="typead"  ngModel #typead="ngModel" class="form-control" >
+            <select id="inputState" name="typead" ngModel #typead="ngModel" class="form-control">
               <option *ngFor="let symbol of keysTyp" [value]="symbol">{{symbols[symbol]}}</option>
             </select>
 
           </div>
           <div *ngIf="symbolsBat.ground!=type.value" class="col-1"><label for="exampleInputPassword1">№ rooms</label>
-            <input  type="number" class="form-control" id="exampleInputEmail1"
+            <input type="number" class="form-control" id="exampleInputEmail1"
                    aria-describedby="emailHelp" placeholder="№" name="numbreOfRooms" ngModel #numbreOfRooms="ngModel">
           </div>
-          <div *ngIf="symbolsBat.ground!=type.value" class="col-1"><label for="exampleInputPassword1">№ bathrooms</label>
+          <div *ngIf="symbolsBat.ground!=type.value" class="col-1"><label for="exampleInputPassword1">№
+            bathrooms</label>
             <input type="number" class="form-control" id="exampleInputEmail1"
                    aria-describedby="emailHelp" placeholder="№" name="numberOfBathrooms" ngModel
                    #numberOfBathrooms="ngModel">
@@ -50,7 +53,8 @@
             <input type="number" class="form-control" id="exampleInputEmail1"
                    aria-describedby="emailHelp" placeholder="m²" name="builda" ngModel #builda="ngModel">
           </div>
-          <div class="col-1" *ngIf="symbolsBat.apartment!=type.value"><label for="exampleInputPassword1">Total area</label>
+          <div class="col-1" *ngIf="symbolsBat.apartment!=type.value"><label for="exampleInputPassword1">Total
+            area</label>
             <input type="number" class="form-control" id="exampleInputEmail1"
                    aria-describedby="emailHelp" placeholder="m²" name="area" ngModel #area="ngModel">
           </div>
@@ -80,14 +84,20 @@
           <div class="col-3 premium flex"><label for="exampleInputPassword1">Are you premium ? </label>
             <div class="container be">
               <button class="btn btn-tn btn-1" (click)="EstimationPrice(f)">Estimation price</button>
-            </div><div class="response">
-              {{estimationPrice}} <div *ngIf="estimationPrice!=null">dt</div></div>
-          </div>  <div class="col-2 premium flex">
-          <div class="container be">
-            <button class="btn btn-2 btn-tn" (click)="EstimationDuration(f)">Estimation <br> duration</button>
+            </div>
+            <div class="response">
+              {{estimationPrice}}
+              <div *ngIf="estimationPrice!=null">dt</div>
+            </div>
           </div>
-          <div class="response">{{estimationDuration}} <div *ngIf="estimationDuration!=null">days</div></div>
-        </div>
+          <div class="col-2 premium flex">
+            <div class="container be">
+              <button class="btn btn-2 btn-tn" (click)="EstimationDuration(f)">Estimation <br> duration</button>
+            </div>
+            <div class="response">{{estimationDuration}}
+              <div *ngIf="estimationDuration!=null">days</div>
+            </div>
+          </div>
 
         </div>
 
@@ -96,49 +106,56 @@
       <!--<div class="row file contour flex">
     <div><input type="file" class="input" multiple></div>
         <p class="file">Drag your files here or click in this area.</p></div>-->
-  <div class="flex marg"><div *ngFor="let progressInfo of progressInfos" class="mb-2">
-    <span>{{ progressInfo.fileName }}</span>
-    <div class="progress">
-      <div
-        class="progress-bar progress-bar-info progress-bar-striped"
-        role="progressbar"
-        attr.aria-valuenow="{{ progressInfo.value }}"
-        aria-valuemin="0"
-        aria-valuemax="100"
-        [ngStyle]="{ width: progressInfo.value + '%' }"
-      >
-        {{ progressInfo.value }}%
-      </div>
-    </div></div>
-  </div>
-  <label class="btn btn-default">
-  <div> pictures </div>  <input type="file" style="font-weight: 600;font-size: 10px" multiple (change)="selectFiles($event)" />
-  </label>
-
-      <div class="flex marg col-3"><div *ngFor="let progressInfo of progressInfosVid" class="mb-2">
-        <span>{{ progressInfo.fileName }}</span>
-        <div class="progress">
-          <div
-            class="progress-bar progress-bar-info progress-bar-striped"
-            role="progressbar"
-            attr.aria-valuenow="{{ progressInfo.value }}"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            [ngStyle]="{ width: progressInfo.value + '%' }"
-          >
-            {{ progressInfo.value }}%
+      <div class="flex marg">
+        <div *ngFor="let progressInfo of progressInfos" class="mb-2">
+          <span>{{ progressInfo.fileName }}</span>
+          <div class="progress">
+            <div
+              class="progress-bar progress-bar-info progress-bar-striped"
+              role="progressbar"
+              attr.aria-valuenow="{{ progressInfo.value }}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              [ngStyle]="{ width: progressInfo.value + '%' }"
+            >
+              {{ progressInfo.value }}%
+            </div>
           </div>
-        </div></div>
+        </div>
       </div>
       <label class="btn btn-default">
-        <div> videos </div>  <input type="file"  style="font-weight: 600;font-size: 10px" multiple (change)="selectvideos($event)" />
+        <div> pictures</div>
+        <input type="file" style="font-weight: 600;font-size: 10px" multiple (change)="selectFiles($event)"/>
       </label>
-  <div class="response" role="alert">{{ message }}</div>
+
+      <div class="flex marg col-3">
+        <div *ngFor="let progressInfo of progressInfosVid" class="mb-2">
+          <span>{{ progressInfo.fileName }}</span>
+          <div class="progress">
+            <div
+              class="progress-bar progress-bar-info progress-bar-striped"
+              role="progressbar"
+              attr.aria-valuenow="{{ progressInfo.value }}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              [ngStyle]="{ width: progressInfo.value + '%' }"
+            >
+              {{ progressInfo.value }}%
+            </div>
+          </div>
+        </div>
+      </div>
+      <label class="btn btn-default">
+        <div> videos</div>
+        <input type="file" style="font-weight: 600;font-size: 10px" multiple (change)="selectvideos($event)"/>
+      </label>
+      <div class="response" role="alert">{{ message }}</div>
       <div class="row flex">
-  <button type="submit" [disabled]="verif==true" (click)="PostAd(f)" class="btn btn-ghost"><span
-    style="letter-spacing: 3px !important;">ADD</span>
-  </button>
+        <button type="submit" [disabled]="verif==true" (click)="PostAd(f)" class="btn btn-ghost"><span
+          style="letter-spacing: 3px !important;">ADD</span>
+        </button>
+      </div>
+    </form>
+  </section>
 </div>
-</form>
-</section>
-</div>
+
