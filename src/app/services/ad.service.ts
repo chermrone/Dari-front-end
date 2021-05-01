@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Ad} from '../models/Ad';
 import {Observable} from 'rxjs';
 import {FilesAd} from '../models/FilesAd';
 import {Typead} from '../enumeration/Typead';
 import {TypeBatiment} from '../enumeration/TypeBatiment';
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -136,23 +137,7 @@ GetSuggestionAd(id: number){
     return this.http.get(`${this.url}dari/ads/buyedAdByRegion/` + region);
   }
 
-  public getByedHousesByRegionAndMaxPrice(region: string, maxprice: number) {
-    return this.http.get(`${this.url}dari/ads/buyedAdByRegionandMaxPrice/` + region + '/' + maxprice);
-  }
-
-  public getByedHousesByRegionAndMinPrice(region: string, minprice: number) {
-    return this.http.get(`${this.url}dari/ads/buyedAdByRegionandMinPrice/` + region + '/' + minprice);
-  }
-
-  public getByedHousesByRegionAndperiod(region: string, period: number) {
-    return this.http.get(`${this.url}dari/ads/buyedAdInPeriod/` + region + '/' + period);
-  }
-
   public getRegionsOrdredByBuyingAdsAsc(){
     return this.http.get(`${this.url}dari/ads/GetRegionsordredbybuyingasc/`);
   }
-
-
-
-
 }

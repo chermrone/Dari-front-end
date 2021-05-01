@@ -1,6 +1,5 @@
 import {Gender} from '../enumeration/gender.enum';
 import {claims} from "./claims";
-import {imguser} from "./imguser";
 
 export class User{
   constructor() {
@@ -26,5 +25,5 @@ export class User{
 roles:string[];
 claim: claims[];
 
-imguser: imguser[];
+
 }

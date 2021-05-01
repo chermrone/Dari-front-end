@@ -54,6 +54,7 @@ import { SituationAdComponent } from './components/situation-ad/situation-ad.com
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +96,7 @@ import { SituationAdComponent } from './components/situation-ad/situation-ad.com
         DisplaySearchAdComponent,
         AdadvancSearchAdminComponent,
         SituationAdComponent,
-       ],
+        FounitureAdComponent,  ],
 
 
   imports: [
@@ -105,11 +106,9 @@ import { SituationAdComponent } from './components/situation-ad/situation-ad.com
     HttpClientModule,
     FormsModule,
     MaterialModule,
-    ChartsModule,
- //   NbThemeModule.forRoot({name: 'default'}),
-   // NbThemeModule.forRoot({ name: 'default' })
+    ChartsModule
   ],
-  providers: [httpInterceptorProviders, VerifAuthService, WebsocketService,AdService],
+  providers: [httpInterceptorProviders, VerifAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
