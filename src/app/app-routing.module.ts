@@ -32,6 +32,8 @@ import {RentComponent} from "./components/rent/rent.component";
 import {GetfavoComponent} from "./components/getfavo/getfavo.component";
 import {ChatComponent} from "./components/chat/chat.component";
 import {DisplaySearchAdComponent} from "./components/display-search-ad/display-search-ad.component";
+import {AssuranceComponent} from './components/assurance/assurance.component';
+import {SurveillanceDeMaisonComponent} from './components/surveillance-de-maison/surveillance-de-maison.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -57,12 +59,14 @@ const routes: Routes = [
   { path: 'statistics', component: StatisticsComponent},
   {path: 'reset' , component: RessetpasswordComponent},
   {path: 'fournitureAd' , component: FounitureAdComponent},
-  {path:'adOwned',component: AdOwnedComponent},
-  {path:'sell',component: SellComponent},
-  {path:'rent',component: RentComponent},
-  {path:'getfav',component: GetfavoComponent},
-  {path:'chat',component: ChatComponent},
-  {path:'SearchAd',component: DisplaySearchAdComponent}
+  {path: 'adOwned', component: AdOwnedComponent},
+  {path: 'sell', component: SellComponent},
+  {path: 'rent', component: RentComponent},
+  {path: 'getfav', component: GetfavoComponent},
+  {path: 'chat', component: ChatComponent},
+  {path: 'SearchAd', component: DisplaySearchAdComponent},
+  {path: 'assurance', component: AssuranceComponent},
+  {path: 'surveillance_de_maison', component: SurveillanceDeMaisonComponent},
 ];
 
 @NgModule({

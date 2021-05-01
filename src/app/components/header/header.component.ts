@@ -69,11 +69,13 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
       authorities: this.token.getAuthorities()
     };
 
-    this.Adservice.getFav().subscribe((data)=>{console.log(data);
-      this.adFav=data;
-      this.countFav=this.adFav.length});
+    this.Adservice.getFav().subscribe((data) => {
+      console.log(data);
+      this.adFav = data;
+      this.countFav = this.adFav.length;
+    });
     console.log(this.verifauth.verif);
-  this.adserv.getFav().subscribe(data=>console.log(data));
+    this.adserv.getFav().subscribe(data => console.log(data));
 
   }
 
@@ -83,14 +85,6 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
     this.verifauth.verif = false;
     this.verifauth.verifrole = false;
     this.router.navigate(['']);
-  }
-
-  // tslint:disable-next-line:typedef
-  UpgradePremium() {
-    this.sos.UpgradePremium(this.id, this.subscriptionOrder).subscribe(data => {
-      console.log(data);
-    },
-      error => console.log(error));
   }
 
   // tslint:disable-next-line:typedef
