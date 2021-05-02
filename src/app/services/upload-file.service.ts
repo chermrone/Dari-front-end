@@ -31,16 +31,16 @@ export class UploadFileService {
     return this.http.get<Ad>(`${this.url}dari/imgads/all`);}
 
   getFilesuser(): Observable<any> {
-    return this.http.get<User>(`${this.url}dari/imgusers/all`);}
+    return this.http.get<User>(`${this.url}dari/imgusers/all`); }
 
 
-  uploaded(file: File, type: string, User: User): Observable<HttpEvent<any>> {
+  uploaded(file: File, User: User): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
 
     formData.append('imageFile', file);
-    formData.append('us', JSON.stringify(User));
+    formData.append('user', JSON.stringify(User));
 
-    const req = new HttpRequest('POST', `${this.url}dari/imgusers/upload/` + type, formData, {
+    const req = new HttpRequest('POST', `${this.url}dari/imgusers/upload` , formData, {
       reportProgress: true,
       responseType: 'json'
     });
