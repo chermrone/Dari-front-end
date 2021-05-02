@@ -1,3 +1,21 @@
+<h1 class="alert alert-info"> bill </h1>
+<button mat-stroked-button (click)="generatePDF()">Generate PDF</button>
+<table id="table" class="table table-striped">
+  <thead>
+    <th>User Name</th>
+    <th>Subscription id</th>
+    <th>Price</th>
+    <th>Paying date</th>
+  </thead>
+  <tbody *ngFor="let s of subscordList">
+    <tr>
+      <td>{{username}}</td>
+      <td>Premium</td>
+      <td>{{s.subscription.subscriptiontype}}</td>
+      <td>{{s.payingDate}}</td>
+    </tr>
+  </tbody>
+</table>
 <div class="alert alert-success" role="alert">
   Congratulations! you are no premium
 </div>

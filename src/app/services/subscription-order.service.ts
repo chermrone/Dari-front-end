@@ -28,33 +28,41 @@ export class SubscriptionOrderService {
 
   constructor(private http: HttpClient) { }
 
-  getAllSubscription_orders(){
+  public getAllSubscription_orders(){
     return this.http.get(`${this.url}dari/subscriptionorder/all`);
   }
 
-  getById(id: number){
+  public getById(id: number){
     return this.http.get(`${this.url}dari/subscriptionorder/find/` + id);
   }
 
+  public getSubscriptionOrdersByUser(id: number) {
+    return this.http.get(`${this.url}dari/subscriptionorder/getbyuser/` + id);
+  }
+
+  public getSubscriptionOrdersPremiumByUser(id: number) {
+    return this.http.get(`${this.url}dari/subscriptionorder/getPremiumByUser/` + id);
+  }
+
   // tslint:disable-next-line:typedef
-  UpgradePremium(id: number, value: any){
+  public UpgradePremium(id: number, value: any){
     return this.http.post(`${this.url}dari/subscriptionorder/addpremium/` + `${id}`, value);
   }
 
   // tslint:disable-next-line:typedef
-  deleteSubscriptionorder(id: number){
+  public deleteSubscriptionorder(id: number){
     return this.http.delete(`${this.url}dari/subscriptionorder/delete/` + id);
   }
 
-  createSubscriptionorder(subscriptionorder: SubscriptionOrder, id: string, iduser: number){
+  public createSubscriptionorder(subscriptionorder: SubscriptionOrder, id: string, iduser: number){
     return this.http.post(`${this.url}dari/subscriptionorder/addtouser/` + id + '/' + iduser, subscriptionorder);
   }
 
-  subscribe(subscriptionorder: SubscriptionOrder, id: string){
+  public subscribe(subscriptionorder: SubscriptionOrder, id: string){
     return this.http.post(`${this.url}dari/subscriptionorder/add/` + id, subscriptionorder);
   }
 
-  updateSubscriptionorder(subscriptionorder: SubscriptionOrder){
+  public updateSubscriptionorder(subscriptionorder: SubscriptionOrder){
     console.log(subscriptionorder);
     return this.http.put(`${this.url}dari/subscriptionorder/update`, subscriptionorder);
   }
