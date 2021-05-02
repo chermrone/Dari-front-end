@@ -52,6 +52,7 @@ import { AdadvancSearchAdminComponent } from './components/adadvanc-search-admin
 import { SituationAdComponent } from './components/situation-ad/situation-ad.component';
 import { AssuranceComponent } from './components/assurance/assurance.component';
 import { SurveillanceDeMaisonComponent } from './components/surveillance-de-maison/surveillance-de-maison.component';
+import { FounitureAdDetailsComponent } from './components/founiture-ad-details/founiture-ad-details.component';
 
 
 
@@ -99,6 +100,7 @@ import { SurveillanceDeMaisonComponent } from './components/surveillance-de-mais
         SituationAdComponent,
         AssuranceComponent,
         SurveillanceDeMaisonComponent,
+        FounitureAdDetailsComponent,
        ],
 
 
