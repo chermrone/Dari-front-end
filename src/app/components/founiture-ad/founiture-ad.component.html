@@ -3,10 +3,13 @@
     <div *ngIf="list" class="row">
         <div  *ngFor="let ad of list" class="col-md-4 col-xs-6">
           <div  class="shop">
-            <div  class="shop-img"><img  [src]="getFilePath(ad)" alt=""></div>
+            <div  class="shop-img">
+              <img *ngIf="getFilePath(ad)"  [src]="getFilePath(ad)[0]" alt="">
+              <img *ngIf="getFilePath(ad).length == 0" src="/assets/img/test.png" alt="">
+            </div>
             <div  class="shop-body">
               <h3 >{{ad.nameFa}}<br >price : {{ad.price}} <br >date : {{ad.created}} </h3>
-              <a  href="#" class="cta-btn">Details <i  class="fa fa-arrow-circle-right"></i></a>
+              <a class="cta-btn" (click)="openDialog(ad)">Details <i  class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>

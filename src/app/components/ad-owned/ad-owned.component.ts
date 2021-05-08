@@ -61,7 +61,7 @@ export class AdOwnedComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "45%";
     this.dialog.open(ModifAdComponent, dialogConfig);
-    this.adserv.idAd= AdId;
+    this.adserv.idAd = AdId;
   }
 
   oncreate() {
@@ -75,6 +75,6 @@ export class AdOwnedComponent implements OnInit {
     dialogConfig.width = "45%";
     this.dialog.open(SituationAdComponent, dialogConfig);
     this.adserv.idAd= adId;
-    
+
   }
 }
