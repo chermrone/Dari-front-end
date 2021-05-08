@@ -4,6 +4,8 @@ import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {FournitureAd} from '../models/FournitureAd';
 import {TokenStorageService} from '../auth/token-storage.service';
+import {FLOAT} from 'html2canvas/dist/types/css/property-descriptors/float';
+import {DailyProfit} from '../models/DailyProfit';
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +46,16 @@ export class FournitureAdServiceService {
     });
 
     return this.httpclient.request(req);
+  }
+  getTotalProfit(dateDebut: string , dateFin: string): Observable<number>{
+    return this.httpclient.get<number>
+    (environment.baseUrl + 'Order/TotalProfit' + '?dateDebut=' + dateDebut + '&dateFin=' + dateFin);
+  }
+  getDailyProfit(dateDebut: string , dateFin: string): Observable<DailyProfit[]>{
+    return this.httpclient.get<DailyProfit[]>
+    (environment.baseUrl + 'Order/DailyProfit' + '?dateDebut=' + dateDebut + '&dateFin=' + dateFin);
+  }
+  getTopSellers(): Observable<string[]>{
+    return this.httpclient.get<string[]>(environment.baseUrl + 'FournitureAd/TopSellers');
   }
 }

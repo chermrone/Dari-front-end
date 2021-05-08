@@ -60,6 +60,7 @@ import { AddFournitureAdComponent } from './components/add-fourniture-ad/add-fou
 import { FournitureAdOwnedComponent } from './components/fourniture-ad-owned/fourniture-ad-owned.component';
 import { ModifFournitureAdComponent } from './components/modif-fourniture-ad/modif-fourniture-ad.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { FournitureStatisticsComponent } from './components/fourniture-statistics/fourniture-statistics.component';
 
 
 @NgModule({
@@ -109,6 +110,7 @@ import {MatChipsModule} from '@angular/material/chips';
         AddFournitureAdComponent,
         FournitureAdOwnedComponent,
         ModifFournitureAdComponent,
+        FournitureStatisticsComponent,
        ],
 
 

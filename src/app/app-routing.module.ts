@@ -36,6 +36,7 @@ import {AssuranceComponent} from './components/assurance/assurance.component';
 import {SurveillanceDeMaisonComponent} from './components/surveillance-de-maison/surveillance-de-maison.component';
 import {AddFournitureAdComponent} from './components/add-fourniture-ad/add-fourniture-ad.component';
 import {FournitureAdOwnedComponent} from './components/fourniture-ad-owned/fourniture-ad-owned.component';
+import {FournitureStatisticsComponent} from './components/fourniture-statistics/fourniture-statistics.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -64,6 +65,7 @@ const routes: Routes = [
   {path: 'add/fournitureAd' , component: AddFournitureAdComponent},
   {path: 'adOwned', component: AdOwnedComponent},
   {path: 'FournitureAdOwned', component: FournitureAdOwnedComponent},
+  {path: 'fournitureStatistics', component: FournitureStatisticsComponent},
   {path: 'sell', component: SellComponent},
   {path: 'rent', component: RentComponent},
   {path: 'getfav', component: GetfavoComponent},
