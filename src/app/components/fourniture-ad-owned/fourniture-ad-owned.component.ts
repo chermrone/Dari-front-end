@@ -59,7 +59,13 @@ export class FournitureAdOwnedComponent implements OnInit {
     window.location.reload();
   }
   openDialog(ad): void {
-    const dialogRef = this.dialog.open(ModifFournitureAdComponent);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '80%';
+    dialogConfig.width = '90%';
+    dialogConfig.autoFocus = true;
+    const dialogRef = this.dialog.open(ModifFournitureAdComponent , dialogConfig);
     const instance = dialogRef.componentInstance;
     instance.AD = ad;
     dialogRef.afterClosed().subscribe(result => {

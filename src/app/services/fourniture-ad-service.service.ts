@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpRequest, HttpResponse} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {FournitureAd} from '../models/FournitureAd';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {FLOAT} from 'html2canvas/dist/types/css/property-descriptors/float';
 import {DailyProfit} from '../models/DailyProfit';
+import {LocalFile} from '../models/LocalFile';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,10 @@ export class FournitureAdServiceService {
 
     return this.httpclient.request(req);
   }
+  public deleteFile(pathFile: string): Observable<any>{
+    return  this.httpclient.request('DELETE' , environment.baseUrl + 'File/delete' , {body : {path: pathFile} });
+  }
+
   getTotalProfit(dateDebut: string , dateFin: string): Observable<number>{
     return this.httpclient.get<number>
     (environment.baseUrl + 'Order/TotalProfit' + '?dateDebut=' + dateDebut + '&dateFin=' + dateFin);

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Ad} from "../models/Ad";
 import {environment} from "../../environments/environment";
@@ -47,7 +47,6 @@ export class UploadFileService {
 
     return this.http.request(req);
   }
-
 }
 
 
