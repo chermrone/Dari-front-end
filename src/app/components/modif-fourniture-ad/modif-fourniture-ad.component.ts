@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {FournitureAd} from '../../models/FournitureAd';
 import {FournitureAdServiceService} from '../../services/fourniture-ad-service.service';
@@ -7,6 +7,8 @@ import {AdService} from '../../services/ad.service';
 import {FilesAd} from '../../models/FilesAd';
 import {Gallery, GalleryItem, ImageItem, ImageSize, ThumbnailsPosition} from 'ng-gallery';
 import {Lightbox} from 'ng-gallery/lightbox';
+import {JavascriptViewer} from '@3dweb/360javascriptviewer';
+import {NgImageSliderComponent} from 'ng-image-slider';
 
 @Component({
   selector: 'app-modif-fourniture-ad',
@@ -22,6 +24,7 @@ export class ModifFournitureAdComponent implements OnInit {
   listVideo: string[] = [];
   items: GalleryItem[];
   imageObject = data;
+  @ViewChild('nav') nav: NgImageSliderComponent;
   ngOnInit(): void {
     // console.log('data :' + data);
     const
@@ -91,6 +94,21 @@ export class ModifFournitureAdComponent implements OnInit {
   }
   vider(): void{
     data = [];
+  }
+  delete(event): void{
+    this.nav.close();
+    if (this.imageObject[event].image){
+      console.log('image : ' + this.imageObject[event].image);
+      this.fournitureAdServiceService.deleteFile(this.imageObject[event].image).subscribe(
+        () => console.log('img deleted')
+      );
+    }
+    else if (this.imageObject[event].video){
+      console.log('video : ' + this.imageObject[event].video);
+      this.fournitureAdServiceService.deleteFile(this.imageObject[event].video).subscribe(
+        () => console.log('video deleted')
+      );
+    }
   }
 }
 let data = [];

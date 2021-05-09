@@ -42,11 +42,13 @@ export class FournitureStatisticsComponent implements OnInit {
   profits: number[];
   topSellers: string[];
   ngOnInit(): void {
-    this.fournitureAdServiceService.getTotalProfit('2021-04-19', '2021-05-08').subscribe(
+    this.dateFin = new Date().toISOString().split('T')[0];
+    console.log(this.dateFin);
+    this.fournitureAdServiceService.getTotalProfit('2021-04-19', this.dateFin).subscribe(
       (data) => { this.totalProfit = data; }
     );
     this.barCharData[0].data = [];
-    this.fournitureAdServiceService.getDailyProfit('2021-04-19' , '2021-05-08').subscribe(
+    this.fournitureAdServiceService.getDailyProfit('2021-04-19' , this.dateFin).subscribe(
       dailyProfits => {
         dailyProfits.forEach(dailyProfit =>  this.barCharData[0].data.push(dailyProfit.profit));
         this.barChartLabels = dailyProfits.map(e => e.date);
@@ -58,13 +60,16 @@ export class FournitureStatisticsComponent implements OnInit {
   public getData(f: NgForm): void{
     this.dateDebut = f.value.dateDebut;
     this.dateFin = f.value.dateFin;
-    console.log(f.value);
+    // console.log(f.value);
     this.barCharData[0].data = [];
     this.fournitureAdServiceService.getDailyProfit(this.dateDebut , this.dateFin).subscribe(
         dailyProfits => {
           dailyProfits.forEach(dailyProfit =>  this.barCharData[0].data.push(dailyProfit.profit));
           this.barChartLabels = dailyProfits.map(e => e.date);
         });
+    this.fournitureAdServiceService.getTotalProfit(this.dateDebut , this.dateFin).subscribe(
+      (data) => { this.totalProfit = data; }
+    );
   }
 
 }

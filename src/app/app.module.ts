@@ -61,6 +61,7 @@ import { FournitureAdOwnedComponent } from './components/fourniture-ad-owned/fou
 import { ModifFournitureAdComponent } from './components/modif-fourniture-ad/modif-fourniture-ad.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { FournitureStatisticsComponent } from './components/fourniture-statistics/fourniture-statistics.component';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -115,6 +116,7 @@ import { FournitureStatisticsComponent } from './components/fourniture-statistic
 
 
   imports: [
+    MatListModule,
     MatChipsModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -126,8 +128,6 @@ import { FournitureStatisticsComponent } from './components/fourniture-statistic
     GalleryModule,
     LightboxModule,
     NgImageSliderModule,
- //   NbThemeModule.forRoot({name: 'default'}),
-   // NbThemeModule.forRoot({ name: 'default' })
   ],
   providers: [httpInterceptorProviders, VerifAuthService, WebsocketService, AdService],
   bootstrap: [AppComponent]

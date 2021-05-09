@@ -25,9 +25,10 @@
         <input matInput [(ngModel)]="AD.description" name="description" ngModel #description="ngModel" required>
       </mat-form-field>
       <br>
-          <div style="width: 84px; height: 50px; text-align:center;margin:0; padding:0;">
-            <ng-image-slider #nav [images]="imageObject" [infinite]="true" [imageSize]="{width: '50%', height: 250}" slideImage="1"></ng-image-slider>
-          </div>
+      <div>
+          <ng-image-slider #nav [images]="imageObject" [infinite]="true" [imageSize]="{width: '50%', height: '50%'}" slideImage="1"
+                           (imageClick)="delete($event)" [showVideoControls]="false"></ng-image-slider>
+      </div>
       <br>
       <button mat-stroked-button class="ml-3" style="background-color: #b0bec5" [mat-dialog-close]="true"
               [disabled]="f.invalid" (click)="update(f)">submit
