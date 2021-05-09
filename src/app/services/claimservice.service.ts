@@ -11,6 +11,13 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class ClaimserviceService {
+  get idad(): number {
+    return this._idad;
+  }
+
+  set idad(value: number) {
+    this._idad = value;
+  }
   get clmId(): number {
     return this._clmId;
   }
@@ -21,6 +28,7 @@ export class ClaimserviceService {
   private url = environment.serverURL;
   // tslint:disable-next-line:variable-name
   private _clmId = 0;
+  private _idad=0;
   constructor(private http: HttpClient) { }
 
   // tslint:disable-next-line:typedef
