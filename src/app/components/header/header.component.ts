@@ -101,6 +101,10 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
     this.router.navigate(['Ad/Add']);
 
   }
+  RedirectAddFurniture() {
+    this.router.navigate(['add/fournitureAd']);
+
+  }
   onCreate(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

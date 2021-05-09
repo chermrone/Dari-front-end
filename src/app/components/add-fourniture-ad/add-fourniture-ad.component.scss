@@ -1,0 +1,114 @@
+
+*{margin: 0;
+  box-sizing: border-box;}
+.img{font-family: 'Roboto', sans-serif !important;background-size: cover;background-image:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.5)), url("../../../../src/assets/img/add ad img.jpg")}
+.img p {color:#c6c8ca;text-align: center;padding-top: 50px;font-weight: 500;font-size: 30px}
+section{ }
+.flex{display: flex;align-items: center;
+  justify-content: center;padding-top: 10px}
+.textarea{padding-top: 20px}
+.btn{color: #c6c8ca;font-weight: 500;
+  display: inline-block;  /*by using inline block we can use sme padding margin*/
+  padding: 10px 40px;text-decoration: none; /*text-decoration hide the line of a*/z-index: 999999;
+  border-radius: 200px;border:2px solid #c23616;margin-top: 20px;transition: background-color 0.5s,border 0.2s, color 0.2s/* color change slowly by transition*/
+}
+
+.btn-ghost{color:  #c23616;
+  margin-top: 100px!important;margin-bottom: 100px;
+}
+
+.btn-ghost:hover,.btn-ghost:active{color: #dcdde1;background-color:#2f3640;border:3px solid #353b48;
+
+}
+form .btn{ margin-left: 40%}
+.contour{ margin-left:25%;border: 4px dashed #fff;height: 1%;width: 50% !important;margin-top: 10px}
+
+form .file{
+  width: 100%;
+  height: 20% !important;
+  text-align: center;
+  line-height: 170px;
+  color: #ffffff;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+form .input{
+  position: absolute;
+  top:780px;left: -100px;
+
+  width:100% ;
+  height: 35%;
+  outline: none;
+  opacity: 0;
+}
+.premium{
+  color:  #c23616;font-weight: 500;font-size: 20px;
+}
+
+div.container .be{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-tn{
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  letter-spacing: 2px;
+  padding: 10px 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px 30px;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  z-index: 999999;
+}
+button.btn-1{font-size: 10px;
+}
+
+button.btn-1:hover{
+  background-color: white;
+  color: black;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+button.btn-2{  font-size: 10px;
+
+  overflow: hidden;
+  position: relative;
+}
+
+button.btn-2:hover{
+  color: black;
+}
+
+
+button.btn-2:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  width: 100%;
+  height: 0;
+  top: 0;
+  left: 0;
+  background: #fff;
+}
+
+button.btn-2:hover:after,
+button.btn-2:active:after {
+  height: 100%;
+}
+.response{
+  font-size: 13px;color: #718093;font-weight: 700;
+}
+.marg{
+  display: flex;
+}

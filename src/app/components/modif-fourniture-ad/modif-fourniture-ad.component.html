@@ -1,0 +1,42 @@
+<form #f="ngForm" (ngSubmit)="onsubmit(f)">
+  <mat-grid-tile>Modify the Fourniture Ad</mat-grid-tile>
+  <mat-dialog-content class="mat-typography">
+    <div class="example-container">
+      <mat-form-field appearance="fill" class="width-50 col-10">
+        <mat-label>Name of the furniture </mat-label>
+        <input matInput [(ngModel)]="AD.nameFa" name="nameFa" ngModel #nameFa="ngModel" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label id="example-radio-group-label" class="ml-3">Address</mat-label>
+        <mat-select [(ngModel)]="AD.address" id="inputState" name="address" ngModel #address="ngModel"
+                    class="col-3">
+          <mat-option *ngFor="let address of regions" [value]="address">{{address}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Price</mat-label>
+        <input matInput [(ngModel)]="AD.price" name="price" ngModel #price="ngModel" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="AD.description" name="description" ngModel #description="ngModel" required>
+      </mat-form-field>
+      <br>
+          <div style="width: 84px; height: 50px; text-align:center;margin:0; padding:0;">
+            <ng-image-slider #nav [images]="imageObject" [infinite]="true" [imageSize]="{width: '50%', height: 250}" slideImage="1"></ng-image-slider>
+          </div>
+      <br>
+      <button mat-stroked-button class="ml-3" style="background-color: #b0bec5" [mat-dialog-close]="true"
+              [disabled]="f.invalid" (click)="update(f)">submit
+      </button>
+      <button mat-stroked-button type="reset" class="ml-3" style="background-color: #b0bec5">reset</button>
+      <button type="reset" mat-stroked-button class="ml-3" style="background-color: #b0bec5"
+              (click)="onclose()">cancel
+      </button>
+    </div>
+    <br>
+  </mat-dialog-content>
+</form>

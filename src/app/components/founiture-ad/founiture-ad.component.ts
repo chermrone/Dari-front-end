@@ -1,6 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FournitureAd} from '../../models/FournitureAd';
 import {FournitureAdServiceService} from '../../services/fourniture-ad-service.service';
+import {FounitureAdDetailsComponent} from '../founiture-ad-details/founiture-ad-details.component';
+import {MatDialog} from '@angular/material/dialog';
+import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Component({
   selector: 'app-founiture-ad',
@@ -10,26 +13,52 @@ import {FournitureAdServiceService} from '../../services/fourniture-ad-service.s
 export class FounitureAdComponent implements OnInit {
   list: FournitureAd[];
 
-  constructor(private fournitureAdServiceService: FournitureAdServiceService) {
+  // tslint:disable-next-line:max-line-length
+  constructor(private fournitureAdServiceService: FournitureAdServiceService, public dialog: MatDialog, private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit(): void {
-    this.fournitureAdServiceService.getAll().subscribe(
-      (result) => {
-        this.list = result;
-      }
-    );
-  }
-
-  getFilePath(ad): string {
-    if (ad.localFile[0]) {
-      const filePath = ad.localFile[0].path;
-      const startIndex = filePath.indexOf('\assets');
-      const endIndex = filePath.length;
-      console.log(filePath.substring(startIndex, endIndex));
-      return filePath.substring(startIndex, endIndex);
+    // console.log(this.tokenStorageService.getUsername());
+    if (this.tokenStorageService.getUsername()) {
+      this.fournitureAdServiceService.getOtherAll().subscribe(
+        (result) => {
+          this.list = result;
+        }
+      );
+    } else {
+      this.fournitureAdServiceService.getAll().subscribe(
+        (result) => {
+          this.list = result;
+        }
+      );
     }
-    return '';
+
   }
 
+  openDialog(ad): void {
+    const dialogRef = this.dialog.open(FounitureAdDetailsComponent);
+    const instance = dialogRef.componentInstance;
+    instance.ad = ad;
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+      instance.vider();
+    });
+  }
+  getFilePath(ad): string[] {
+    let images: string[] = [];
+    const imageExtensions = ['.bmp', '.gif', '.jpg', '.jpeg', '.png', '.tif', '.tiff', '.webp', '.apng', '.wmf', '.ico', '.jif', '.jfif',  '.svg', '.svgz', '.xbm'];
+    if (ad.localFile[0]) {
+      ad.localFile.forEach((file) => {
+        imageExtensions.forEach((extension) => {
+          if (file.path.indexOf(extension) > 0) {
+            const startIndex = file.path.indexOf('\assets');
+            const endIndex = file.path.length;
+            images.push(file.path.substring(startIndex, endIndex));
+          }
+        });
+      });
+    }
+    // console.log(images);
+    return images ;
+  }
 }

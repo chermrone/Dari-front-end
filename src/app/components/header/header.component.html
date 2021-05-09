@@ -14,7 +14,8 @@
         <li><a href="#"><i class="fa fa-dollar"></i> Appointments</a></li>
 
         <li><a  routerLink="checkout"><i class="fa fa-user-o"></i> Upgrade premium</a></li>
-      <li> <a  routerLink="adOwned"><i class="fa fa-user-o"></i> My Ads</a></li>
+        <li> <a  routerLink="FournitureAdOwned"><i class="fa fa-user-o"></i> My Fourniture Ads</a></li>
+        <li> <a  routerLink="adOwned"><i class="fa fa-user-o"></i> My Ads</a></li>
         <li><a routerLink="user" ><i class="fa fa-user-o"></i> My Account</a></li>
         <li><a (click)="logout()"><i class="fa fa-user-o"></i> Logout</a></li>
       </ul>
@@ -169,15 +170,25 @@
              aria-expanded="false">Dashboard</a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" routerLink="managuser">User Management</a>
+            <a class="dropdown-item"  routerLink="managad" href="#">Fourniture Ad Management</a>
             <a class="dropdown-item"  routerLink="managad" href="#">Ad Management</a>
             <a class="dropdown-item" routerLink="subscription">Subscriptions management</a>
             <a class="dropdown-item" routerLink="sordmanag">Subscription orders management</a>
             <a class="dropdown-item" routerLink="managclaim">Claims management</a>
           </div>
         </li>
-        <li style="margin-left: 35%">   <button type="button" class="btn btn-lg" style="background-color:#D10024;color:#FFF;font-weight: 615;
+        <li *ngIf="authority==='ADMIN' || verifauth.verifrole===true" >
+          <a href="/fournitureStatistics">Statistics</a>
+        </li>
+        <li  style="margin-left: 10%">
+          <button *ngIf="info.username" type="button" class="btn btn-lg" style="background-color:#D10024;color:#FFF;font-weight: 615;
+    border: none;
+    border-radius: 40px 40px 40px 40px;margin-top:-5px;font-size:18px;height: 30px; letter-spacing:2px;line-height: 1em;" (click)="RedirectAddFurniture() "><span style="">Post furniture Ad</span></button>
+        <li style="margin-left: 1%">
+          <button type="button" class="btn btn-lg" style="background-color:#D10024;color:#FFF;font-weight: 615;
     border: none;
     border-radius: 40px 40px 40px 40px;margin-top:-5px;font-size:18px;height: 30px; letter-spacing:2px;line-height: 1em;" (click)="RedirectAddProduct()"><span style="">Post Ad</span></button>
+
       </ul>
       <!-- /NAV -->
     </div>

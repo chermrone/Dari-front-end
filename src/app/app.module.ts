@@ -45,16 +45,22 @@ import { RentComponent } from './components/rent/rent.component';
 import { GetfavoComponent } from './components/getfavo/getfavo.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { FirstchatComponent } from './components/firstchat/firstchat.component';
-import {WebsocketService} from "./services/websocket.service";
+import {WebsocketService} from './services/websocket.service';
 import { DisplaySearchAdComponent } from './components/display-search-ad/display-search-ad.component';
-import {AdService} from "./services/ad.service";
+import {AdService} from './services/ad.service';
 import { AdadvancSearchAdminComponent } from './components/adadvanc-search-admin/adadvanc-search-admin.component';
 import { SituationAdComponent } from './components/situation-ad/situation-ad.component';
 import { AssuranceComponent } from './components/assurance/assurance.component';
 import { SurveillanceDeMaisonComponent } from './components/surveillance-de-maison/surveillance-de-maison.component';
 import { FounitureAdDetailsComponent } from './components/founiture-ad-details/founiture-ad-details.component';
-
-
+import { GalleryModule } from 'ng-gallery';
+import { LightboxModule } from 'ng-gallery/lightbox';
+import { NgImageSliderModule } from 'ng-image-slider';
+import { AddFournitureAdComponent } from './components/add-fourniture-ad/add-fourniture-ad.component';
+import { FournitureAdOwnedComponent } from './components/fourniture-ad-owned/fourniture-ad-owned.component';
+import { ModifFournitureAdComponent } from './components/modif-fourniture-ad/modif-fourniture-ad.component';
+import {MatChipsModule} from '@angular/material/chips';
+import { FournitureStatisticsComponent } from './components/fourniture-statistics/fourniture-statistics.component';
 
 
 @NgModule({
@@ -101,10 +107,15 @@ import { FounitureAdDetailsComponent } from './components/founiture-ad-details/f
         AssuranceComponent,
         SurveillanceDeMaisonComponent,
         FounitureAdDetailsComponent,
+        AddFournitureAdComponent,
+        FournitureAdOwnedComponent,
+        ModifFournitureAdComponent,
+        FournitureStatisticsComponent,
        ],
 
 
   imports: [
+    MatChipsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -112,10 +123,13 @@ import { FounitureAdDetailsComponent } from './components/founiture-ad-details/f
     FormsModule,
     MaterialModule,
     ChartsModule,
+    GalleryModule,
+    LightboxModule,
+    NgImageSliderModule,
  //   NbThemeModule.forRoot({name: 'default'}),
    // NbThemeModule.forRoot({ name: 'default' })
   ],
-  providers: [httpInterceptorProviders, VerifAuthService, WebsocketService,AdService],
+  providers: [httpInterceptorProviders, VerifAuthService, WebsocketService, AdService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

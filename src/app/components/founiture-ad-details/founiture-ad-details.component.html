@@ -1,1 +1,31 @@
-<p>founiture-ad-details works!</p>
+<h1 mat-dialog-title class="text-white">{{ad.nameFa}} </h1>
+<mat-dialog-content class="mat-typography">
+  <h3 class="text-white"> price : {{ad.price}} <br >date : {{ad.created}}<br >address : {{ad.address}}
+    <br >description : {{ad.description}}
+  </h3>
+  <div class="lightbox-example">
+    <button mat-raised-button color="primary" (click)="lightbox.open(0)">Open Gallery</button>
+
+
+    <button mat-raised-button color="accent" (click)="lightbox.open(0, 'lightbox', {panelClass: 'fullscreen'})">Open Gallery in fullscreen mode</button>
+  </div>
+
+  <div class="gallerize-example">
+    <h2>Gallery</h2>
+    <p class="container" gallerize>
+      <img *ngFor="let img of imageData" [src]="img.srcUrl">
+      <!--img  src = "/assets/img/test.png"-->
+      <!--ng-image-slider [images]="imageObject" #nav>></--ng-image-slider-->
+      <!--ng-image-slider #nav [images]="imageObject" [infinite]="true" [autoSlide]="1"
+                       [imageSize]="{width: '50%', height: 250}" slideImage="1"></ng-image-slider-->
+    </p>
+  </div>
+  <div style="width: 840px; height: 500px; text-align:center;margin:0; padding:0;">
+    <ng-image-slider #nav [images]="imageObject" [infinite]="true" [autoSlide]="1"
+                     [imageSize]="{width: '50%', height: 250}" slideImage="1"></ng-image-slider>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="vider()" >Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Add to cart</button>
+</mat-dialog-actions>
