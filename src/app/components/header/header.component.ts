@@ -19,7 +19,7 @@ import {TypeBatiment} from "../../enumeration/TypeBatiment";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
-  constructor(public Adservice: AdService,private dialog: MatDialog,public adserv:AdService, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
+  constructor(public Adservice: AdService,private dialog: MatDialog, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
     this.keys = Object.keys(this.symbol);       this.keysBat = Object.keys(this.symbolsBat);
 
 
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
   id = 1;
   roles: string[];
-  countFav:number;adFav:Ad[];
+  countFav:number; adFav:Ad[];
   symbolsBat = TypeBatiment;  keysBat = [];
 
 
@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
       this.countFav = this.adFav.length;
     });
     console.log(this.verifauth.verif);
-    this.adserv.getFav().subscribe(data => console.log(data));
+    this.Adservice.getFav().subscribe(data => console.log(data));
 
   }
 
