@@ -22,6 +22,9 @@ export class FournitureAdServiceService {
   getAll(): Observable<FournitureAd[]>{
     return this.httpclient.get<FournitureAd[]>(environment.baseUrl + 'FournitureAd/all');
   }
+  getAllAvailable(): Observable<FournitureAd[]>{
+    return this.httpclient.get<FournitureAd[]>(environment.baseUrl + 'FournitureAd/allAvailable');
+  }
   getAdById(id: number): Observable<FournitureAd>{
     return this.httpclient.get<FournitureAd>(environment.baseUrl + 'FournitureAd/all/' + id);
   }

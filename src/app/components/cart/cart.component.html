@@ -1,1 +1,16 @@
-<p>cart works!</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card" style="width: 18rem;" *ngFor="let fournitureAd of shoppingCart.fournitureAds">
+        <img class="card-img-top" [src]="getFilePath(fournitureAd)">
+        <div class="card-body">
+          <h5 class="card-title">{{fournitureAd.nameFa}}</h5>
+          <p class="card-text">{{fournitureAd.price}}</p>
+          <a href="#" class="btn btn-danger" (click)="remove(fournitureAd)">Remove from Cart</a>
+        </div>
+      </div>
+      <button id="checkout" mat-raised-button color="accent" [routerLink]="['/faCheckout']">Checkout</button>
+    </div>
+  </div>
+</div>

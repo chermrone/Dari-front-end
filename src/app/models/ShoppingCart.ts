@@ -4,8 +4,8 @@ import {OrderUser} from './OrderUser';
 
 
 export class ShoppingCart {
-  ShoppingCartId: number;
-  Quantity: number;
+  shoppingCartId: number;
+  quantity: number;
   dateadded: Date;
   address: string;
 

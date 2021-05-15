@@ -10,13 +10,13 @@
       </ul>
       <ul class="header-links pull-right">
         <li><a href="#" routerLink="chat"><i class="fa fa-commenting-o" aria-hidden="true"></i>
-          Chat Now!</a></li>
+            Chat Now!</a></li>
         <li><a href="#"><i class="fa fa-dollar"></i> Appointments</a></li>
 
-        <li><a  routerLink="checkout"><i class="fa fa-user-o"></i> Upgrade premium</a></li>
-        <li> <a  routerLink="FournitureAdOwned"><i class="fa fa-user-o"></i> My Fourniture Ads</a></li>
-        <li> <a  routerLink="adOwned"><i class="fa fa-user-o"></i> My Ads</a></li>
-        <li><a routerLink="user" ><i class="fa fa-user-o"></i> My Account</a></li>
+        <li><a routerLink="checkout"><i class="fa fa-user-o"></i> Upgrade premium</a></li>
+        <li> <a routerLink="FournitureAdOwned"><i class="fa fa-user-o"></i> My Fourniture Ads</a></li>
+        <li> <a routerLink="adOwned"><i class="fa fa-user-o"></i> My Ads</a></li>
+        <li><a routerLink="user"><i class="fa fa-user-o"></i> My Account</a></li>
         <li><a (click)="logout()"><i class="fa fa-user-o"></i> Logout</a></li>
       </ul>
     </div>
@@ -60,15 +60,19 @@
               <select id="inputState" name="typead" ngModel #typead="ngModel" class="input-select col-2">
                 <option *ngFor="let key of keys" [value]="key">{{symbol[key]}}</option>
               </select>
-              <select id="inputState" name="type" ngModel #type="ngModel" class="input-select " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px" >
+              <select id="inputState" name="type" ngModel #type="ngModel" class="input-select "
+                style="border-bottom-left-radius: 0px;border-top-left-radius: 0px">
                 <option *ngFor="let key of keysBat" [value]="key">{{symbolsBat[key]}}</option>
               </select>
 
-              <input id="inputState"placeholder="DT"  name="price" type="number" ngModel #price="ngModel"  class="input-select col-2 " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px"  >
-              <input id="inputState"placeholder="n°rooms"  name="rooms" type="number" ngModel #rooms="ngModel"  class="input-select col-2 " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px"  >
+              <input id="inputState" placeholder="DT" name="price" type="number" ngModel #price="ngModel"
+                class="input-select col-2 " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px">
+              <input id="inputState" placeholder="n°rooms" name="rooms" type="number" ngModel #rooms="ngModel"
+                class="input-select col-2 " style="border-bottom-left-radius: 0px;border-top-left-radius: 0px">
 
-              <input style="width: 13%"  name="city"  ngModel #city="ngModel" class="input" placeholder="Search here">
-              <button class="search-btn" (click)="searchbycriteria(typead.value,type.value,price.value,rooms.value,city.value)">Search</button>
+              <input style="width: 13%" name="city" ngModel #city="ngModel" class="input" placeholder="Search here">
+              <button class="search-btn"
+                (click)="searchbycriteria(typead.value,type.value,price.value,rooms.value,city.value)">Search</button>
             </form>
           </div>
         </div>
@@ -92,34 +96,42 @@
               <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" style="cursor: pointer;">
                 <i class="fa fa-shopping-cart"></i>
                 <span>Your Cart</span>
-                <div class="qty">Cart Data<!--{{cartData.data[0].numInCart !== 0 ? cartData.data.length : 0}}--></div>
+                <div class="qty" *ngIf="cartData">
+                  Cart Data
+                  {{cartData.fournitureAds.length}}
+                </div>
               </a>
-              <div class="cart-dropdown">
-                <div class="cart-list">  <!--*ngIf="cartData.data[0].numInCart !== 0"-->
-                  <div class="product-widget"> <!--*ngFor="let c of cartData.data; let i=index"-->
+              <div class="cart-dropdown" *ngIf="cartData">
+                <div class="cart-list">
+                  <div *ngFor="let fa of cartData.fournitureAds" class="product-widget">
+                
                     <div class="product-img">
-                      <img src=" assets/img/product01.png" alt="" width="20px">
+                      <img [src]="getFilePath(fa)" alt="" width="20px">
                     </div>
                     <div class="product-body">
-                      <h3 class="product-name"><a href="#">Product Body<!--{{c.ad?.name}}--></a></h3>
-                      <h4 class="product-price"><span class="qty"> num in Card<!--{{c.numInCart}}-->
-                    x </span> 500 USD<!--{{c.ad?.price | currency:'USD'}}--></h4>
+                      <h3 class="product-name"><a href="#">{{fa.nameFa}}                
+                        </a></h3>
+                      <h4 class="product-price"><span class="qty">                       
+                          x
+                        </span> {{fa.price}}                   
+                      </h4>
                     </div>
-                    <button class="delete"> <!--(click)="cartService.DeleteProductFromCart(i)"--><i
-                      class="fa fa-close"></i>
+                    <button class="delete">
+                 <i class="fa fa-close"></i>
                     </button>
                   </div>
-
-
                 </div>
                 <div class="cart-summary">
-                  <small><!--{{cartData.data[0].numInCart !== 0 ? cartData.data.length : 0}}-->04 Item(s)
-                    selected</small>
-                  <h5>560 USD<!--TOTAL : {{cartTotal | currency:'USD'}}--></h5>
+                  <small>
+                    {{cartData.fournitureAds.length}} Item(s)
+                    selected
+                  </small>
+                  <h5 [innerHTML]="getTotalCartValue()">        
+                  </h5>
                 </div>
                 <div class="cart-btns">
                   <a routerLink="/cart">View Cart</a>
-                  <a routerLink="/checkout">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                  <a routerLink="/faCheckout">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
               </div>
             </div>
@@ -148,46 +160,50 @@
 <!-- NAVIGATION -->
 <nav id="navigation">
   <!-- container -->
-  <div class="container" >
+  <div class="container">
     <!-- responsive-nav -->
     <div id="responsive-nav" [class.active]="toggleBtn.checked">
       <!-- NAV -->
       <ul class="main-nav nav py-3">
         <li class="active"><a routerLink="/">Home</a></li>
         <li><a routerLink="sell">Buy a House</a></li>
-        <li><a href="#"  routerLink="rent">Rent a House</a></li>
+        <li><a href="#" routerLink="rent">Rent a House</a></li>
         <li><a href="/fournitureAd">Fourniture Ads</a></li>
-        <li class="dropdown" >
+        <li class="dropdown">
           <a class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-             aria-expanded="false">Services</a>
+            aria-expanded="false">Services</a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" routerLink="offers">our offers</a>
-            <a class="dropdown-item"  routerLink="statistics">Statistics</a>
+            <a class="dropdown-item" routerLink="statistics">Statistics</a>
           </div>
         </li>
         <li class="dropdown" *ngIf="authority==='ADMIN' || verifauth.verifrole===true">
           <a class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-             aria-expanded="false">Dashboard</a>
+            aria-expanded="false">Dashboard</a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" routerLink="managuser">User Management</a>
-            <a class="dropdown-item"  routerLink="managad" href="#">Fourniture Ad Management</a>
-            <a class="dropdown-item"  routerLink="managad" href="#">Ad Management</a>
+            <a class="dropdown-item" routerLink="managad" href="#">Fourniture Ad Management</a>
+            <a class="dropdown-item" routerLink="managad" href="#">Ad Management</a>
             <a class="dropdown-item" routerLink="subscription">Subscriptions management</a>
             <a class="dropdown-item" routerLink="sordmanag">Subscription orders management</a>
             <a class="dropdown-item" routerLink="managclaim">Claims management</a>
           </div>
         </li>
-        <li *ngIf="authority==='ADMIN' || verifauth.verifrole===true" >
+        <li *ngIf="authority==='ADMIN' || verifauth.verifrole===true">
           <a href="/fournitureStatistics">Statistics</a>
         </li>
-        <li  style="margin-left: 10%">
-          <button *ngIf="info.username" type="button" class="btn btn-lg" style="background-color:#D10024;color:#FFF;font-weight: 615;
+        <li style="margin-left: 10%">
+          <button *ngIf="info.username" type="button" class="btn btn-lg"
+            style="background-color:#D10024;color:#FFF;font-weight: 615;
     border: none;
-    border-radius: 40px 40px 40px 40px;margin-top:-5px;font-size:18px;height: 30px; letter-spacing:2px;line-height: 1em;" (click)="RedirectAddFurniture() "><span style="">Post furniture Ad</span></button>
+    border-radius: 40px 40px 40px 40px;margin-top:-5px;font-size:18px;height: 30px; letter-spacing:2px;line-height: 1em;" (click)="RedirectAddFurniture() "><span style="">Post
+              furniture Ad</span></button>
         <li style="margin-left: 1%">
-          <button type="button" class="btn btn-lg" style="background-color:#D10024;color:#FFF;font-weight: 615;
+          <button type="button" class="btn btn-lg"
+            style="background-color:#D10024;color:#FFF;font-weight: 615;
     border: none;
-    border-radius: 40px 40px 40px 40px;margin-top:-5px;font-size:18px;height: 30px; letter-spacing:2px;line-height: 1em;" (click)="RedirectAddProduct()"><span style="">Post Ad</span></button>
+    border-radius: 40px 40px 40px 40px;margin-top:-5px;font-size:18px;height: 30px; letter-spacing:2px;line-height: 1em;" (click)="RedirectAddProduct()"><span
+              style="">Post Ad</span></button>
 
       </ul>
       <!-- /NAV -->

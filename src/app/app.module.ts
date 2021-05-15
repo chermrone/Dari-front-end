@@ -62,6 +62,7 @@ import { ModifFournitureAdComponent } from './components/modif-fourniture-ad/mod
 import {MatChipsModule} from '@angular/material/chips';
 import { FournitureStatisticsComponent } from './components/fourniture-statistics/fourniture-statistics.component';
 import {MatListModule} from '@angular/material/list';
+import { FournitureAdCheckoutComponent } from './components/fourniture-ad-checkout/fourniture-ad-checkout.component';
 
 
 @NgModule({
@@ -112,6 +113,7 @@ import {MatListModule} from '@angular/material/list';
         FournitureAdOwnedComponent,
         ModifFournitureAdComponent,
         FournitureStatisticsComponent,
+        FournitureAdCheckoutComponent,
        ],
 
 

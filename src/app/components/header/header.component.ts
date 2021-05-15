@@ -1,48 +1,62 @@
 import { Component, OnInit } from '@angular/core';
-import {TokenStorageService} from '../../auth/token-storage.service';
-import {Router} from '@angular/router';
-import {SubscriptionOrderService} from '../../services/subscription-order.service';
-import {SubscriptionOrder} from '../../models/subscriptionOrder';
-import {VerifAuthService} from "../../services/verif-auth.service";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {UserAddComponent} from "../user-add/user-add.component";
-import {LoginComponent} from "../login/login.component";
-import {RegisterComponent} from "../register/register.component";
-import {Typead} from "../../enumeration/Typead";
-import {AdService} from "../../services/ad.service";
-import {Ad} from "../../models/Ad";
-import {TypeBatiment} from "../../enumeration/TypeBatiment";
+import { TokenStorageService } from '../../auth/token-storage.service';
+import { Router } from '@angular/router';
+import { SubscriptionOrderService } from '../../services/subscription-order.service';
+import { SubscriptionOrder } from '../../models/subscriptionOrder';
+import { VerifAuthService } from "../../services/verif-auth.service";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { UserAddComponent } from "../user-add/user-add.component";
+import { LoginComponent } from "../login/login.component";
+import { RegisterComponent } from "../register/register.component";
+import { Typead } from "../../enumeration/Typead";
+import { AdService } from "../../services/ad.service";
+import { Ad } from "../../models/Ad";
+import { TypeBatiment } from "../../enumeration/TypeBatiment";
+import { ShoppingCart } from 'src/app/models/ShoppingCart';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
-  constructor(public Adservice: AdService,private dialog: MatDialog,public adserv:AdService, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
-    this.keys = Object.keys(this.symbol);       this.keysBat = Object.keys(this.symbolsBat);
-
-
+export class HeaderComponent implements OnInit {
+  keys = []; symbol = Typead;
+  constructor(
+    public Adservice: AdService,
+    private dialog: MatDialog,
+    public adserv: AdService,
+    private token: TokenStorageService,
+    private router: Router,
+    public sos: SubscriptionOrderService,
+    public verifauth: VerifAuthService,
+    private shoppingCartService: ShoppingCartService
+  ) {
+    this.keys = Object.keys(this.symbol); this.keysBat = Object.keys(this.symbolsBat);
+    this.totalCartValue = 0
   }
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
   id = 1;
   roles: string[];
-  countFav:number;adFav:Ad[];
-  symbolsBat = TypeBatiment;  keysBat = [];
+  countFav: number; adFav: Ad[];
+  symbolsBat = TypeBatiment; keysBat = [];
+  cartData: ShoppingCart = null;
+  totalCartValue: number = 0;
 
 
   // tslint:disable-next-line:typedef
-  SigninRouting(){
+  SigninRouting() {
     this.router.navigate(['signin']);
   }
   authority: string;
   // tslint:disable-next-line:typedef
-  SignupRouting(){
+  SignupRouting() {
     this.router.navigate(['signup']);
   }
 
   ngOnInit(): void {
+    this.totalCartValue = 0
     if (this.token.getToken()) {
       this.roles = this.token.getAuthorities();
       this.roles.every(role => {
@@ -77,6 +91,43 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
     console.log(this.verifauth.verif);
     this.adserv.getFav().subscribe(data => console.log(data));
 
+    this.shoppingCartService.shoppingCart.subscribe(
+      (data:ShoppingCart) => {
+        if (data) {
+          this.cartData = data;      
+        } else {
+          const AuthUsername = sessionStorage.getItem("AuthUsername");
+          if (AuthUsername) {
+            this.shoppingCartService.getShoppingCartByUsername(AuthUsername).subscribe(
+              (data) => {
+                this.cartData = data;
+                console.log("data from subscribtion:" +JSON.stringify(data));
+              }
+            )
+          }
+
+        }
+      }
+    )
+
+  }
+
+  getFilePath(ad): string[] {
+    let images: string[] = [];
+    const imageExtensions = ['.bmp', '.gif', '.jpg', '.jpeg', '.png', '.tif', '.tiff', '.webp', '.apng', '.wmf', '.ico', '.jif', '.jfif',  '.svg', '.svgz', '.xbm'];
+    if (ad.localFile[0]) {
+      ad.localFile.forEach((file) => {
+        imageExtensions.forEach((extension) => {
+          if (file.path.indexOf(extension) > 0) {
+            const startIndex = file.path.indexOf('\assets');
+            const endIndex = file.path.length;
+            images.push(file.path.substring(startIndex, endIndex));
+          }
+        });
+      });
+    }
+    // console.log(images);
+    return images ;
   }
 
   // tslint:disable-next-line:typedef
@@ -105,7 +156,7 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
     this.router.navigate(['add/fournitureAd']);
 
   }
-  onCreate(){
+  onCreate() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -123,11 +174,18 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
     this.dialog.open(RegisterComponent, dialogConfig);
 
   }
-ads:Ad[];
-  searchbycriteria(typead: any, typebat: any, price: any, rooms: any,city:any) {
-    this.Adservice.SearchCriteria(price,  city, rooms, typead,
-      typebat).subscribe( data=>{this.ads=data as Ad[];this.Adservice.ads=this.ads});
+  ads: Ad[];
+  searchbycriteria(typead: any, typebat: any, price: any, rooms: any, city: any) {
+    this.Adservice.SearchCriteria(price, city, rooms, typead,
+      typebat).subscribe(data => { this.ads = data as Ad[]; this.Adservice.ads = this.ads });
     console.log(this.Adservice.ads);
     this.router.navigate(['SearchAd']);
+  }
+  getTotalCartValue():number{
+    this.totalCartValue = 0
+    this.cartData.fournitureAds.forEach(
+      e => this.totalCartValue+=e.price
+    )
+    return this.totalCartValue
   }
 }

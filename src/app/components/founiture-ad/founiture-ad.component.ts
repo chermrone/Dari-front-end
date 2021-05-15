@@ -26,7 +26,7 @@ export class FounitureAdComponent implements OnInit {
         }
       );
     } else {
-      this.fournitureAdServiceService.getAll().subscribe(
+      this.fournitureAdServiceService.getAllAvailable().subscribe(
         (result) => {
           this.list = result;
         }

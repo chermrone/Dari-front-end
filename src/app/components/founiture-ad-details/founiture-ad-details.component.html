@@ -27,5 +27,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close (click)="vider()" >Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Add to cart</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updateCart(ad)">Add to cart</button>
 </mat-dialog-actions>

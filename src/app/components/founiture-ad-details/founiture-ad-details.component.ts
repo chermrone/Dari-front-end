@@ -3,6 +3,9 @@ import {FournitureAd} from '../../models/FournitureAd';
 import {JavascriptViewer} from '@3dweb/360javascriptviewer';
 import { Gallery, GalleryItem, ImageItem, ThumbnailsPosition, ImageSize } from 'ng-gallery';
 import { Lightbox } from 'ng-gallery/lightbox';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
+import { ShoppingCart } from 'src/app/models/ShoppingCart';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-founiture-ad-details',
@@ -16,7 +19,12 @@ export class FounitureAdDetailsComponent implements OnInit {
   items: GalleryItem[];
   imageData = data;
   imageObject = data2;
-  constructor(public gallery: Gallery, public lightbox: Lightbox) {
+  shoppingCart: ShoppingCart = null;
+  constructor(
+    public gallery: Gallery, 
+    public lightbox: Lightbox,
+    public shoppingCartService: ShoppingCartService,
+    public userservice: UserService) {
   }
 
   ngOnInit(): void {
@@ -81,7 +89,25 @@ export class FounitureAdDetailsComponent implements OnInit {
 
     // Load items into the lightbox gallery ref
     lightboxRef.load(this.items);
+    this.shoppingCartService.shoppingCart.subscribe(
+      (data) => {
+        this.shoppingCart = data;
+        console.log("shopping cart in fourniture-ad details component:"+JSON.stringify(data))
+      }
+    )
   }
+
+  updateCart(fa:FournitureAd): void{
+    this.shoppingCart.fournitureAds.push(fa);
+    const AuthUsername = sessionStorage.getItem("AuthUsername");
+    this.shoppingCart.us.userName = AuthUsername
+    this.shoppingCartService.updateCart(this.shoppingCart).subscribe(
+      (data) => {
+        console.log("shopping cart update result:"+JSON.stringify(data));
+      }
+    )
+  }
+
   // file path
   getFilePath(filePath): string {
     const startIndex = filePath.indexOf('\assets');

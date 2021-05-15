@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form>
+                <div class="form-group">
+                    <label for="datecreated">Date Created</label>
+                    <input type="text" class="form-control" id="datecreated" disabled [value]="order.dateCreated">
+                </div>
+                <div class="form-group">
+                    <label for="datecreated">Date Shipped</label>
+                    <input type="text" class="form-control" id="datecreated" disabled [value]="order.dateShiped">
+                </div>
+                <app-cart [shoppingCart]="order.shoppingCart"></app-cart>
+            </form>
+            <button id="checkout" mat-raised-button color="accent" (click)="confirmOrder()">Confirm Order</button>
+        </div>
+    </div>
+    <br>
+    <div class="row" *ngIf="showCreditCardForm">
+        <div class="col">
+            <form>
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" class="form-control" id="card-number" name="number" ngModel #number="ngModel">
+                </div>
+                <div class="form-group">
+                    <label for="exp-month">Expiry Month</label>
+                    <input type="text" class="form-control" id="exp-month" name="exp_month" ngModel #exp_month="ngModel">
+                </div>
+                <div class="form-group">
+                    <label for="exp-year">Expiry Year</label>
+                    <input type="text" class="form-control" id="exp-year" name="exp_year" ngModel #exp_year="ngModel">
+                </div>
+                <div class="form-group">
+                    <label for="cvc">CVC</label>
+                    <input type="text" class="form-control" id="cvc" name="cvc" ngModel #cvc="ngModel">
+                </div>
+                <button id="checkout" mat-raised-button color="accent" (click)="checkout()">Checkout</button>
+            </form>
+        </div>
+    </div>
+</div>

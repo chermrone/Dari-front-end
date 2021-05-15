@@ -37,13 +37,14 @@ import {SurveillanceDeMaisonComponent} from './components/surveillance-de-maison
 import {AddFournitureAdComponent} from './components/add-fourniture-ad/add-fourniture-ad.component';
 import {FournitureAdOwnedComponent} from './components/fourniture-ad-owned/fourniture-ad-owned.component';
 import {FournitureStatisticsComponent} from './components/fourniture-statistics/fourniture-statistics.component';
+import { FournitureAdCheckoutComponent } from './components/fourniture-ad-checkout/fourniture-ad-checkout.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'Product', component: AdComponent},
   {path: 'ad/:id', component: AdComponent},
   {path: 'cart', component: CartComponent},
-  {path: 'checkout', component: CheckoutComponent},
+  {path: 'faCheckout', component: FournitureAdCheckoutComponent},
   {path: 'signup', component: RegisterComponent},
   {path: 'signin', component: LoginComponent},
   {path: 'app', component: AppComponent},

@@ -4,9 +4,9 @@ import {ShoppingCart} from './ShoppingCart';
 export class OrderUser {
   orderId: number;
 
-  dateCreated: Date;
+  dateCreated: string;
 
-  dateShiped: Date;
+  dateShiped: string;
   statusOrd: boolean;
   quantity: number;
   stripeOrder: string;
