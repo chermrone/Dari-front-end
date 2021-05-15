@@ -20,20 +20,11 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-  keys = []; symbol = Typead;
-  constructor(
-    public Adservice: AdService,
-    private dialog: MatDialog,
-    public adserv: AdService,
-    private token: TokenStorageService,
-    private router: Router,
-    public sos: SubscriptionOrderService,
-    public verifauth: VerifAuthService,
-    private shoppingCartService: ShoppingCartService
-  ) {
-    this.keys = Object.keys(this.symbol); this.keysBat = Object.keys(this.symbolsBat);
-    this.totalCartValue = 0
+export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
+  constructor(public Adservice: AdService,private dialog: MatDialog, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService ,private shoppingCartService: ShoppingCartService) {
+    this.keys = Object.keys(this.symbol);       this.keysBat = Object.keys(this.symbolsBat);
+
+
   }
   info: any;
   subscriptionOrder: SubscriptionOrder = new SubscriptionOrder();
@@ -89,7 +80,7 @@ export class HeaderComponent implements OnInit {
       this.countFav = this.adFav.length;
     });
     console.log(this.verifauth.verif);
-    this.adserv.getFav().subscribe(data => console.log(data));
+    this.Adservice.getFav().subscribe(data => console.log(data));
 
     this.shoppingCartService.shoppingCart.subscribe(
       (data:ShoppingCart) => {
