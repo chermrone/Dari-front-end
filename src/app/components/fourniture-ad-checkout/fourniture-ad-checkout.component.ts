@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { OrderUserService } from 'src/app/services/order-user.service';
 import { CardInfo } from 'src/app/models/CardInfo';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-fourniture-ad-checkout',
@@ -16,12 +17,22 @@ export class FournitureAdCheckoutComponent implements OnInit {
   @Input() shoppingCart: ShoppingCart;
   order : OrderUser = null;
   showCreditCardForm = false;
+  errors = [];
+  showSuccess = false
+  model:CardInfo = {number:"",cvc:"",exp_month:"",exp_year:""}
+  ip = ""
   constructor(
     private shoppingCartService: ShoppingCartService,
-    private orderUserService: OrderUserService
+    private orderUserService: OrderUserService,
+    private httpclient: HttpClient
   ) { }
 
   ngOnInit(): void {
+    this.httpclient.request('GET', "http://ifconfig.me/ip", {responseType:'text'}).subscribe(
+            (ip) =>{
+                this.ip = ip;
+            }
+        )
     this.shoppingCartService.shoppingCart.subscribe(
       (shoppingCart) =>{
         // console.log("shopping cart:"+JSON.stringify(shoppingCart))
@@ -77,14 +88,29 @@ export class FournitureAdCheckoutComponent implements OnInit {
     this.orderUserService.checkout(this.order.orderId).subscribe(
       (data) =>{
         console.log("checkout result:" +JSON.stringify(data));
-      }        
-    )
-    /* const card = new CardInfo();
-    this.orderUserService.charge(this.order.orderId,card).subscribe(
-      (data) =>{
-        console.log("charge result:" +JSON.stringify(data));
+        this.orderUserService.charge(this.order.orderId,this.model,this.ip).subscribe(
+          (data) =>{
+            console.log("charge result:" +JSON.stringify(data));
+            this.showSuccess = true
+            sessionStorage.removeItem("Order")
+            this.shoppingCart = new ShoppingCart()
+          },
+          (error)=>{
+            console.log("Errors:"+JSON.stringify(error))
+            this.errors.push(
+              error
+            )
+          }
+        );
+      },
+      (error)=>{
+        console.log("Errors:"+JSON.stringify(error))
+        this.errors.push(
+          error
+        )
       }
-    ); */
+    )
+
   }
 
 }

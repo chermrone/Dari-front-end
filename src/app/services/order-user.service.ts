@@ -25,20 +25,20 @@ export class OrderUserService {
 
     }
 
-    createOrder(orderUser: OrderUser): Observable<OrderUser>{
+    createOrder(orderUser: OrderUser): Observable<OrderUser> {
         return this.httpclient.post<OrderUser>(environment.baseUrl + 'Order/add', orderUser);
     }
 
-    updateOrder(orderUser: OrderUser): Observable<OrderUser>{
-        return this.httpclient.put<OrderUser>(environment.baseUrl + 'Order/modif/'+orderUser.orderId, orderUser);
+    updateOrder(orderUser: OrderUser): Observable<OrderUser> {
+        return this.httpclient.put<OrderUser>(environment.baseUrl + 'Order/modif/' + orderUser.orderId, orderUser);
     }
 
-    checkout(orderId: number): Observable<OrderUser>{
-        return this.httpclient.get<OrderUser>(environment.baseUrl + 'checkout/'+orderId);
+    checkout(orderId: number): Observable<OrderUser> {
+        return this.httpclient.get<OrderUser>(environment.baseUrl + 'checkout/' + orderId);
     }
 
-    charge(id: number,card:CardInfo): Observable<OrderUser>{
-        return this.httpclient.post<OrderUser>(environment.baseUrl + 'charge/'+id,card);
+    charge(id: number, card: CardInfo,ip:string): Observable<OrderUser> {
+        return this.httpclient.post<OrderUser>(environment.baseUrl + 'charge/' + id + "?ipAddress=" + ip, card);
     }
 
 }
