@@ -14,8 +14,10 @@ import { CardInfo } from 'src/app/models/CardInfo';
 export class FournitureAdCheckoutComponent implements OnInit {
 
   @Input() shoppingCart: ShoppingCart;
-  order : OrderUser = null;
+  order: OrderUser = null;
   showCreditCardForm = false;
+  errors: string[] = null;
+  sent = false;
   constructor(
     private shoppingCartService: ShoppingCartService,
     private orderUserService: OrderUserService
@@ -45,7 +47,7 @@ export class FournitureAdCheckoutComponent implements OnInit {
         }
       }
     )
-    
+
   }
   confirmOrder(): void{
     this.showCreditCardForm = true;
@@ -70,14 +72,23 @@ export class FournitureAdCheckoutComponent implements OnInit {
           this.order = data;
           sessionStorage.setItem("Order",JSON.stringify(this.order))
         }
-      )      
+      )
     }
   }
   completeCheckout(): void{
+    this.errors = [];
+    this.sent = true;
     this.orderUserService.checkout(this.order.orderId).subscribe(
       (data) =>{
         console.log("checkout result:" +JSON.stringify(data));
-      }        
+      },
+      (err) => {console.log('error' + JSON.stringify(err));
+        if (err.error.includes('failed chekout')){
+          this.errors.push('ne doit pas être vide'); }
+      },
+      () => {console.log('complete');
+        this.errors = null;
+      }
     )
     /* const card = new CardInfo();
     this.orderUserService.charge(this.order.orderId,card).subscribe(
