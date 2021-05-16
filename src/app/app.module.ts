@@ -67,6 +67,7 @@ import { AdKeySearchComponent } from './components/ad-key-search/ad-key-search.c
 import { NotifAdminComponent } from './components/notif-admin/notif-admin.component';
 
 
+import { FournitureAdCheckoutComponent } from './components/fourniture-ad-checkout/fourniture-ad-checkout.component';
 
 
 @NgModule({
@@ -120,6 +121,7 @@ import { NotifAdminComponent } from './components/notif-admin/notif-admin.compon
         CustomSnackBarComponent,
         AdKeySearchComponent,
         NotifAdminComponent,
+        FournitureAdCheckoutComponent
        ],
 
 

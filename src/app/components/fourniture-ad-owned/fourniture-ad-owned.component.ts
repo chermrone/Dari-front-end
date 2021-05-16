@@ -6,7 +6,7 @@ import {MatDialog , MatDialogConfig} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 import {FournitureAd} from '../../models/FournitureAd';
-import {FournitureAdServiceService} from '../../services/fourniture-ad-service.service';
+import {FournitureAdService} from '../../services/fourniture-ad-service.service';
 import {ModifAdComponent} from '../modif-ad/modif-ad.component';
 import {ModifFournitureAdComponent} from '../modif-fourniture-ad/modif-fourniture-ad.component';
 import {FounitureAdDetailsComponent} from '../founiture-ad-details/founiture-ad-details.component';
@@ -24,10 +24,10 @@ export class FournitureAdOwnedComponent implements OnInit {
   dataSource = new MatTableDataSource(this.ad_list);
   displayedColumns: string[] = ['nameFa', 'address', 'price', 'created', 'description' , 'Edit' , 'Delete'];
 
-  constructor(private fournitureAdServiceService: FournitureAdServiceService , private dialog: MatDialog, private route: Router) { }
+  constructor(private fournitureAdService: FournitureAdService , private dialog: MatDialog, private route: Router) { }
 
   ngOnInit(): void {
-    this.fournitureAdServiceService.getMyAll().subscribe((data ) => {
+    this.fournitureAdService.getMyAll().subscribe((data ) => {
         this.ad_list = data;
         console.log(this.ad_list);
         this.dataSource.data = this.ad_list;
@@ -53,7 +53,7 @@ export class FournitureAdOwnedComponent implements OnInit {
     this.route.navigate(['/add/fournitureAd']);
   }
   deleteAd(idAd: number): void{
-    this.fournitureAdServiceService.deleteAdById(idAd).subscribe(data => console.log('success'));
+    this.fournitureAdService.deleteAdById(idAd).subscribe(data => console.log('success'));
     this.ad_list = [];
     this.dataSource = new MatTableDataSource(this.ad_list);
     window.location.reload();

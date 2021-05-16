@@ -8,7 +8,7 @@ import {Ad} from '../../models/Ad';
 import {NgForm} from '@angular/forms';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {FournitureAd} from '../../models/FournitureAd';
-import {FournitureAdServiceService} from '../../services/fourniture-ad-service.service';
+import {FournitureAdService} from '../../services/fourniture-ad-service.service';
 import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class AddFournitureAdComponent implements OnInit {
   progressInfos = new Array();
   verif = false;
 
-  constructor( private fournitureAdServiceService: FournitureAdServiceService,
+  constructor( private fournitureAdService: FournitureAdService,
                private tokenStorageService: TokenStorageService) {
   }
    regions = ['Ariana', 'Béja', 'Ben Arous', 'Bizerte', 'Gabès', 'Gafsa', 'Jendouba', 'Kairouan', 'Kasserine', 'Kébili', 'Gouvernorat du Kef', 'Mahdia', 'Manouba', 'Médenine', 'Monastir', 'Nabeul', 'Sfax', 'Sidi Bouzid', 'Siliana', 'Sousse', 'Tataouine', 'Tozeur', 'Tunis', 'Zaghouan'];
@@ -33,15 +33,15 @@ export class AddFournitureAdComponent implements OnInit {
     this.selectedFiles = null;
   }
   PostAd(f: NgForm): void {
-    this.sent = true;
     this.errors = [];
     const p = {} as FournitureAd;
     console.log(f.value);
     const returnedTarget: FournitureAd = Object.assign(p, f.value); // convert the form to object in p
     p.userName = this.tokenStorageService.getUsername();
     console.log(p);
-    this.fournitureAdServiceService.postFournitureAd(p).subscribe(
+    this.fournitureAdService.postFournitureAd(p).subscribe(
       data => {console.log('sent');
+               this.sent = true;
                Array.from(this.selectedFiles).forEach((selectedFilesKey) =>
                {
                  console.log('file uploaded' + selectedFilesKey);
@@ -49,6 +49,7 @@ export class AddFournitureAdComponent implements OnInit {
                }) ;
       },
       (err) => {console.log('error' + JSON.stringify(err));
+                this.sent = true;
                 if (err.error.includes('ne doit pas être vide')){
                   this.errors.push('ne doit pas être vide'); }
       },
@@ -62,7 +63,7 @@ export class AddFournitureAdComponent implements OnInit {
   }
 
   upload(id , file): void{
-      this.fournitureAdServiceService.uploadFile(file , id).subscribe(
+      this.fournitureAdService.uploadFile(file , id).subscribe(
           event => {
             if (event.type === HttpEventType.UploadProgress) {
               console.log('progress info' + this.progressInfos);

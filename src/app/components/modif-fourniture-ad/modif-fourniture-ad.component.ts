@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {FournitureAd} from '../../models/FournitureAd';
-import {FournitureAdServiceService} from '../../services/fourniture-ad-service.service';
+import {FournitureAdService} from '../../services/fourniture-ad-service.service';
 import {MatDialogRef} from '@angular/material/dialog';
 import {AdService} from '../../services/ad.service';
 import {FilesAd} from '../../models/FilesAd';
@@ -18,7 +18,7 @@ import {NgImageSliderComponent} from 'ng-image-slider';
 export class ModifFournitureAdComponent implements OnInit {
     regions = ['Ariana', 'Béja', 'Ben Arous', 'Bizerte', 'Gabès', 'Gafsa', 'Jendouba', 'Kairouan', 'Kasserine', 'Kébili', 'Gouvernorat du Kef', 'Mahdia', 'Manouba', 'Médenine', 'Monastir', 'Nabeul', 'Sfax', 'Sidi Bouzid', 'Siliana', 'Sousse', 'Tataouine', 'Tozeur', 'Tunis', 'Zaghouan'];
    constructor(private matdialogref: MatDialogRef<ModifFournitureAdComponent>,
-               private fournitureAdServiceService: FournitureAdServiceService , public  gallery: Gallery, public lightbox: Lightbox) {}
+               private fournitureAdService: FournitureAdService , public  gallery: Gallery, public lightbox: Lightbox) {}
   hide = true;
   @Input() AD: FournitureAd;
   listVideo: string[] = [];
@@ -83,7 +83,7 @@ export class ModifFournitureAdComponent implements OnInit {
   update(f: any): void{
     // const returnedTarget: FournitureAd = Object.assign(this.AD, f.value); // convert the form to object in p
     console.log(this.AD);
-    this.fournitureAdServiceService.updateAd(this.AD).subscribe(data3 => console.log(data3));
+    this.fournitureAdService.updateAd(this.AD).subscribe(data3 => console.log(data3));
 
   }
   // file path
@@ -99,13 +99,13 @@ export class ModifFournitureAdComponent implements OnInit {
     this.nav.close();
     if (this.imageObject[event].image){
       console.log('image : ' + this.imageObject[event].image);
-      this.fournitureAdServiceService.deleteFile(this.imageObject[event].image).subscribe(
+      this.fournitureAdService.deleteFile(this.imageObject[event].image).subscribe(
         () => console.log('img deleted')
       );
     }
     else if (this.imageObject[event].video){
       console.log('video : ' + this.imageObject[event].video);
-      this.fournitureAdServiceService.deleteFile(this.imageObject[event].video).subscribe(
+      this.fournitureAdService.deleteFile(this.imageObject[event].video).subscribe(
         () => console.log('video deleted')
       );
     }

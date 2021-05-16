@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FournitureAdServiceService} from '../../services/fourniture-ad-service.service';
+import {FournitureAdService} from '../../services/fourniture-ad-service.service';
 import {DailyProfit} from '../../models/DailyProfit';
 import {NgForm} from '@angular/forms';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
@@ -34,7 +34,7 @@ export class FournitureStatisticsComponent implements OnInit {
   ];
 
 
-  constructor(private  fournitureAdServiceService: FournitureAdServiceService) { }
+  constructor(private  fournitureAdService: FournitureAdService) { }
   dateDebut: string ;
   dateFin: string;
   totalProfit: number;
@@ -44,16 +44,16 @@ export class FournitureStatisticsComponent implements OnInit {
   ngOnInit(): void {
     this.dateFin = new Date().toISOString().split('T')[0];
     console.log(this.dateFin);
-    this.fournitureAdServiceService.getTotalProfit('2021-04-19', this.dateFin).subscribe(
+    this.fournitureAdService.getTotalProfit('2021-04-19', this.dateFin).subscribe(
       (data) => { this.totalProfit = data; }
     );
     this.barCharData[0].data = [];
-    this.fournitureAdServiceService.getDailyProfit('2021-04-19' , this.dateFin).subscribe(
+    this.fournitureAdService.getDailyProfit('2021-04-19' , this.dateFin).subscribe(
       dailyProfits => {
         dailyProfits.forEach(dailyProfit =>  this.barCharData[0].data.push(dailyProfit.profit));
         this.barChartLabels = dailyProfits.map(e => e.date);
       });
-    this.fournitureAdServiceService.getTopSellers().subscribe(
+    this.fournitureAdService.getTopSellers().subscribe(
       (data) => {this.topSellers = data; }
     );
   }
@@ -62,12 +62,12 @@ export class FournitureStatisticsComponent implements OnInit {
     this.dateFin = f.value.dateFin;
     // console.log(f.value);
     this.barCharData[0].data = [];
-    this.fournitureAdServiceService.getDailyProfit(this.dateDebut , this.dateFin).subscribe(
+    this.fournitureAdService.getDailyProfit(this.dateDebut , this.dateFin).subscribe(
         dailyProfits => {
           dailyProfits.forEach(dailyProfit =>  this.barCharData[0].data.push(dailyProfit.profit));
           this.barChartLabels = dailyProfits.map(e => e.date);
         });
-    this.fournitureAdServiceService.getTotalProfit(this.dateDebut , this.dateFin).subscribe(
+    this.fournitureAdService.getTotalProfit(this.dateDebut , this.dateFin).subscribe(
       (data) => { this.totalProfit = data; }
     );
   }
