@@ -38,24 +38,15 @@
                 <div class="form-group">
                     <label for="cvc">CVC</label>
                     <input type="text" class="form-control" id="cvc" name="cvc" [(ngModel)]="model.cvc">
-                </div>                
+                </div>
                 <br>
                 <div class="form-group">
                     <button id="checkout" class="btn btn-primary" (click)="completeCheckout()">Checkout</button>
                 </div>
-              <div class="col">
-                <mat-chip-list *ngIf="sent" aria-label="Fish selection">
-                  <mat-chip *ngIf="errors" color="warn" selected>
-                    fail: <br>
-                    <div *ngFor="let er of errors">{{er}}</div>
-                  </mat-chip>
-                  <mat-chip *ngIf="!errors" color="accent" selected>success</mat-chip>
-                </mat-chip-list>
-              </div>
             </form>
         </div>
     </div>
-<<<<<<< HEAD
+
     <div class="row" *ngFor="let error of errors">
         <div class="alert alert-danger">
             {{error.error}}
@@ -67,6 +58,4 @@
         </div>
     </div>
 </div>
-=======
-</div>
->>>>>>> e3d4d9975a57659421f385a6ffb7a7978a44ad1f
+
