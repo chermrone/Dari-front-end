@@ -91,12 +91,12 @@ export class FournitureAdCheckoutComponent implements OnInit {
              this.errors = null;
       }
     );
-    /* const card = new CardInfo();
-    this.orderUserService.charge(this.order.orderId,card).subscribe(
-      (data) =>{
-        console.log("charge result:" +JSON.stringify(data));
+    const card = new CardInfo();
+    this.orderUserService.charge(this.order.orderId , card).subscribe(
+      (data) => {
+        console.log('charge result:' + JSON.stringify(data));
       }
-    ); */
+    );
   }
 
 }
