@@ -12,7 +12,7 @@ import {TokenStorageService} from '../../auth/token-storage.service';
 })
 export class FounitureAdComponent implements OnInit {
   list: FournitureAd[];
-  cities = ["bizerte","tunis","beja","sfax","soussa"]
+  cities = ['Ariana', 'Béja', 'Ben Arous', 'Bizerte', 'Gabès', 'Gafsa', 'Jendouba', 'Kairouan', 'Kasserine', 'Kébili', 'Gouvernorat du Kef', 'Mahdia', 'Manouba', 'Médenine', 'Monastir', 'Nabeul', 'Sfax', 'Sidi Bouzid', 'Siliana', 'Sousse', 'Tataouine', 'Tozeur', 'Tunis', 'Zaghouan'];
   model = {city:"",price:null,keyword:""}
 
   // tslint:disable-next-line:max-line-length

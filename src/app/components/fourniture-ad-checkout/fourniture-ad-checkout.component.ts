@@ -15,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
 export class FournitureAdCheckoutComponent implements OnInit {
 
   @Input() shoppingCart: ShoppingCart;
-  order : OrderUser = null;
+  order: OrderUser = null;
   showCreditCardForm = false;
   errors = [];
   showSuccess = false
@@ -34,57 +34,58 @@ export class FournitureAdCheckoutComponent implements OnInit {
             }
         )
     this.shoppingCartService.shoppingCart.subscribe(
-      (shoppingCart) =>{
+      (shoppingCart) => {
         // console.log("shopping cart:"+JSON.stringify(shoppingCart))
-        this.shoppingCart = shoppingCart
-        if(!this.order){
-          const order = sessionStorage.getItem("Order")
-          if(order){
+        this.shoppingCart = shoppingCart;
+        if (!this.order){
+          const order = sessionStorage.getItem('Order');
+          if (order){
             this.order = JSON.parse(order);
-            this.order.shoppingCart = shoppingCart
-            console.log("order after refresh:"+JSON.stringify(this.order))
+            this.order.shoppingCart = shoppingCart;
+            console.log('order after refresh:' + JSON.stringify(this.order));
           }else{
-            this.order = new OrderUser()
-            this.order.quantity = 1
-            this.order.statusOrd = false
-            this.order.dateCreated = moment().utc().local().format("YYYY-MM-DD");
-            this.order.dateShiped = moment().utc().local().format("YYYY-MM-DD");
+            this.order = new OrderUser();
+            this.order.quantity = 1;
+            this.order.statusOrd = false;
+            this.order.dateCreated = moment().utc().local().format('YYYY-MM-DD');
+            this.order.dateShiped = moment().utc().local().format('YYYY-MM-DD');
             // console.log("shopping cart1:"+JSON.stringify(shoppingCart))
-            this.order.shoppingCart = shoppingCart
-            console.log("Order:"+JSON.stringify(this.order))
+            this.order.shoppingCart = shoppingCart;
+            console.log('Order:' + JSON.stringify(this.order));
           }
         }
       }
-    )
-    
+    );
+
   }
   confirmOrder(): void{
     this.showCreditCardForm = true;
-    if(!this.order.orderId){
-      console.log("create order")
-      this.order.shoppingCart = this.shoppingCart
-      console.log("Order2:"+JSON.stringify(this.order))
+    if (!this.order.orderId){
+      console.log('create order');
+      this.order.shoppingCart = this.shoppingCart;
+      console.log('Order2:' + JSON.stringify(this.order));
       this.orderUserService.createOrder(this.order).subscribe(
-        (data)=>{
-          console.log("created Order:"+JSON.stringify(data))
+        (data) => {
+          console.log('created Order:' + JSON.stringify(data));
           this.order = data;
-          sessionStorage.setItem("Order",JSON.stringify(this.order))
+          sessionStorage.setItem('Order', JSON.stringify(this.order));
         }
-      )
+      );
     }else{
-      console.log("update order")
-      this.order.shoppingCart = this.shoppingCart
-      console.log("Order3:"+JSON.stringify(this.order))
+      console.log('update order');
+      this.order.shoppingCart = this.shoppingCart;
+      console.log('Order3:' + JSON.stringify(this.order));
       this.orderUserService.updateOrder(this.order).subscribe(
-        (data)=>{
-          console.log("updated Order:"+JSON.stringify(data))
+        (data) => {
+          console.log('updated Order:' + JSON.stringify(data));
           this.order = data;
-          sessionStorage.setItem("Order",JSON.stringify(this.order))
+          sessionStorage.setItem('Order' , JSON.stringify(this.order));
         }
-      )      
+      );
     }
   }
   completeCheckout(): void{
+    this.errors = [];
     this.orderUserService.checkout(this.order.orderId).subscribe(
       (data) =>{
         console.log("checkout result:" +JSON.stringify(data));

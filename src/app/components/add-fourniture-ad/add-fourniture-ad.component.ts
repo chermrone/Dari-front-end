@@ -33,7 +33,6 @@ export class AddFournitureAdComponent implements OnInit {
     this.selectedFiles = null;
   }
   PostAd(f: NgForm): void {
-    this.sent = true;
     this.errors = [];
     const p = {} as FournitureAd;
     console.log(f.value);
@@ -42,6 +41,7 @@ export class AddFournitureAdComponent implements OnInit {
     console.log(p);
     this.fournitureAdService.postFournitureAd(p).subscribe(
       data => {console.log('sent');
+               this.sent = true;
                Array.from(this.selectedFiles).forEach((selectedFilesKey) =>
                {
                  console.log('file uploaded' + selectedFilesKey);
@@ -49,6 +49,7 @@ export class AddFournitureAdComponent implements OnInit {
                }) ;
       },
       (err) => {console.log('error' + JSON.stringify(err));
+                this.sent = true;
                 if (err.error.includes('ne doit pas être vide')){
                   this.errors.push('ne doit pas être vide'); }
       },
