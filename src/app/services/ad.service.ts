@@ -11,7 +11,7 @@ import {TypeBatiment} from '../enumeration/TypeBatiment';
   providedIn: 'root'
 })
 export class AdService {
-
+public ad:Ad; public VerifCancel:boolean=true;
   get idAd(): number {
     return this._idAd;
   }
@@ -38,6 +38,9 @@ export class AdService {
   }
   getFiles(){
     return this.http.get<FilesAd[]>(`${this.url}dari/imgads/all`);
+  }
+  getVideo(id:number){
+    return this.http.get<FilesAd[]>(`${this.url}dari/imgads/get/video/`+id);
   }
   public postAd(Ad: Ad){
     return this.http.post(`${this.url}dari/ads/add/ad`, Ad);
@@ -79,7 +82,13 @@ export class AdService {
 
   }
 
-  postFav(id: number) {console.log(id + 'fdf');
+  getCityFav(){
+    return this.http.get<string[]>(`${this.url}dari/ads/fav/getCity`);
+  }
+
+
+  postFav(id: number) {console.log(id + 'fdf'); this.getFav();
+
     return this.http.get(`${this.url}dari/ads/af/favorite/` + id);
   }
   public deleteImgById(id: number){
@@ -91,7 +100,7 @@ export class AdService {
   SearchCriteria(price: number,  city: string, rooms: number, typeAd: Typead ,
                  typebat: TypeBatiment)
   {console.log(city + '' + typebat);
-    if (city != '' && typebat != null)
+    if (city != '' && typebat != null && typeAd != null)
     {let params = new HttpParams();
       params = params.append('city', city);
       params = params.append('typebat', typebat);
@@ -110,6 +119,146 @@ export class AdService {
       return this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
         params,
       }); }
+    else if(city == '' && typebat == null && typeAd != null)
+    {let params = new HttpParams();
+      params = params.append('typeAd', typeAd);
+      console.log('im here')
+      if (rooms != 0 && rooms != null)
+      {params = params.append('rooms', rooms.toString()); }
+      if (price != 0 && price != null) {
+        params = params.append('price', price.toString());
+      }
+      console.log(params);
+      this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      }).subscribe(data => {this.ads = data as Ad[]; console.log(data); console.log(this.ads); }  );
+      return this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      });}
+
+
+    else if(city == '' && typebat != null && typeAd == null)
+    {let params = new HttpParams();
+      params = params.append('typebat', typebat);
+      console.log(params);
+
+      if (rooms != 0 && rooms != null)
+      {params = params.append('rooms', rooms.toString()); }
+      if (price != 0 && price != null) {
+        params = params.append('price', price.toString());
+      }
+      this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      }).subscribe(data => {this.ads = data as Ad[]; console.log(data); console.log(this.ads); }  );
+      return this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      });}
+
+
+    else if(city != '' && typebat != null && typeAd == null)
+    {let params = new HttpParams();
+      params = params.append('typebat', typebat);
+      params = params.append('city', city);
+
+      if (rooms != 0 && rooms != null)
+      {params = params.append('rooms', rooms.toString()); }
+      if (price != 0 && price != null) {
+        params = params.append('price', price.toString());
+      }
+      console.log(params);
+      this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      }).subscribe(data => {this.ads = data as Ad[]; console.log(data); console.log(this.ads); }  );
+      return this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      });}
+    else if(city != '' && typebat == null && typeAd != null)
+    {let params = new HttpParams();
+      params = params.append('typeAd', typeAd);
+      params = params.append('city', city);
+
+      if (rooms != 0 && rooms != null)
+      {params = params.append('rooms', rooms.toString()); }
+      if (price != 0 && price != null) {
+        params = params.append('price', price.toString());
+      }
+      console.log(params);
+      this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      }).subscribe(data => {this.ads = data as Ad[]; console.log(data); console.log(this.ads); }  );
+      return this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      });}
+
+    else if(city != '' && typebat!=null && typeAd == null)
+    {let params = new HttpParams();
+      params = params.append('typebat', typebat);
+      params = params.append('city', city);
+
+      if (rooms != 0 || rooms != null)
+      {params = params.append('rooms', rooms.toString()); }
+      if (price != 0 && price != null) {
+        params = params.append('price', price.toString());
+      }
+      console.log(params);
+      this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      }).subscribe(data => {this.ads = data as Ad[]; console.log(data); console.log(this.ads); }  );
+      return this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      });}
+    else if(city != '' && typebat != null && typeAd != null)
+    {let params = new HttpParams();
+      params = params.append('typebat', typebat);
+      params = params.append('city', city);
+      params = params.append('typeAd', typeAd);
+
+      if (rooms != 0 || rooms != null)
+      {params = params.append('rooms', rooms.toString()); }
+      if (price != 0 && price != null) {
+        params = params.append('price', price.toString());
+      }
+      console.log(params);
+      this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      }).subscribe(data => {this.ads = data as Ad[]; console.log(data); console.log(this.ads); }  );
+      return this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      });}
+
+    else if(city != '' && typebat == null && typeAd == null)
+    {let params = new HttpParams();
+      params = params.append('city', city);
+
+      if (rooms != 0 && rooms != null)
+      {params = params.append('rooms', rooms.toString()); }
+      if (price != 0 && price != null) {
+        params = params.append('price', price.toString());
+      }
+      console.log(params);
+      this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      }).subscribe(data => {this.ads = data as Ad[]; console.log(data); console.log(this.ads); }  );
+      return this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      });}
+    else if(city == '' && typebat !=null && typeAd != null)
+    {let params = new HttpParams();
+      params = params.append('typeAd', typeAd);
+      params = params.append('typebat', typebat);
+      console.log(params);
+
+      if (rooms != 0 && rooms != null)
+      {params = params.append('rooms', rooms.toString()); }
+      if (price != 0 && price != null) {
+        params = params.append('price', price.toString());
+      }
+      this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      }).subscribe(data => {this.ads = data as Ad[]; console.log(data); console.log(this.ads); }  );
+      return this.http.get(`http://localhost:8082/dari/ads/getadbycriteria/`,  {
+        params,
+      });}
     else {     return this.http.get<Ad[]>(`${this.url}dari/ads/all` ); }
 
     /*.subscribe(data =>{this.ads=data as Ad[];console.log(data);console.log(this._ads)}  );

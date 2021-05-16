@@ -1,6 +1,48 @@
 
-                <app-header></app-header>
-                <router-outlet></router-outlet>
-                <app-footer></app-footer>
+<div style="position: fixed;top: 10%;padding-left: 5%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);" *ngIf="websock.messageNotif.length!=0"  [ngClass]="websock.messageNotif.length==0?'':'hideMe'" >
+
+
+  <a routerLink="">
+
+    <div [ngClass]="websock.messageNotif.length==0?'':'hideMe'" class="qty">{{websock.messageNotif.length}}</div>
+    <i [ngClass]="websock.messageNotif.length==0?'':'actv'" class="fa fa-bell-o" style="font-size: 30px;color: #D10024" aria-hidden="true"></i>
+  </a>
+</div>
+<!--
+
+<div  *ngIf="websock.postnotif==true" >
+<div style="position: fixed;top: 10%;padding-left: 5%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);" *ngIf="websock.messageNotif.length!=0"  [ngClass]="websock.messageNotif.length==0?'':'hideMe'" >
+
+  <a routerLink="">
+
+    <div [ngClass]="websock.messageNotif.length==0?'':'hideMe'" class="qty">{{websock.messageNotif.length}}</div>
+    <i [ngClass]="websock.messageNotif.length==0?'':'actv'" class="fa fa-bell-o" style="font-size: 30px;color: #D10024" aria-hidden="true"></i>
+  </a>
+</div>
+  </div>-->
+
+  <div  *ngIf="websock.sellnotif==true || websock.rentnotif==true" >
+    <div style="position: fixed;top: 10%;padding-left: 5%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);" *ngIf="websock.messageNotif.length!=0"  [ngClass]="websock.messageNotif.length==0?'':'hideMe'" >
+
+    <a routerLink="">
+
+      <div [ngClass]="websock.messageNotif.length==0?'':'hideMe'" class="qty">{{websock.messageNotif.length}}</div>
+      <i [ngClass]="websock.messageNotif.length==0?'':'actv'" class="fa fa-bell-o" style="font-size: 30px;color: #D10024" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
+
+<app-header></app-header>
+ <router-outlet></router-outlet>
+<app-footer></app-footer>
 
 

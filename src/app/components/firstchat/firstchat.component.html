@@ -1,20 +1,32 @@
-<div class="card mb-3" style="padding:60px 10px;margin: 20px 30px!important;margin-bottom: 100px!important;">
+<div class="card mb-3 overflow-auto" style="height:500px;padding:5% 10px;margin: 20px 30px!important;margin-bottom: 100px!important;" >
   <div class="card-body" >
     <div style="margin-left: 250px">
     <div class="input-group mb-3">
-      <input class="form-control col-4" type="text" style="margin-top: 20px ; height: 48px" placeholder="message" [(ngModel)]="mtxt" >
+      <input class="form-control col-12" type="text" style="margin-top: 20px ;border-top-left-radius: 20px;border-bottom-left-radius: 20px;; height: 48px" placeholder="message" [(ngModel)]="mtxt" >
       <div class="input-group-append">
         <button class="btn btn-ghost" (click)="sendMessage()">Send</button>
       </div>
     </div>
     </div>
     <div class="content container" >
-      <div class="overflow-auto" style="margin-bottom: 30px">
-        <div  *ngFor="let msg of chatService.messages" [ngClass]="username==msg.name? 'own' : 'receive' ">
-          <div class="username" style="margin-top: 10px;font-size: 15px">{{msg.name}}</div>
-          <div style="margin-top: 9px;font-size: 12px!important;">{{msg.text}}</div>
-        <div class="date"  style="margin-top: 10px">{{msg.date}}</div>
-        </div></div>
+      <div style="margin-bottom: 30px">
+        <div *ngFor="let msg of chatService.messages" >
+          <div style="display: flex" [ngClass]="username==msg.name? '' : 'receiver'">
+            <div>
+              <img src="{{msg.avatar}}" alt="" width="100px" height="50px" style="cursor:pointer;padding-right: 20%"
+
+                   class="header-avatar rounded-circle">
+            </div>
+            <div [ngClass]="username==msg.name? 'own' : 'receive' ">
+            <div class="username" style="margin-top:4px;font-size: 15px">{{msg.name}}</div>
+            <div style="margin-top: 3px;font-size: 12px!important;">{{msg.text}}</div>
+              <div class="date" style="margin-top: 5px">{{msg.date}}</div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
 
   </div>

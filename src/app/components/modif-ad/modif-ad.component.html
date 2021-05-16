@@ -2,7 +2,42 @@
   <mat-grid-tile>Modify the Ad</mat-grid-tile>
   <mat-dialog-content class="mat-typography">
     <div class="example-container">
+      <div class="alert alert-danger" *ngIf="numbreOfRooms.invalid && numbreOfRooms.touched">
+        <div *ngIf="numbreOfRooms.errors.pattern">
+          the nb.rooms must be a positive number
+        </div>
+        <div *ngIf="numbreOfRooms.errors.required">the nb of rooms is a required field</div>
+
+      </div>
+      <div class="alert alert-danger" *ngIf="numberOfBathrooms.invalid && numberOfBathrooms.touched">
+        <div *ngIf="numberOfBathrooms.errors.pattern">
+          the nb.bathrooms must be a positive number
+        </div>
+        <div *ngIf="numberOfBathrooms.errors.required">the nb.bthrooms is a required field</div>
+
+      </div>
+      <div class="alert alert-danger" *ngIf="area.invalid && area.touched">
+        <div *ngIf="area.errors.pattern">
+          the area must be a positive number
+        </div>
+        <div *ngIf="area.errors.required">the area is a required field</div>
+
+      </div>
+      <div class="alert alert-danger" *ngIf="price.invalid && price.touched">
+        <div *ngIf="price.errors.pattern">
+          the price must be a positive number
+        </div>
+        <div *ngIf="price.errors.required">the price is a required field</div>
+
+      </div>
+      <div class="alert alert-danger" *ngIf="builda.invalid && builda.touched">
+        <div *ngIf="builda.errors.pattern">
+          the build area  must be a positive number
+        </div>
+      </div>
+
       <mat-form-field appearance="fill" class="width-50 col-10">
+
         <mat-label>Title of the ad</mat-label>
         <input matInput [(ngModel)]="Ad.titleAd" name="titleAd" ngModel #titleAd="ngModel" required>
       </mat-form-field>
@@ -12,13 +47,13 @@
         <mat-label>number of rooms</mat-label>
         <div>
           <input matInput name="numbreOfRooms" ngModel #numbreOfRooms="ngModel" type="number"
-                 [(ngModel)]="Ad.numbreOfRooms" required/></div>
+                 [(ngModel)]="Ad.numbreOfRooms"  min="0" pattern="[0-9]+" required/></div>
       </mat-form-field>
       <mat-form-field>
         <mat-label>number of bathrooms</mat-label>
         <div>
           <input matInput name="numberOfBathrooms" ngModel
-                 #numberOfBathrooms="ngModel" type="number" [(ngModel)]="Ad.numberOfBathrooms" required/>
+                 #numberOfBathrooms="ngModel" type="number" pattern="[0-9]+"  min="0" [(ngModel)]="Ad.numberOfBathrooms" required/>
 
         </div>
       </mat-form-field>
@@ -40,23 +75,24 @@
       <br>
       <mat-form-field>
         <mat-label class="ml-3">Built Area:</mat-label>
-        <input matInput [(ngModel)]="Ad.builda" name="builda" ngModel #builda="ngModel"></mat-form-field>
+        <input matInput type="number"   [(ngModel)]="Ad.builda" name="builda" pattern="[0-9]+"  min="0" ngModel #builda="ngModel"></mat-form-field>
       <br>
       <mat-form-field>
         <mat-label>Total area</mat-label>
-        <input matInput [(ngModel)]="Ad.area" name="area" ngModel #area="ngModel" required></mat-form-field>
+        <input matInput  type="number"  [(ngModel)]="Ad.area" name="area" ngModel pattern="[0-9]+" min="0" #area="ngModel" required></mat-form-field>
       <mat-form-field>
         <mat-label>Price</mat-label>
-        <input matInput [(ngModel)]="Ad.price" name="price" ngModel #price="ngModel" required></mat-form-field>
+        <input matInput type="number" [(ngModel)]="Ad.price" name="price" ngModel  pattern="[0-9]+"  min="0" #price="ngModel" required></mat-form-field>
       <mat-form-field>
         <mat-label>Description</mat-label>
         <input matInput [(ngModel)]="Ad.description" name="description" ngModel
-               #description="ngModel" required>
+               #description="ngModel" >
 
         <!--                   <input matInput [(ngModel)]="Ad.area" name="area" ngModel #area="ngModel" required></div>-->
 
 
       </mat-form-field>
+      <br>
       <button mat-stroked-button class="ml-3" style="background-color: #b0bec5" [mat-dialog-close]="true"
               [disabled]="f.invalid" (click)="update(f)">submit
       </button>

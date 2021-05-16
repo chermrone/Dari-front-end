@@ -12,15 +12,20 @@ import {Typead} from "../../enumeration/Typead";
 import {AdService} from "../../services/ad.service";
 import {Ad} from "../../models/Ad";
 import {TypeBatiment} from "../../enumeration/TypeBatiment";
+import {AdadvancSearchAdminComponent} from "../adadvanc-search-admin/adadvanc-search-admin.component";
+import {AdKeySearchComponent} from "../ad-key-search/ad-key-search.component";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
+
+export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;cities:string[]=[];
+
   constructor(public Adservice: AdService,private dialog: MatDialog, private token: TokenStorageService, private router: Router, public sos: SubscriptionOrderService,public verifauth: VerifAuthService) {
     this.keys = Object.keys(this.symbol);       this.keysBat = Object.keys(this.symbolsBat);
+    this.cities=['ariana', 'beja', 'ben arous', 'bizerte', 'gabes', 'gafsa', 'jandouba', 'karawen', 'gasrin', 'gbelli', 'kef', 'mahdia', 'manouba', 'mednine', 'mistir', 'nabeul', 'sfax', 'sidi bouzid', 'siliana', 'sousse', 'tataouine', 'tozeur', 'tunis', 'zaghouan'];
 
 
   }
@@ -123,11 +128,20 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
     this.dialog.open(RegisterComponent, dialogConfig);
 
   }
-ads:Ad[];
+
+ads:Ad[];verifmsg:string;
   searchbycriteria(typead: any, typebat: any, price: any, rooms: any,city:any) {
     this.Adservice.SearchCriteria(price,  city, rooms, typead,
       typebat).subscribe( data=>{this.ads=data as Ad[];this.Adservice.ads=this.ads});
     console.log(this.Adservice.ads);
-    this.router.navigate(['SearchAd']);
+        this.router.navigate(['SearchAd']);
+  }
+
+  redirectAdSearchKey() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "20%";
+    this.dialog.open(AdKeySearchComponent, dialogConfig);
   }
 }

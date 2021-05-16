@@ -1,0 +1,20 @@
+<mat-form-field class="example-chip-list">
+  <mat-label>Search</mat-label>
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip *ngFor="let val of valu" [selectable]="selectable"
+              [removable]="removable" (removed)="remove(val)">
+      {{val}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="search keys..." class="col-8"
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field>
+<button class="search-btn" (click)="searchAd()"  mat-button>
+  <mat-icon  style="color:#D10024" >search</mat-icon>
+</button>
+<div *ngIf="msg!=''" class="alert-danger alert">{{msg}}
+</div>

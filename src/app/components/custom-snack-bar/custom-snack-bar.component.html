@@ -1,0 +1,16 @@
+<div *ngIf="adserv.VerifCancel==true">
+<div *ngFor="let add of add">
+<div class="example-pizza-party">
+  <div style="margin-left: 5%;margin-top:30px;display: flex ; justify-content:space-between;width: 90%"><h3
+    class="card-title">{{add.titleAd}}</h3>
+    <h3 class="card-title">{{add.price}} DT</h3></div>
+  <div style="display: flex "class="carac" >
+    <div> {{add.city}} •</div>
+    <div>{{add.numbreOfRooms}} rooms •</div>
+    <div>{{add.numberOfBathrooms}}  bth.rooms •</div>
+    <div *ngIf="add.area!=0">Area : {{add.area}} m² </div>  </div>
+  <button mat-raised-button class="btn-ghost" (click)="cancel()">Cancel </button>
+  <button mat-raised-button class="btn-ghost" (click)="goto(add.adId)">goto </button>
+</div>
+</div>
+</div>

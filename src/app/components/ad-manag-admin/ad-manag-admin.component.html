@@ -7,7 +7,10 @@
     <i class="fa fa-cogs" aria-hidden="true" style="color:#D10024;background-color: #424242"></i>
      Advanced Search
   </button>
-  <mat-form-field style="margin-left: 1%;color: #424242">
+  <button mat-raised-button (click)="NotificationAdmin()" style="margin-left: 1%;background-color: #424242">
+    <i class="fa fa-bell-o" aria-hidden="true" style="color:#D10024;background-color: #424242"></i>
+    Notification
+  </button>  <mat-form-field style="margin-left: 1%;color:#ececec">
     <input  matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
   </mat-form-field>
 </div>

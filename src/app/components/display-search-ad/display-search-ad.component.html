@@ -12,7 +12,7 @@
           </div>
           <div class="shop-body">
             <h3>Houses<br>For Sell</h3>
-            <a href="#"  routerLink="sell" class="cta-btn"> Check now <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#"  routerLink="../sell" class="cta-btn"> Check now <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
           </div>
           <div class="shop-body">
             <h3>Appartments<br> for Rent</h3>
-            <a href="#"  routerLink="rent" class="cta-btn"> Check now <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#"  routerLink="../rent" class="cta-btn"> Check now <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
@@ -36,11 +36,11 @@
       <div class="col-md-4 col-xs-6">
         <div class="shop">
           <div class="shop-img">
-            <img src="./../../../assets/img/shop02.png" alt="">
+            <img src="../../../assets/img/clean-upholstered-furniture.jpg" alt="">
           </div>
           <div class="shop-body">
-            <h3>Cameras<br>Collection</h3>
-            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+            <h3>Available<br>Furnitures</h3>
+            <a href="#" routerLink="fournitureAd" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
@@ -51,6 +51,42 @@
   <!-- /container -->
 </div>
 <!-- /SECTION -->
+
+
+<div style="display: flex" *ngFor="let add of websock.messageNotif">
+  <div class="col-6" style="margin-left: 25%">
+    <div
+      class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+      role="alert" data-brk-library="component__alert">
+      <button type="button" class="close font__size-18" data-dismiss="alert">
+									<span aria-hidden="true">
+										<i class="fa fa-times danger "></i>
+									</span>
+        <span class="sr-only">Close</span>
+      </button>
+      <div style="display: flex ">
+        <div> <strong class="font__weight-semibold">{{add.titleAd}}</strong></div>
+        <div><strong class="font__weight-semibold">&nbsp; {{add.price}} DT </strong></div>
+        <div style="margin-left: 70%;">
+          <button mat-button (click)="check(add.adId)"><i class="fa fa-paper-plane" style="font-size: 35px;color:#D10024 !important;"
+                                                          aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div style="display: flex " class="carac">
+        <div> {{add.city}} •</div>
+        <div> {{add.type}} •</div>
+        <div>{{add.numbreOfRooms}} rooms •</div>
+        <div>{{add.numberOfBathrooms}}  bth.rooms •</div>
+        <div *ngIf="add.area!=0">Area : {{add.area}} m²</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 <!-- SECTION -->
 <div class="section">
@@ -70,20 +106,22 @@
       <!-- Products tab & slick -->
       <div class="col-md-12">
         <div class="row">
-          <div class="col-md-4 col-sm-6" *ngFor="let p of Adservice.ads">
+          <div class="col-md-4 col-sm-6" *ngFor="let p of Adservice.ads| paginate: { itemsPerPage: 9, currentPage: pp }">
 
 
             <!--<div *ngFor="let f of p.imgads" ><div *ngFor="let s of f.picByte">
               <img style="height: 50px;width: 100px"src="'data:image/jpeg;base64,'{{s}}"></d<iv>/div>-->
 
 
-            <div class="card my-2">
+            <div class="card my-2" style="border-radius: 30px;">
 
               <div *ngFor="let adimg of p.imgads">
                 <div *ngFor="let f of retrievedImage">
                   <div *ngIf="f[1]==adimg.id" >
-                    <img src="{{f[0]}}" alt="{{p.adId}}" width="200px" class="card-img-top" style="cursor:pointer;"
+                    <img src="{{f[0]}}" alt="{{p.adId}}" width="200px" height="200"class="card-img-top" style="cursor:pointer;border-top-left-radius: 30px;border-top-right-radius: 30px"
                          (click)="selectAd(p.adId)">
+                    <a (click)="AddTofav(p.adId)" style="cursor: pointer ;position:absolute;right:0%;left:85%;top:3%"><i (click)="AddTofav(p.adId)" class="fa fa-heart ii" aria-hidden="true"></i> </a>
+
                   </div>
                 </div>
               </div>
@@ -91,15 +129,25 @@
 
 
               <!--<img [src]="p.image" alt="{{p.name}}" width="200px" class="card-img-top" (click)="selectProduct(p.id)" style="cursor:pointer;">-->
-              <div class="card-header">
-                <div class="card-title">
-                  <p>Titre {{p.titleAd | titlecase}}</p>
-                  <a (click)="AddTofav(p.adId)" style="cursor: pointer ;position: absolute;right:0px;left:300px;top:10px"><i (click)="AddTofav(p.adId)" class="fa fa-heart ii" aria-hidden="true"></i> </a></div>
+              <div class="card-header bordercolor" style="background-color: #D10024;border-bottom-right-radius: 30px;border-bottom-left-radius: 30px">
+                <div class="card-title bordercolor">
+                  <!--                  <p> <span class="title">Title : </span> <span class="stitle">{{p.titleAd | titlecase}} </span></p>-->
+                  <div style="margin-left: 1%;display: flex; justify-content:space-between;width: 90% ;color: #ecf0f1">
+                    <span class="title">{{p.titleAd | titlecase}} </span>
+                    <span class="title">{{p.price}} DT</span></div>
+                </div>
               </div>
-              <div class="card-body">
-                <h6>{{p.description}} ....</h6>
-                <p class="lead">{{p.price | currency:'DT'}}</p>
-              </div>
+              <div class="card-body bordercolor" style="border-radius: 30px;">
+                <div style="display: flex ;align-items: center;
+  justify-content: center;width: 90%;align-content: center;margin-left: 5%">
+                  <div style="padding-right: 80%"><h4  style="font-size: 14px;font-weight: 700" class="stitle">{{p.type}}</h4></div>
+                  <div>
+                    <div ><h4 style="font-size: 14px;font-weight: 700"  class="stitle">{{p.city}}</h4></div>
+
+                  </div>
+                </div>
+              <h6 class="stitle">{{p.description}} ....</h6>
+            </div>
 
               <div class="row d-flex justify-content-center  my-3">
                 <div class="col-md-6 ">
@@ -118,9 +166,12 @@
           </div>
 
         </div>
-
+        <div style="display: flex;justify-content: center">
+          <pagination-controls (pageChange)="pp= $event"></pagination-controls>
+        </div>
       </div>
     </div>
+
   </div>
 
   <!-- /container -->

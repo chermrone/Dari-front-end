@@ -6,6 +6,9 @@ import {Router} from '@angular/router';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {FilesAd} from '../../models/FilesAd';
 import {Observable} from 'rxjs';
+import {NotifwebsocketService} from "../../services/notifwebsocket.service";
+import {CustomSnackBarComponent} from "../custom-snack-bar/custom-snack-bar.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-home',
@@ -22,8 +25,12 @@ export class HomeComponent implements OnInit {
 
   fileInfos: Observable<FilesAd[]>;
 
-  constructor(private Adservice: AdService, private router: Router, private token: TokenStorageService) {
+
+
+
+  constructor(private Adservice: AdService, private router: Router, private _snackBar: MatSnackBar, private token: TokenStorageService,public websock: NotifwebsocketService) {
   }
+  p: number = 1;
   File: FilesAd[];
   ngOnInit(): void {
     this.info = {
@@ -31,18 +38,20 @@ export class HomeComponent implements OnInit {
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities()
     };
-
-
+  /*    this._snackBar.openFromComponent(CustomSnackBarComponent, {
+        duration: 10* 2000,
+      })*/
     this.Adservice.getAd().subscribe(
       (data) => {
         this.products = data;
         this.Adservice.getFiles().subscribe(res => {
            this.retrieveResonse = res as FilesAd[];
            for (const i of this.retrieveResonse)
-            {this.base64Data.push([i.picByte, i.id]); // console.log(this.retrieveResonse);
+            {this.base64Data.push([i.picByte, i.id,i.type]); // console.log(this.retrieveResonse);
               }
            for (const t of this.base64Data)
-            {this.retrievedImage.push(['data:image/jpeg;base64,' + t[0], t[1]]); // console.log(this.retrievedImage);
+            {if(t[2]=="image/jpeg")
+              this.retrievedImage.push(['data:image/jpeg;base64,' + t[0], t[1]]); // console.log(this.retrievedImage);
             }}
          );},
       (error: HttpErrorResponse) => {
@@ -59,5 +68,9 @@ export class HomeComponent implements OnInit {
 public ii:number;
   AddTofav(adId: number) {console.log(adId);this.ii=adId;
     this.Adservice.postFav(adId).subscribe(data=> console.log("succes"));
+  }
+
+  check(adId: number) {
+    this.router.navigate(['/ad', adId]);
   }
 }

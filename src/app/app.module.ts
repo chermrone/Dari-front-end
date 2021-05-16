@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -62,6 +62,11 @@ import { ModifFournitureAdComponent } from './components/modif-fourniture-ad/mod
 import {MatChipsModule} from '@angular/material/chips';
 import { FournitureStatisticsComponent } from './components/fourniture-statistics/fourniture-statistics.component';
 import {MatListModule} from '@angular/material/list';
+import { CustomSnackBarComponent } from './components/custom-snack-bar/custom-snack-bar.component';
+import { AdKeySearchComponent } from './components/ad-key-search/ad-key-search.component';
+import { NotifAdminComponent } from './components/notif-admin/notif-admin.component';
+
+
 
 
 @NgModule({
@@ -112,11 +117,14 @@ import {MatListModule} from '@angular/material/list';
         FournitureAdOwnedComponent,
         ModifFournitureAdComponent,
         FournitureStatisticsComponent,
+        CustomSnackBarComponent,
+        AdKeySearchComponent,
+        NotifAdminComponent,
        ],
 
 
   imports: [
-    MatListModule,
+    MatListModule, NgxPaginationModule,
     MatChipsModule,
     BrowserModule,
     BrowserAnimationsModule,

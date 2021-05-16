@@ -6,6 +6,7 @@ import {AdService} from "../../services/ad.service";
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../../auth/token-storage.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {NotifwebsocketService} from "../../services/notifwebsocket.service";
 
 @Component({
   selector: 'app-sell',
@@ -13,7 +14,7 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./sell.component.scss']
 })
 export class SellComponent implements OnInit {
-  info: any;
+  info: any;  pp: number = 1;
   sellAd: Ad[] | undefined;
   f: FilesAd[];
   retrieveResonse: FilesAd[];
@@ -22,7 +23,7 @@ export class SellComponent implements OnInit {
 
   fileInfos: Observable<FilesAd[]>;
 
-  constructor(private Adservice: AdService, private router: Router, private token: TokenStorageService) {
+  constructor(private Adservice: AdService, private router: Router, private token: TokenStorageService,public websock: NotifwebsocketService) {
   }
 
   File: FilesAd[];
@@ -40,10 +41,11 @@ export class SellComponent implements OnInit {
         this.Adservice.getFiles().subscribe(res => {
           this.retrieveResonse = res as FilesAd[];
           for(let i of this.retrieveResonse)
-          {this.base64Data.push([i.picByte,i.id]); //console.log(this.retrieveResonse);
+          {this.base64Data.push([i.picByte,i.id,i.type]); //console.log(this.retrieveResonse);
           }
           for(let t of this.base64Data)
-          {this.retrievedImage.push(['data:image/jpeg;base64,' + t[0],t[1]]);//console.log(this.retrievedImage);
+          {if(t[2]=="image/jpeg")
+            this.retrievedImage.push(['data:image/jpeg;base64,' + t[0],t[1]]);//console.log(this.retrievedImage);
           }}
         ); },
       (error: HttpErrorResponse) => {
@@ -59,6 +61,14 @@ export class SellComponent implements OnInit {
              number
   ) {
     this.router.navigate(['/ad', id]);
+  }
+  public ii:number;
+  AddTofav(adId: number) {console.log(adId);this.ii=adId;
+    this.Adservice.postFav(adId).subscribe(data=> console.log("succes"));
+  }
+
+  check(adId: number) {
+    this.router.navigate(['/ad', adId]);
   }
 
 }

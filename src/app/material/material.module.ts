@@ -13,8 +13,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
-const materialComponent = [
+const materialComponent = [    MatSnackBarModule
+,
   MatButtonModule,
   MatButtonToggleModule,
   MatTableModule,

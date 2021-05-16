@@ -1,24 +1,45 @@
 <div class="container espace">
 
-  <div class="card mb-3" style="padding:30px 50px;margin: 30px 70px!important;margin-bottom: 100px!important;">
+  <div class="card mb-3" style="padding:5% 5%;margin: 2% 5%!important;margin-bottom: 100px!important;">
     <div *ngFor="let im of Img">
       <img src="{{im}}" class="card-img-top"
-           style="cursor:pointer;width: 70%;height:200px;margin-right: 60px;margin-left: 108px"
+           style="cursor:pointer;width: 70%;height:200px;margin-left: 13%;margin-top:2%;border-radius: 10px;"
       >
     </div>
-    <div><button style="width: 50px" mat-button color="primary" (click)="onCreate()">Post Claim</button></div>
+
+    <div *ngFor="let im of video"  >
+    <video style="cursor:pointer;width: 70%;height:200px;margin-top: 2%;margin-left: 13%;" controls disabled="true">
+      <source [src]="im" type="video/mp4">
+    </video>   </div>
+    <div><button style="width: 50px;font-size: 15px" mat-button color="primary" (click)="onCreate()"><i class="fa fa-minus-circle" aria-hidden="true"></i>
+    </button></div>
+
     <div class="card-body">
-      <div style="margin-left: 5%;margin-top:30px;display: flex ; justify-content:space-between;width: 90%"><h3
+      <div style="margin-top:30px;display: flex ; justify-content:space-between;width: 90%"><h3
         class="card-title">{{Ad.titleAd}}</h3>
-        <h3 class="card-title">{{Ad.price}} DT</h3></div>
-      <div style="display: flex "class="carac" >
-        <div *ngIf="Ad.builda!=0"> {{Ad.city}} •</div>
-        <div>{{Ad.numbreOfRooms}} rooms •</div>
-        <div>{{Ad.numberOfBathrooms}}  bth.rooms •</div>
-        <div *ngIf="Ad.area!=0">Area : {{Ad.area}} m² •</div>
-        <div *ngIf="Ad.builda!=0"> blt.Area : {{Ad.builda}} m²</div>
+        <h3 class="card-title" style="margin-left:25% !important;">{{Ad.price}} DT</h3></div>
+      <div style="display: flex;font-weight: 400 " class="carac">
+          <div>{{Ad.city}} &nbsp;</div>
+
+            <div *ngIf="Ad.type!='ground'">• {{Ad.numbreOfRooms}}  rooms •</div>
+            <div *ngIf="Ad.type!='ground'">{{Ad.numberOfBathrooms}}  bth.rooms </div>
+
+          <div *ngIf="Ad.area!=0">• Area : {{Ad.area}} m² </div>
+          <div *ngIf="Ad.builda!=0">• blt.Area : {{Ad.builda}} m²</div>
+        </div>
+      <p class="card-text" style="margin-top: 2%">{{Ad.description}}</p>
+      <div style="display: flex;margin-bottom: 5% ;margin-top: 10%;justify-content: flex-end" class="carac">
+
+      <div *ngFor="let f of retrievedImageuser">
+            <img src="{{f}}" alt="" width="100px" height="80px"  style="cursor:pointer;padding-right: 5%"
+                 class="header-avatar rounded-circle" >
+        </div>
+        <div>  <p class="card-text" style="font-weight: 400;font-size: 12px">{{Ad.us.userName}}</p>
+      <p class="card-text" style="font-weight: 400;font-size: 12px">N° :{{Ad.us.phoneNumber}}</p>
+          <p class="card-text" style="font-weight: 400;font-size: 12px">email :{{Ad.us.email}}</p>
+
+        </div>
       </div>
-      <p class="card-text">{{Ad.description}}</p>
       <p class="card-text"><small class="text-muted">{{Ad.creationDate}}</small></p>
 
     </div>

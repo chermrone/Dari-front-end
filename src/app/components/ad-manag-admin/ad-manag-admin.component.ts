@@ -10,6 +10,7 @@ import {Route, Router, Routes} from "@angular/router";
 import { Ad } from 'src/app/models/Ad';
 import {FilesAd} from "../../models/FilesAd";
 import {AdadvancSearchAdminComponent} from "../adadvanc-search-admin/adadvanc-search-admin.component";
+import {NotifAdminComponent} from "../notif-admin/notif-admin.component";
 
 @Component({
   selector: 'app-ad-manag-admin',
@@ -58,7 +59,7 @@ export class AdManagAdminComponent implements OnInit {
   Ad:Ad;
   onEdit(AdId: number) {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "45%";
     this.dialog.open(ModifAdComponent, dialogConfig);
@@ -71,9 +72,17 @@ export class AdManagAdminComponent implements OnInit {
 
   Advanced() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "85%";
     this.dialog.open(AdadvancSearchAdminComponent, dialogConfig);
+  }
+
+  NotificationAdmin() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+    this.dialog.open(NotifAdminComponent, dialogConfig);
   }
 }

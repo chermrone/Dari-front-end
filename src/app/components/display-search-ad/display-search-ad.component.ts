@@ -6,6 +6,7 @@ import {AdService} from '../../services/ad.service';
 import {Router} from '@angular/router';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import {NotifwebsocketService} from "../../services/notifwebsocket.service";
 
 @Component({
   selector: 'app-display-search-ad',
@@ -14,7 +15,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class DisplaySearchAdComponent implements OnInit {
 
-  constructor(public Adservice: AdService, private router: Router, private token: TokenStorageService) {
+  constructor(public Adservice: AdService, private router: Router, private token: TokenStorageService,public websock: NotifwebsocketService) {
   }
   info: any;
   products: Ad[] | undefined;
@@ -37,20 +38,26 @@ export class DisplaySearchAdComponent implements OnInit {
     this.Adservice.getFiles().subscribe(res => {
         this.retrieveResonse = res as FilesAd[];
         for (const i of this.retrieveResonse) {
-          this.base64Data.push([i.picByte, i.id]); // console.log(this.retrieveResonse);
+          this.base64Data.push([i.picByte, i.id,i.type]); // console.log(this.retrieveResonse);
         }
         for (const t of this.base64Data) {
+          if(t[2]=="image/jpeg")
           this.retrievedImage.push(['data:image/jpeg;base64,' + t[0], t[1]]); // console.log(this.retrievedImage);
         }
       }
     );
   }
+  pp: number = 1;
 
 // tslint:disable-next-line:typedef
     selectAd(id: number) {
     this.router.navigate(['/ad', id]);
   }
-  AddTofav(adId: number) {console.log(adId); this.ii = adId;
-                          this.Adservice.postFav(adId).subscribe(data => console.log('succes'));
+  AddTofav(adId: number) {console.log(adId);this.ii=adId;
+    this.Adservice.postFav(adId).subscribe(data=> console.log("succes"));
+  }
+
+  check(adId: number) {
+    this.router.navigate(['/ad', adId]);
   }
 }

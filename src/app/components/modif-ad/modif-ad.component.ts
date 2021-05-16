@@ -35,16 +35,22 @@ export class ModifAdComponent implements OnInit {
         this.AdServ.getFiles().subscribe(res => {
           this.retrieveResonse = res as FilesAd[];
           for(let i of this.retrieveResonse)
-          {this.base64Data.push([i.picByte,i.id]); console.log(this.base64Data);
-          }
+          {this.base64Data.push([i.picByte,i.id,i.type]);
+          }//console.log(this.base64Data)
           for(let t of this.base64Data)
-          {this.retrievedImage.push(['data:image/jpeg;base64,' + t[0],t[1]]);console.log(this.retrievedImage);
+          {if(t[2]=="image/jpeg")
+            this.retrievedImage.push(['data:image/jpeg;base64,' + t[0],t[1]]);
           }
-          for(let img of this.Ad.imgads)
-        {for(let q of this.retrievedImage)
-        {if(q[1]==img.id)
-        {this.Img.push(q[0]);console.log(img.id + "   "+q[1]);}
-        }}}
+          // console.log(this.retrievedImage);
+          for(let q of this.retrievedImage)
+          {for(let img of this.Ad.imgads)
+          {//console.log(img.type.indexOf("image"))
+            if(q[1]==img.id)
+            {this.Img.push(q[0]);//console.log(img.id + "   "+q[1]);
+            }
+            /*   else if(q[1]==img.id && img.type.indexOf("video")!=-1)
+               {this.video.push(img.picByte);}*/
+          }}}
         );
 
       });}console.log("start from here img");
