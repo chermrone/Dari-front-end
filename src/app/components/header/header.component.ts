@@ -92,7 +92,7 @@ export class HeaderComponent implements OnInit {keys=[]; symbol=Typead;
             this.shoppingCartService.getShoppingCartByUsername(AuthUsername).subscribe(
               (data) => {
                 this.cartData = data;
-                console.log("data from subscribtion:" +JSON.stringify(data));
+                // console.log("data from subscribtion:" +JSON.stringify(data));
               }
             )
           }

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { TokenStorageService } from "../auth/token-storage.service";
+import { CardInfo } from "../models/CardInfo";
 import { OrderUser } from "../models/OrderUser";
 import { User } from "../models/user";
 import { UserService } from "./user.service";
@@ -25,15 +26,19 @@ export class OrderUserService {
     }
 
     createOrder(orderUser: OrderUser): Observable<OrderUser>{
-        return this.httpclient.post<OrderUser>(environment.baseUrl + 'Order/add/', orderUser);
+        return this.httpclient.post<OrderUser>(environment.baseUrl + 'Order/add', orderUser);
     }
 
-    checkout(orderUser: OrderUser): Observable<OrderUser>{
-        return this.httpclient.get<OrderUser>(environment.baseUrl + 'api/checkout/'+orderUser.orderId);
+    updateOrder(orderUser: OrderUser): Observable<OrderUser>{
+        return this.httpclient.put<OrderUser>(environment.baseUrl + 'Order/modif/'+orderUser.orderId, orderUser);
     }
 
-    charge(id: number): Observable<OrderUser>{
-        return this.httpclient.get<OrderUser>(environment.baseUrl + 'api/charge/'+id);
+    checkout(orderId: number): Observable<OrderUser>{
+        return this.httpclient.get<OrderUser>(environment.baseUrl + 'checkout/'+orderId);
+    }
+
+    charge(id: number,card:CardInfo): Observable<OrderUser>{
+        return this.httpclient.post<OrderUser>(environment.baseUrl + 'charge/'+id,card);
     }
 
 }

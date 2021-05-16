@@ -27,9 +27,20 @@ export class ShoppingCartService {
             this.userService.getUserByUserName(this.username).subscribe(
                 (user) => {
                     this.user = user;
+                    let shoppingCart = new ShoppingCart()
+                    shoppingCart.us = new User()
+                    shoppingCart.us.userName = user.userName
+                    shoppingCart.us.idUser = user.idUser
+                    shoppingCart.fournitureAds = []
+                    this.shoppingCart.next(shoppingCart)
                 }
             )
         }
+
+    createCart(shoppingCart: ShoppingCart): Observable<ShoppingCart> {    
+        this.updateValue(this.username,shoppingCart);
+        return this.httpclient.post<ShoppingCart>(environment.baseUrl + 'ShoppingCart/add', shoppingCart);
+    }
 
     updateCart(shoppingCart: ShoppingCart): Observable<ShoppingCart> {    
         this.updateValue(this.username,shoppingCart);
@@ -62,7 +73,7 @@ export class ShoppingCartService {
         shoppingCart.us = new User()
         shoppingCart.us.userName = username
         shoppingCart.us.idUser = this.user.idUser
-        console.log("updated shopping cart:"+JSON.stringify(shoppingCart));
+        // console.log("updated shopping cart:"+JSON.stringify(shoppingCart));
         this.shoppingCart.next(shoppingCart);
     }
 }

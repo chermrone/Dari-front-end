@@ -1,9 +1,8 @@
-.example-card {
-    background-color: #6273e0;
+.card-text {
+    white-space: pre-wrap;
 }
-mat-list-item {
-    margin-bottom: 5%;
-}
-#checkout{
-    margin: 2%;
+.card {
+    display: flex;
+    height: 100%;
+    align-items: stretch;
 }

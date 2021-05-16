@@ -10,9 +10,13 @@
                     <label for="datecreated">Date Shipped</label>
                     <input type="text" class="form-control" id="datecreated" disabled [value]="order.dateShiped">
                 </div>
-                <app-cart [shoppingCart]="order.shoppingCart"></app-cart>
+                <app-cart [shoppingCart]="order.shoppingCart" [inCheckoutView] = "true"></app-cart>
             </form>
-            <button id="checkout" mat-raised-button color="accent" (click)="confirmOrder()">Confirm Order</button>
+            <br>
+            <div class="form-group">
+                <button id="confirm" class="btn btn-primary" (click)="confirmOrder()">Confirm Order</button>
+            </div>
+            
         </div>
     </div>
     <br>
@@ -34,8 +38,11 @@
                 <div class="form-group">
                     <label for="cvc">CVC</label>
                     <input type="text" class="form-control" id="cvc" name="cvc" ngModel #cvc="ngModel">
+                </div>                
+                <br>
+                <div class="form-group">
+                    <button id="checkout" class="btn btn-primary" (click)="completeCheckout()">Checkout</button>
                 </div>
-                <button id="checkout" mat-raised-button color="accent" (click)="checkout()">Checkout</button>
             </form>
         </div>
     </div>

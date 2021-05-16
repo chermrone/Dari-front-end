@@ -1,5 +1,26 @@
 <div class="section">
   <div class="container">
+    <div class="row">
+      <div class="col-md-6" style="margin-top: 10px">
+        <div class="header-search">
+          <form #searchForm="ngForm">
+
+            <select id="city" name="city" [(ngModel)]="model.city" class="input-select col-2">
+              <option *ngFor="let key of cities" [value]="key">{{key}}</option>
+            </select>
+
+            <input id="price" placeholder="DT" name="price" type="number" [(ngModel)]="model.price"
+              class="input-select col-2 ">
+
+            <input id="keyword" placeholder="search keyword" name="keyword" type="text" [(ngModel)]="model.keyword"
+              class="input-select col-2 ">
+
+            <button class="search-btn"
+              (click)="searchbycriteria()">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
     <div *ngIf="list" class="row">
         <div  *ngFor="let ad of list" class="col-md-4 col-xs-6">
           <div  class="shop">

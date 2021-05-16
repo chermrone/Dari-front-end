@@ -1,16 +1,18 @@
-
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="card" style="width: 18rem;" *ngFor="let fournitureAd of shoppingCart.fournitureAds">
+  <div class="row" *ngIf="shoppingCart">
+    <div class="col" *ngFor="let fournitureAd of shoppingCart.fournitureAds">
+      <div class="card" style="width: 18rem;">
         <img class="card-img-top" [src]="getFilePath(fournitureAd)">
         <div class="card-body">
           <h5 class="card-title">{{fournitureAd.nameFa}}</h5>
           <p class="card-text">{{fournitureAd.price}}</p>
-          <a href="#" class="btn btn-danger" (click)="remove(fournitureAd)">Remove from Cart</a>
+          <a class="btn btn-danger" *ngIf="!inCheckoutView" (click)="remove(fournitureAd)">Remove from Cart</a>
         </div>
       </div>
-      <button id="checkout" mat-raised-button color="accent" [routerLink]="['/faCheckout']">Checkout</button>
-    </div>
+    </div>    
+  </div>
+  <div class="row">
+    <button id="checkout" mat-raised-button color="accent" *ngIf="!inCheckoutView"
+    [routerLink]="['/faCheckout']">Checkout</button>
   </div>
 </div>

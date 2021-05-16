@@ -13,6 +13,8 @@ export class CartComponent implements OnInit {
 
   @Input()
   shoppingCart:ShoppingCart = null;
+  @Input()
+  inCheckoutView = false;
 
   constructor(
     private shoppingCartService: ShoppingCartService
@@ -45,6 +47,9 @@ export class CartComponent implements OnInit {
       });
     }
     // console.log(images);
+    if(images.length === 0){
+      return ["/assets/img/test.png"];
+    }
     return images ;
   }
 

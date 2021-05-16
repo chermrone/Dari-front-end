@@ -5,7 +5,6 @@ import { Gallery, GalleryItem, ImageItem, ThumbnailsPosition, ImageSize } from '
 import { Lightbox } from 'ng-gallery/lightbox';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { ShoppingCart } from 'src/app/models/ShoppingCart';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-founiture-ad-details',
@@ -23,8 +22,7 @@ export class FounitureAdDetailsComponent implements OnInit {
   constructor(
     public gallery: Gallery, 
     public lightbox: Lightbox,
-    public shoppingCartService: ShoppingCartService,
-    public userservice: UserService) {
+    public shoppingCartService: ShoppingCartService) {
   }
 
   ngOnInit(): void {
@@ -50,34 +48,6 @@ export class FounitureAdDetailsComponent implements OnInit {
       });
     });
     this.items = this.imageData.map(item => new ImageItem({ src: item.srcUrl, thumb: item.previewUrl }));
-    /* const viewer = new JavascriptViewer({
-       mainHolderId: 'jsv-holder',
-       mainImageId: 'jsv-image',
-       totalFrames: 72,
-       speed: 70,
-       defaultProgressBar: true,
-       imageUrls: this.listImage
-     });
-
-     // use events for example
-     viewer.events().loadImage.on((progress) => {
-       // use this for your own progress bar
-       console.log(`loading ${progress.percentage}%`);
-     });
-
-     viewer.events().started.on((result) => {
-       // use a promise or a start event to trigger things
-     });
-
-     viewer.start().then(() => {
-       viewer.rotateDegrees(180).then(() => {
-         // continue with your amazing intro
-       });
-     });*/
-
-
-    /** Lightbox Example */
-
       // Get a lightbox gallery ref
     const lightboxRef = this.gallery.ref('lightbox');
 
@@ -101,11 +71,24 @@ export class FounitureAdDetailsComponent implements OnInit {
     this.shoppingCart.fournitureAds.push(fa);
     const AuthUsername = sessionStorage.getItem("AuthUsername");
     this.shoppingCart.us.userName = AuthUsername
-    this.shoppingCartService.updateCart(this.shoppingCart).subscribe(
-      (data) => {
-        console.log("shopping cart update result:"+JSON.stringify(data));
-      }
-    )
+    if(this.shoppingCart.shoppingCartId){
+      this.shoppingCartService.updateCart(this.shoppingCart).subscribe(
+        (data) => {
+          const username = sessionStorage.getItem("AuthUsername")
+          this.shoppingCartService.updateValue(username,data)
+          console.log("shopping cart update result:"+JSON.stringify(data));
+        }
+      )
+    }else{
+      this.shoppingCartService.createCart(this.shoppingCart).subscribe(
+        (data) => {
+          const username = sessionStorage.getItem("AuthUsername")
+          this.shoppingCartService.updateValue(username,data)
+          console.log("shopping cart create result:"+JSON.stringify(data));
+        }
+      )      
+    }
+
   }
 
   // file path
