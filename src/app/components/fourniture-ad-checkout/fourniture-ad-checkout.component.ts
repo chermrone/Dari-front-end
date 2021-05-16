@@ -77,12 +77,13 @@ export class FournitureAdCheckoutComponent implements OnInit {
   }
   completeCheckout(): void{
     this.errors = [];
-    this.sent = true;
     this.orderUserService.checkout(this.order.orderId).subscribe(
       (data) =>{
+        this.sent = true;
         console.log("checkout result:" +JSON.stringify(data));
       },
       (err) => {console.log('error' + JSON.stringify(err));
+        this.sent = true;
         if (err.error.includes('failed chekout')){
           this.errors.push('ne doit pas être vide'); }
       },
