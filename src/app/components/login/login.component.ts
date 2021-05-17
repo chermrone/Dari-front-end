@@ -6,11 +6,13 @@ import {Router} from '@angular/router';
 import {VerifAuthService} from '../../services/verif-auth.service';
 import {NgForm} from '@angular/forms';
 import {SubscriptionOrder} from '../../models/subscriptionOrder';
-import {MatDialogRef} from '@angular/material/dialog';
+import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import {UserService} from '../../services/user.service';
 import {Subscription} from '../../models/subscription';
 import {User} from '../../models/user';
 import {HttpRequest} from '@angular/common/http';
+import {UserAddComponent} from "../user-add/user-add.component";
+import {RegisterComponent} from "../register/register.component";
 
 
 @Component({
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
  user: User = new User();
 
 
-  constructor( private authService: AuthService, private us: UserService, private matdialogref: MatDialogRef<LoginComponent>, private tokenStorage: TokenStorageService, private router: Router, private verifauth: VerifAuthService) {
+  constructor( private authService: AuthService,private dialog: MatDialog, private us: UserService, private matdialogref: MatDialogRef<LoginComponent>, private tokenStorage: TokenStorageService, private router: Router, private verifauth: VerifAuthService) {
   }
 
   ngOnInit(): void {
@@ -89,5 +91,16 @@ resetpass(f: NgForm){
     this.us.iduser = 0 ;
     this.user = new User();
 }
+  onCreate1() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '50%';
+    dialogConfig.height = '100%';
+
+    this.dialog.open(RegisterComponent, dialogConfig);
+
+  }
+
 }
 
