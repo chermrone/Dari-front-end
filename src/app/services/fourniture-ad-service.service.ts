@@ -73,7 +73,7 @@ export class FournitureAdService {
     let req_nameFa = ""
     let res: Observable<FournitureAd[]>;
     if(model.price){
-      req += "price.equals="+model.price
+      req += "&price.equals="+model.price
     }
     if(model.city){
       req += "&address.equals="+model.city
@@ -82,11 +82,11 @@ export class FournitureAdService {
       req_nameFa = req + "&nameFa.contains="+model.keyword
       req_description = req + "&description.contains="+model.keyword
       res = merge(
-        this.httpclient.get<FournitureAd[]>(environment.baseUrl + 'FournitureAd/SearchByCriteria?' + req_description),
-        this.httpclient.get<FournitureAd[]>(environment.baseUrl + 'FournitureAd/SearchByCriteria?' + req_nameFa)
+        this.httpclient.get<FournitureAd[]>(environment.baseUrl + 'FournitureAd/SearchByCriteria?available.equals=true' + req_description),
+        this.httpclient.get<FournitureAd[]>(environment.baseUrl + 'FournitureAd/SearchByCriteria?available.equals=true' + req_nameFa)
       )
     }else{
-      res = this.httpclient.get<FournitureAd[]>(environment.baseUrl + 'FournitureAd/SearchByCriteria?' + req)
+      res = this.httpclient.get<FournitureAd[]>(environment.baseUrl + 'FournitureAd/SearchByCriteria?available.equals=true' + req)
     }
     return res;
   }

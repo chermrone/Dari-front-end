@@ -1,68 +1,60 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <form>
-        <div class="form-group">
-          <label for="datecreated">Date Created</label>
-          <input type="text" class="form-control" id="datecreated" disabled [value]="order.dateCreated">
-        </div>
-        <div class="form-group">
-          <label for="datecreated">Date Shipped</label>
-          <input type="text" class="form-control" id="datecreated" disabled [value]="order.dateShiped">
-        </div>
-        <app-cart [shoppingCart]="order.shoppingCart" [inCheckoutView] = "true"></app-cart>
-      </form>
-      <br>
-      <div class="form-group">
-        <button id="confirm" class="btn btn-primary" (click)="confirmOrder()">Confirm Order</button>
-      </div>
+      <div class="col">
+          <form>
+              <div class="form-group">
+                  <label for="datecreated">Date Created</label>
+                  <input type="text" class="form-control" id="datecreated" disabled [value]="order.dateCreated">
+              </div>
+              <div class="form-group">
+                  <label for="datecreated">Date Shipped</label>
+                  <input type="text" class="form-control" id="datecreated" disabled [value]="order.dateShiped">
+              </div>
+              <app-cart [shoppingCart]="order.shoppingCart" [inCheckoutView] = "true"></app-cart>
+          </form>
+          <br>
+          <div class="form-group">
+              <button id="confirm" class="btn btn-primary" (click)="confirmOrder()">Confirm Order</button>
+          </div>
 
-    </div>
+      </div>
   </div>
   <br>
   <div class="row" *ngIf="showCreditCardForm">
-    <div class="col">
-      <form>
-        <div class="form-group">
-          <label for="card-number">Card Number</label>
-          <input type="text" class="form-control" id="card-number" name="number" [(ngModel)]="model.number">
-        </div>
-        <div class="form-group">
-          <label for="exp-month">Expiry Month</label>
-          <input type="text" class="form-control" id="exp-month" name="exp_month" [(ngModel)]="model.exp_month">
-        </div>
-        <div class="form-group">
-          <label for="exp-year">Expiry Year</label>
-          <input type="text" class="form-control" id="exp-year" name="exp_year" [(ngModel)]="model.exp_year">
-        </div>
-        <div class="form-group">
-          <label for="cvc">CVC</label>
-          <input type="text" class="form-control" id="cvc" name="cvc" [(ngModel)]="model.cvc">
-        </div>
-        <br>
-        <div class="form-group">
-          <button id="checkout" class="btn btn-primary" (click)="completeCheckout()">Checkout</button>
-        </div>
-        <div class="col">
-          <mat-chip-list aria-label="Fish selection">
-            <mat-chip *ngIf="errors" color="warn" selected>
-              fail: <br>
-              <div *ngFor="let er of errors">{{er}}</div>
-            </mat-chip>
-            <mat-chip *ngIf="!errors" color="accent" selected>success</mat-chip>
-          </mat-chip-list>
-        </div>
-      </form>
-    </div>
+      <div class="col">
+          <form>
+              <div class="form-group">
+                  <label for="card-number">Card Number</label>
+                  <input type="text" class="form-control" id="card-number" name="number" [(ngModel)]="model.number">
+              </div>
+              <div class="form-group">
+                  <label for="exp-month">Expiry Month</label>
+                  <input type="text" class="form-control" id="exp-month" name="exp_month" [(ngModel)]="model.exp_month">
+              </div>
+              <div class="form-group">
+                  <label for="exp-year">Expiry Year</label>
+                  <input type="text" class="form-control" id="exp-year" name="exp_year" [(ngModel)]="model.exp_year">
+              </div>
+              <div class="form-group">
+                  <label for="cvc">CVC</label>
+                  <input type="text" class="form-control" id="cvc" name="cvc" [(ngModel)]="model.cvc">
+              </div>
+              <br>
+              <div class="form-group">
+                  <button id="checkout" class="btn btn-primary" (click)="completeCheckout()">Checkout</button>
+              </div>
+          </form>
+      </div>
   </div>
+
   <div class="row" *ngFor="let error of errors">
-    <div class="alert alert-danger">
-      {{error.error}}
-    </div>
+      <div class="alert alert-danger">
+          {{error.error}}
+      </div>
   </div>
   <div class="row" *ngIf="showSuccess">
-    <div class="alert alert-success">
-      Success
-    </div>
+      <div class="alert alert-success">
+         Success
+      </div>
   </div>
 </div>

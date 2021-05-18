@@ -18,7 +18,7 @@ export class FournitureAdCheckoutComponent implements OnInit {
   order: OrderUser = null;
   showCreditCardForm = false;
   errors = [];
-  showSuccess = false
+  showSuccess = false;
   model:CardInfo = {number:"",cvc:"",exp_month:"",exp_year:""}
   ip = ""
   constructor(
